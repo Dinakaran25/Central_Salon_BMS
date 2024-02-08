@@ -1,12 +1,16 @@
 #import python , tkinter , mysql librarires
+import random,smtplib,string
+import tkinter as tk
 import mysql.connector
 from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox,Frame, Label, Entry, Button
 from tkinter import ttk
+from tkinter.ttk import Combobox
 from tkinter import filedialog
 from PIL import Image, ImageTk
 from datetime import datetime
 from tkcalendar import Calendar, DateEntry
+from email.mime.text import MIMEText
 
 
 
@@ -14,8 +18,8 @@ from tkcalendar import Calendar, DateEntry
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
-    database="cs"
+    passwd="Root$123",
+    database="central_salon"
 )
 
 #customers table create query for customers
@@ -97,6 +101,7 @@ class CentralSalon:
         #default open login login
         self.login_screen()
 
+    
 
     def login_screen(self):
 
@@ -107,70 +112,171 @@ class CentralSalon:
         self.root.title("Central Salon - Login")
         self.root.geometry("1150x700+0+0")
 
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Desktop/Programming Files/login.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+
         #variables
         self.username = StringVar()
         self.password = StringVar()
+        self.show_pass_var = tk.IntVar()
 
         #frame
         login_frame = Frame(self.root, bg="white")
-        login_frame.place(x=300, y=150, width=500, height=400)
+        login_frame.place(x=700, y=200, width=400, height=300)
 
-        title = Label(login_frame, text="Login", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=150, y=30)
+        title = Label(login_frame, text="WELCOME", font=("Baskerville", 30, "bold"), bg="white", fg="#6D4C3D").place(x=100, y=0)
+        title = Label(login_frame, text="Login", font=("Baskerville", 20, "bold"), bg="white", fg="#6D4C3D").place(x=75, y=40)
 
-        lbl_username = Label(login_frame, text="Username", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=100)
-        txt_username = Entry(login_frame, textvariable=self.username, font=("times new roman", 15), bg="lightgray").place(x=50, y=130)
+        lbl_username = Label(login_frame, text="Username:", font=("times new roman", 18, "bold"), bg="white", fg="black").place(x=10, y=80)
+        self.username_entry = Entry(login_frame, textvariable=self.username, font=("times new roman", 15), bg="lightgray").place(x=130, y=80)
 
-        lbl_password = Label(login_frame, text="Password", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=180)
-        txt_password = Entry(login_frame, textvariable=self.password, font=("times new roman", 15), bg="lightgray").place(x=50, y=210)
+        lbl_password = Label(login_frame, text="Password:", font=("times new roman", 18, "bold"), bg="white", fg="black").place(x=10, y=120)
+        self.password_entry = Entry(login_frame, textvariable=self.password, font=("times new roman", 15), bg="lightgray", show="*")
+        self.password_entry.place(x=130, y=120)
 
-        btn_login = Button(login_frame, text="Login", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.validate_login).place(x=50, y=260)
+        show_pass_checkbutton = tk.Checkbutton(login_frame, text="Show Password", variable=self.show_pass_var, command=self.toggle_password_visibility)
+        show_pass_checkbutton.place(x=130, y=150)
+
+        self.forgot_password_link = tk.Label(login_frame, text="Forgot Password?", fg="blue", cursor="hand2")
+        self.forgot_password_link.pack()
+        self.forgot_password_link.bind("<Button-1>", lambda e: self.reset_password())
+        self.forgot_password_link.place(x=250, y=150)
+
+        self.login_button = Button(login_frame, text="Login", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.validate_login).place(x=50, y=220)
         
-        btn_register = Button(login_frame, text="Register", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.register_screen).place(x=250, y=260)
+        self.register_button = Button(login_frame, text="Register", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.register_screen).place(x=250, y=220)
+    
+    def toggle_password_visibility(self):
+        if self.show_pass_var.get() == 1:
+            self.password_entry.config(show="")
+        else:
+            self.password_entry.config(show="*")
+
+    def reset_password(self):
+        username = self.username.get()  # Make sure to use .get() for StringVar()
+        if not username:
+            messagebox.showerror("Error", "Please enter your username first.")
+            return
+        new_password = self.generate_new_password()
+        email_address = self.get_email_address(username)
+        if email_address:
+            try:
+                conn = mydb()
+                if conn is not None:
+                    cursor = conn.cursor()
+                    query = 'SELECT customer_id FROM customers WHERE email = %s'
+                    cursor.execute(query, (email_address,))
+                    customer_id = cursor.fetchone()
+                    if customer_id:
+                        query = 'UPDATE customers SET password = %s WHERE email = %s'
+                        cursor.execute(query, (new_password, email_address))
+                        conn.commit()
+                        self.send_email(email_address, new_password)
+                        messagebox.showinfo("Success", f"New password was sent to the email address associated with {username}: {email_address}")
+                    else:
+                        messagebox.showerror("Error", "No customer found with this email.")
+            except Exception as e:
+                messagebox.showerror("Error", f"An error occurred: {e}")
+        else:
+            messagebox.showerror("Error", "No email address found for this username.")
+
+    def generate_new_password(self):
+        password_length = 10
+        new_password = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(password_length))
+        return new_password
+
+    def get_email_address(self, username):
+        email_address = None  # Initialize email_address at the start
+        try:
+            cursor = mydb.cursor()  # Assuming mydb is correctly set up to return a connection object
+            cursor.execute("SELECT email FROM customers WHERE username = %s", (username,))
+            result = cursor.fetchone()
+            if result:
+                email_address = result[0]
+            else:
+                print("No email address found for this username.")
+        except Exception as e:
+            print(f"Database error: {e}")
+        finally:
+            if 'cursor' in locals() and cursor:  # Check if cursor was successfully created
+                cursor.close()
+        return email_address
+    
+    def send_email(self, email_address, new_password):
+        smtp_server = 'smtp.gmail.com'
+        smtp_port = 587
+        smtp_user = 'central.salon.1@gmail.com'
+        smtp_password = 'qirdsouhpvmxhzlu'
+        message = MIMEText(f'Your new password is: {new_password}')
+        message['Subject'] = 'Password Reset'
+        message['From'] = smtp_user
+        message['To'] = email_address
+        try:
+            server = smtplib.SMTP(smtp_server, smtp_port)
+            server.starttls()
+            server.login(smtp_user, smtp_password)
+            server.sendmail(smtp_user, [email_address], message.as_string())
+            server.quit()
+        except smtplib.SMTPException as e:
+            print(f"Error sending email: {e}")
+        
 
     def register_screen(self):
-
-
         #clear screen
         for widget in self.root.winfo_children():
             widget.destroy()
 
         self.root.title("Central Salon - Register")
-        self.root.geometry("950x800")
+        self.root.geometry("1150x700+0+0")
 
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Desktop/Programming Files/login.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #frame
         register_frame = Frame(self.root, bg="white")
-        register_frame.place(x=200, y=50, width=500, height=700)
+        register_frame.place(x=600, y=50, width=400, height=600)
 
-        title = Label(register_frame, text="Register", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=150, y=30)
+        self.email_var = StringVar()
+        self.username_var = StringVar()
+
+        title = Label(register_frame, text="Register", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=100, y=30)
 
         lbl_fullname = Label(register_frame, text="Full Name", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=100)
         self.fullname_entry = Entry(register_frame, font=("times new roman", 15), bg="lightgray")
         self.fullname_entry.place(x=50, y=130)
 
-        lbl_lastname = Label(register_frame, text="Last Name", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=180)
+        lbl_lastname = Label(register_frame, text="Last Name", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=160)
         self.lastname_entry = Entry(register_frame, font=("times new roman", 15), bg="lightgray")
-        self.lastname_entry.place(x=50, y=210)
+        self.lastname_entry.place(x=50, y=190)
     
-        lbl_email = Label(register_frame, text="Email", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=260)
+        lbl_email = Label(register_frame, text="Email", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=220)
         self.email_entry = Entry(register_frame, font=("times new roman", 15), bg="lightgray")
-        self.email_entry.place(x=50, y=290)
+        self.email_entry.place(x=50, y=250)
 
-        lbl_phone = Label(register_frame, text="Phone", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=340)
+        lbl_phone = Label(register_frame, text="Phone", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=280)
         self.phone_entry = Entry(register_frame, font=("times new roman", 15), bg="lightgray")
-        self.phone_entry.place(x=50, y=370)
+        self.phone_entry.place(x=50, y=310)
 
-        lbl_username = Label(register_frame, text="Username", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=420)
+        lbl_username = Label(register_frame, text="Username", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=340)
         self.username_entry = Entry(register_frame, font=("times new roman", 15), bg="lightgray")
-        self.username_entry.place(x=50, y=450)
+        self.username_entry.place(x=50, y=370)
 
-        lbl_password = Label(register_frame, text="Password", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=500)
-        self.password_entry = Entry(register_frame, font=("times new roman", 15), bg="lightgray")
-        self.password_entry.place(x=50, y=530)
+        lbl_password = Label(register_frame, text="Password", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=400)
+        self.password_entry = Entry(register_frame, font=("times new roman", 15), bg="lightgray",show="*")
+        self.password_entry.place(x=50, y=430)
 
-        btn_register = Button(register_frame, text="Register", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.registerDB).place(x=50, y=570)
+        show_pass_checkbutton = tk.Checkbutton(register_frame, text="Show Password", variable=self.show_pass_var, command=self.toggle_password_visibility)
+        show_pass_checkbutton.place(x=50, y=460)
+
+        self.register_button = Button(register_frame, text="Register", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.registerDB).place(x=50, y=490)
         
-        btn_login = Button(register_frame, text="Login", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.login_screen).place(x=250, y=570)
+        self.login_button = Button(register_frame, text="Login", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.login_screen).place(x=250, y=490)
 
     #autofill_username
     def autofill_username(self, event):
@@ -214,7 +320,7 @@ class CentralSalon:
                 if row == None:
                     messagebox.showerror("Error", "Invalid username or password", parent=self.root)
                 else:
-                    messagebox.showinfo("Success", "Welcome", parent=self.root)
+                    messagebox.showinfo("Success", "Login Successful.!!", parent=self.root)
                     self.customer_dashboard()
             except Exception as e:
                 messagebox.showerror("Error", f"Error due to: {str(e)}", parent=self.root)
@@ -236,9 +342,61 @@ class CentralSalon:
 
         title = Label(dashboard_frame, text="Dashboard", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=150, y=30)
 
-        btn_services = Button(dashboard_frame, text="Services", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.services_screen).place(x=50, y=100)
+        btn_services = Button(dashboard_frame, text="Services", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.view_services).place(x=50, y=100)
         btn_appointments = Button(dashboard_frame, text="Appointments", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.appointments_screen).place(x=200, y=100)
-        btn_logout = Button(dashboard_frame, text="Logout", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.login_screen).place(x=400, y=100)
+        btn_profile = Button(dashboard_frame, text="Profile", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.display_profile).place(x=400, y=100) 
+        btn_logout = Button(dashboard_frame, text="Logout", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.login_screen).place(x=600, y=100)
+
+
+    def display_profile(self):
+        # Clear the previous UI components
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        # Setting up the profile UI frame
+        self.root.title("Central Salon - Profile")
+        self.root.geometry("1150x700")
+
+        profile_frame = Frame(self.root, bg="white")
+        profile_frame.place(x=0, y=0, relwidth=1, relheight=1)
+        
+        # Assuming you have stored the logged-in username in self.logged_in_user
+        username = self.logged_in_user
+
+        # Fetch user details from the database
+        try:
+            conn = mydb  # Ensure you have a connection to the database
+            cursor = conn.cursor()
+            cursor.execute("SELECT fullname, lastname, email, phone FROM customers WHERE username = %s", (username,))
+            result = cursor.fetchone()
+            
+            if result:
+                user_data = {
+                    "Full Name": result[0],
+                    "Last Name": result[1],
+                    "Email": result[2],
+                    "Phone": result[3]
+                }
+            else:
+                user_data = {"Error": "User data not found."}
+
+        except Exception as e:
+            print(f"Failed to fetch user details: {e}")
+            user_data = {"Error": "Failed to fetch user details."}
+        finally:
+            cursor.close()
+            conn.close()
+
+        # Display user profile information
+        Label(profile_frame, text="Profile", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=150, y=30)
+
+        y_offset = 100
+        for field, value in user_data.items():
+            Label(profile_frame, text=f"{field}: {value}", font=("times new roman", 20), bg="white", fg="black").place(x=50, y=y_offset)
+            y_offset += 50
+
+        # Button to return to the dashboard
+        Button(profile_frame, text="Back to Dashboard", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.customer_dashboard).place(x=400, y=600)
 
     #services screen
     def services_screen(self):
@@ -256,9 +414,9 @@ class CentralSalon:
 
         title = Label(services_frame, text="Services", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=150, y=30)
 
-        btn_add_service = Button(services_frame, text="Add Service", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.add_service).place(x=50, y=100)
-        btn_view_services = Button(services_frame, text="View Services", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.view_services).place(x=200, y=100)
-        btn_back = Button(services_frame, text="Back", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.customer_dashboard).place(x=400, y=100)
+        #btn_add_service = Button(services_frame, text="Add Service", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.add_service).place(x=50, y=100)
+        btn_view_services = Button(services_frame, text="View Services", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.view_services).place(x=250, y=100)
+        btn_back = Button(services_frame, text="Back", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.customer_dashboard).place(x=450, y=100)
 
     #add service
     def add_service(self):
@@ -327,19 +485,21 @@ class CentralSalon:
         mycursor.execute("SELECT * FROM salon_services")
         rows = mycursor.fetchall()
 
-        tree = ttk.Treeview(view_services_frame, columns=(1, 2), show="headings", height=10)
-        tree.place(x=50, y=100)
+        tree = ttk.Treeview(view_services_frame, columns=(1, 2, 3), show="headings", height=10)
+        tree.place(x=50, y=75)
 
-        tree.heading(1, text="Service")
-        tree.heading(2, text="Price")
+        tree.heading(1, text= "Sr.no")
+        tree.heading(2, text= "Service")
+        tree.heading(3, text="Price")
 
-        tree.column(1, width=200)
-        tree.column(2, width=200)
+        tree.column(1, width=50)
+        tree.column(2, width=100)
+        tree.column(3, width=50)
 
         for row in rows:
             tree.insert("", "end", values=row)
 
-        btn_back = Button(view_services_frame, text="Back", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.services_screen).place(x=400, y=100)
+        btn_back = Button(view_services_frame, text="Back", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.customer_dashboard).place(x=400, y=500)
 
     #appointments screen
     def appointments_screen(self):
@@ -355,11 +515,11 @@ class CentralSalon:
         appointments_frame = Frame(self.root, bg="white")
         appointments_frame.place(x=0, y=0, relwidth=1, relheight=1)
 
-        title = Label(appointments_frame, text="Appointments", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=150, y=30)
+        title = Label(appointments_frame, text="Appointments", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=450, y=30)
 
         btn_book_appointment = Button(appointments_frame, text="Book Appointment", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.book_appointment).place(x=50, y=100)
-        btn_view_appointments = Button(appointments_frame, text="View Appointments", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.view_appointments).place(x=200, y=100)
-        btn_back = Button(appointments_frame, text="Back", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.customer_dashboard).place(x=400, y=100)
+        btn_view_appointments = Button(appointments_frame, text="View Appointments", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.view_appointments).place(x=300, y=100)
+        btn_back = Button(appointments_frame, text="Back", font=("times new roman", 20, "bold"), bg="green", fg="white", command=self.customer_dashboard).place(x=600, y=100)
 
     #book appointment
     def book_appointment(self):
@@ -381,7 +541,7 @@ class CentralSalon:
         book_appointment_frame = Frame(self.root, bg="white")
         book_appointment_frame.place(x=300, y=150, width=500, height=500)
 
-        title = Label(book_appointment_frame, text="Book Appointment", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=150, y=30)
+        title = Label(book_appointment_frame, text="Book Appointment", font=("times new roman", 30, "bold"), bg="white", fg="green").place(x=50, y=30)
 
         lbl_service = Label(book_appointment_frame, text="Service", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=100)
 
@@ -389,11 +549,8 @@ class CentralSalon:
         mycursor.execute("SELECT * FROM salon_services")
         rows = mycursor.fetchall()
 
-        services = []
-        for row in rows:
-            services.append(row[1])
-
-        self.service.set(services[0])
+        services = [row[1] for row in rows]
+        self.service.set(services[0] if services else "")
 
         service_dropdown = OptionMenu(book_appointment_frame, self.service, *services)
         service_dropdown.place(x=50, y=130)
@@ -405,8 +562,11 @@ class CentralSalon:
 
         lbl_time = Label(book_appointment_frame, text="Time", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=260)
 
-        time_entry = Entry(book_appointment_frame, textvariable=self.time, font=("times new roman", 15), bg="lightgray")
-        time_entry.place(x=50, y=290)
+        time_slots = [f"{hour:02d}:{minute:02d}" for hour in range(9, 17) for minute in range(0, 60, 45)]
+
+        self.time.set(time_slots[0])  # Set default value to the first time slot
+        time_dropdown = OptionMenu(book_appointment_frame, self.time, *time_slots)
+        time_dropdown.place(x=50, y=290)
 
         lbl_staff = Label(book_appointment_frame, text="Staff", font=("times new roman", 18, "bold"), bg="white", fg="gray").place(x=50, y=340)
 
