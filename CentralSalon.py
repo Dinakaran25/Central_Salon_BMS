@@ -95,7 +95,7 @@ with mydb.cursor() as cursor:
 class CentralSalon:
     def __init__(self, root):
         self.root = root
-        self.root.title("Central Salon")
+        self.root.title("CentralSalon")
         self.root.geometry("1150x700")
         self.resetpassword=False
 
@@ -126,35 +126,35 @@ class CentralSalon:
         vintage_font = tkfont.Font(family="Courier New", size=30, weight="bold")
 
         #frame
-        login_frame = Frame(self.root, bg="white")
-        login_frame.place(x=700, y=150, width=400, height=400)
+        self.login_frame = Frame(self.root, bg="white")
+        self.login_frame.place(x=700, y=150, width=400, height=400)
 
-        welcome_label = tk.Label(login_frame, text="WELCOME", font=vintage_font, bg="white", fg="#503D33").place(x=120, y=0)
+        welcome_label = tk.Label(self.login_frame, text="WELCOME", font=vintage_font, bg="white", fg="#503D33").place(x=120, y=0)
         
 
         self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Desktop/Programming Files/central_logo.png").resize((100, 100), Image.LANCZOS))
-        Label(login_frame, image=self.logo_image, bg="white").place(x=150, y=50)
+        Label(self.login_frame, image=self.logo_image, bg="white").place(x=150, y=50)
 
-        title = Label(login_frame, text="Login", font=("Courier New", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=135)
+        title = Label(self.login_frame, text="Login", font=("Courier New", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=135)
 
-        lbl_username = Label(login_frame, text="Username:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=180)
-        self.username_entry = Entry(login_frame, textvariable=self.username, font=("Courier New", 15), bg="lightgray").place(x=140, y=180)
+        lbl_username = Label(self.login_frame, text="Username:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=180)
+        self.username_entry = Entry(self.login_frame, textvariable=self.username, font=("Courier New", 15), bg="lightgray").place(x=140, y=180)
 
-        lbl_password = Label(login_frame, text="Password:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=220)
-        self.password_entry = Entry(login_frame, textvariable=self.password, font=("Courier New", 15), bg="lightgray", show="*")
+        lbl_password = Label(self.login_frame, text="Password:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=220)
+        self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Courier New", 15), bg="lightgray", show="*")
         self.password_entry.place(x=140, y=220)
 
-        show_pass_checkbutton = tk.Checkbutton(login_frame, text="Show Password", variable=self.show_pass_var,bg="white", command=self.toggle_password_visibility)
+        show_pass_checkbutton = tk.Checkbutton(self.login_frame, text="Show Password", variable=self.show_pass_var,bg="white", command=self.toggle_password_visibility)
         show_pass_checkbutton.place(x=130, y=250)
 
-        self.forgot_password_link = tk.Label(login_frame, text="Forgot Password?", fg="blue", cursor="hand2",bg="white")
+        self.forgot_password_link = tk.Label(self.login_frame, text="Forgot Password?", fg="blue", cursor="hand2",bg="white")
         self.forgot_password_link.pack()
         self.forgot_password_link.bind("<Button-1>", lambda e: self.reset_password())
         self.forgot_password_link.place(x=250, y=253)
 
-        self.login_button = Button(login_frame, text="Login", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.validate_login).place(x=50, y=300)
+        self.login_button = Button(self.login_frame, text="Login", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.validate_login).place(x=50, y=300)
         
-        self.register_button = Button(login_frame, text="Register", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.register_screen).place(x=200, y=300)
+        self.register_button = Button(self.login_frame, text="Register", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.register_screen).place(x=200, y=300)
     
     def toggle_password_visibility(self):
         if self.show_pass_var.get() == 1:
@@ -234,29 +234,31 @@ class CentralSalon:
             print(f"Error sending email: {e}")
 
     def show_update_password_form(self, username):
-        self.update_password_window = tk.Tk()
-        self.update_password_window.title("Update Password")
+
+
+        for widget in self.login_frame.winfo_children():
+            widget.destroy()
 
         # Current Password
-        tk.Label(self.update_password_window, text="Current Password:").grid(row=0)
+        tk.Label(self.login_frame, text="Current Password:").grid(row=0)
         self.current_password_var = tk.StringVar()
-        tk.Entry(self.update_password_window, textvariable=self.current_password_var, show='*').grid(row=0, column=1)
+        tk.Entry(self.login_frame, textvariable=self.current_password_var, show='*').grid(row=0, column=1)
 
         # New Password
-        tk.Label(self.update_password_window, text="New Password:").grid(row=1)
+        tk.Label(self.login_frame, text="New Password:").grid(row=1)
         self.new_password_var = tk.StringVar()
-        tk.Entry(self.update_password_window, textvariable=self.new_password_var, show='*').grid(row=1, column=1)
+        tk.Entry(self.login_frame, textvariable=self.new_password_var, show='*').grid(row=1, column=1)
 
         # Confirm New Password
-        tk.Label(self.update_password_window, text="Confirm New Password:").grid(row=2)
+        tk.Label(self.login_frame, text="Confirm New Password:").grid(row=2)
         self.confirm_new_password_var = tk.StringVar()
-        tk.Entry(self.update_password_window, textvariable=self.confirm_new_password_var, show='*').grid(row=2, column=1)
+        tk.Entry(self.login_frame, textvariable=self.confirm_new_password_var, show='*').grid(row=2, column=1)
 
         data=[username,self.current_password_var,self.new_password_var,self.confirm_new_password_var]
         # Update Button
-        tk.Button(self.update_password_window, text="Update Password", command=lambda data=data : self.update_password(data[0],data[1],data[2],data[3])).grid(row=3, columnspan=2)
+        tk.Button(self.login_frame, text="Update Password", command=lambda data=data : self.update_password(data[0],data[1],data[2],data[3])).grid(row=3, columnspan=2)
 
-        self.update_password_window.mainloop()
+
 
     def update_password(self, username,current_password_var,new_password_var,confirm_new_password_var):
         current_password = current_password_var.get()
@@ -278,7 +280,7 @@ class CentralSalon:
                     cursor.execute(query, (new_password, username))
                     mydb.commit()
                     messagebox.showinfo("Success", "Your password has been updated successfully.")
-                    self.update_password_window.destroy()
+                    self.customer_dashboard()
                 else:
                     messagebox.showerror("Error", "Failed to update password.")
             else:
