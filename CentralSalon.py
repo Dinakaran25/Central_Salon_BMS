@@ -235,19 +235,6 @@ class CentralSalon:
 
     def show_update_password_form(self, username):
 
-        for widget in self.root.winfo_children():
-            widget.destroy()
-
-        self.root.title("Central Salon - Login")
-        self.root.geometry("1150x700+0+0")
-
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Desktop/Programming Files/login.png")  # Update the path to your image
-        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
-        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
-        bg_label = Label(self.root, image=self.bg_photo)
-        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-
         for widget in self.login_frame.winfo_children():
             widget.destroy()
 
