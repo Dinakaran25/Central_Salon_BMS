@@ -234,35 +234,33 @@ class CentralSalon:
             print(f"Error sending email: {e}")
 
     def show_update_password_form(self, username):
-
+        self.temp_username = username
         for widget in self.login_frame.winfo_children():
             widget.destroy()
 
         # Current Password
-        tk.Label(self.login_frame, text="Current Password:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=180)
-        self.current_password_var = tk.StringVar()
-        tk.Entry(self.login_frame, textvariable=self.current_password_var, show='*').grid(row=0, column=1)
+        tk.Label(self.login_frame, text="Current Password:", font=("Courier New", 12), bg="white", fg="black").place(x=10, y=180)
+        self.current_password_var = tk.Entry(self.login_frame, font=("Courier New", 12), bg="lightgray", show='*').place(x=150, y=180)
 
         # New Password
-        tk.Label(self.login_frame, text="New Password:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=180)
-        self.new_password_var = tk.StringVar()
-        tk.Entry(self.login_frame, textvariable=self.new_password_var, show='*').grid(row=1, column=1)
+        tk.Label(self.login_frame, text="New Password:", font=("Courier New", 12), bg="white", fg="black").place(x=10, y=200)
+        self.new_password_var = tk.Entry(self.login_frame, font=("Courier New", 12), bg="lightgray", show='*').place(x=150, y=200)
 
         # Confirm New Password
-        tk.Label(self.login_frame, text="Confirm New Password:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=180)
-        self.confirm_new_password_var = tk.StringVar()
-        tk.Entry(self.login_frame, textvariable=self.confirm_new_password_var, show='*').grid(row=2, column=1)
+        tk.Label(self.login_frame, text="Confirm New Password:", font=("Courier New", 12), bg="white", fg="black").place(x=10, y=220)
+        self.confirm_new_password_var = tk.Entry(self.login_frame, font=("Courier New", 12), bg="lightgray", show='*').place(x=150, y=220)
 
-        data=[username,self.current_password_var,self.new_password_var,self.confirm_new_password_var]
+        #data=[username,self.current_password_var,self.new_password_var,self.confirm_new_password_var]
         # Update Button
-        tk.Button(self.login_frame, text="Update Password", command=lambda data=data : self.update_password(data[0],data[1],data[2],data[3])).grid(row=3, columnspan=2)
+    
+        self.update_button = tk.Button(self.login_frame, text="Update Password", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command= self.update_password).place(x=100, y=300)
 
 
-
-    def update_password(self, username,current_password_var,new_password_var,confirm_new_password_var):
-        current_password = current_password_var.get()
-        new_password = new_password_var.get()
-        confirm_new_password= confirm_new_password_var.get()
+    def update_password(self):
+        current_password = self.current_password_var.get()
+        new_password = self.new_password_var.get()
+        confirm_new_password= self.confirm_new_password_var.get()
+        username=self.temp_username
 
         print(current_password,new_password,confirm_new_password)
 
