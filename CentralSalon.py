@@ -30,8 +30,9 @@ customers_query = '''
     lastname VARCHAR(255),
     email VARCHAR(255),
     phone VARCHAR(255),
-    password VARCHAR(255),
-    username VARCHAR(255)
+    username VARCHAR(255),
+    password VARCHAR(255)
+    
     )
 '''
 
@@ -115,7 +116,7 @@ class CentralSalon:
         self.root.title("Central Salon - Login")
         self.root.geometry("1150x700+0+0")
 
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/loginnew.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
@@ -125,25 +126,25 @@ class CentralSalon:
         self.username = StringVar()
         self.password = StringVar()
         self.show_pass_var = tk.IntVar()
-        vintage_font = tkfont.Font(family="Courier New", size=30, weight="bold")
+        
 
         #frame
         self.login_frame = Frame(self.root, bg="white")
-        self.login_frame.place(x=700, y=150, width=400, height=400)
+        self.login_frame.place(x=125, y=150, width=400, height=400)
 
-        welcome_label = tk.Label(self.login_frame, text="WELCOME", font=vintage_font, bg="white", fg="#503D33").place(x=120, y=0)
+        welcome_label = tk.Label(self.login_frame, text="WELCOME", font=("Times New Roman", 25, "bold"), bg="white", fg="#503D33").place(x=120, y=0)
         
 
         self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png").resize((100, 100), Image.LANCZOS))
         Label(self.login_frame, image=self.logo_image, bg="white").place(x=150, y=50)
 
-        title = Label(self.login_frame, text="Login", font=("Courier New", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=135)
+        title = Label(self.login_frame, text="Login", font=("Times New Roman", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=135)
 
-        lbl_username = Label(self.login_frame, text="Username:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=180)
-        self.username_entry = Entry(self.login_frame, textvariable=self.username, font=("Courier New", 15), bg="lightgray").place(x=140, y=180)
+        lbl_username = Label(self.login_frame, text="Username:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=180)
+        self.username_entry = Entry(self.login_frame, textvariable=self.username, font=("Times New Roman", 12), bg="lightgray").place(x=140, y=180)
 
-        lbl_password = Label(self.login_frame, text="Password:", font=("Courier New", 18), bg="white", fg="black").place(x=10, y=220)
-        self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Courier New", 15), bg="lightgray", show="*")
+        lbl_password = Label(self.login_frame, text="Password:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=220)
+        self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Times New Roman", 12), bg="lightgray", show="*")
         self.password_entry.place(x=140, y=220)
 
         show_pass_checkbutton = tk.Checkbutton(self.login_frame, text="Show Password", variable=self.show_pass_var,bg="white", command=self.toggle_password_visibility)
@@ -154,9 +155,9 @@ class CentralSalon:
         self.forgot_password_link.bind("<Button-1>", lambda e: self.reset_password())
         self.forgot_password_link.place(x=250, y=253)
 
-        self.login_button = Button(self.login_frame, text="Login", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.validate_login).place(x=50, y=300)
+        self.login_button = Button(self.login_frame, text="Login", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.validate_login).place(x=50, y=300)
         
-        self.register_button = Button(self.login_frame, text="Register", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.register_screen).place(x=200, y=300)
+        self.register_button = Button(self.login_frame, text="Register", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.register_screen).place(x=200, y=300)
     
     def toggle_password_visibility(self):
         if self.show_pass_var.get() == 1:
@@ -243,30 +244,31 @@ class CentralSalon:
         self.root.title("Central Salon - Update Password")
         self.root.geometry("1150x700+0+0")
 
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/loginnew.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #frame
         self.update_password_frame = Frame(self.root, bg="white")
-        self.update_password_frame.place(x=700, y=150, width=400, height=400)
+        self.update_password_frame.place(x=125, y=150, width=400, height=400)
 
-        title = Label(self.update_password_frame, text="Update Password", font=("Courier New", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=135)
+        title = Label(self.update_password_frame, text="Update Password", font=("Times new roman", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=100)
         
-        lbl_current_password = Label(self.update_password_frame, text="Current Password:", font=("Courier New", 12), bg="white", fg="black").place(x=10, y=180)
-        self.current_password_entry = Entry(self.update_password_frame, font=("Courier New", 12), bg="lightgray", show="*")
-        self.current_password_entry.place(x=200, y=180)
+        lbl_current_password = Label(self.update_password_frame, text="Current Password:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=150)
+        self.current_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="lightgray", show="*")
+        self.current_password_entry.place(x=10, y=180)
 
-        lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Courier New", 12), bg="white", fg="black").place(x=10, y=220)
-        self.new_password_entry = Entry(self.update_password_frame, font=("Courier New", 12), bg="lightgray", show="*")
-        self.new_password_entry.place(x=200, y=220)
+        lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=210)
+        self.new_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="lightgray", show="*")
+        self.new_password_entry.place(x=10, y=240)
 
-        lbl_confirm_new_password = Label(self.update_password_frame, text="Confirm New Password:", font=("Courier New", 12), bg="white", fg="black").place(x=10, y=260)
-        self.confirm_new_password_entry = Entry(self.update_password_frame, font=("Courier New", 12), bg="lightgray", show="*")
-        self.confirm_new_password_entry.place(x=200, y=260)
+        lbl_confirm_new_password = Label(self.update_password_frame, text="Confirm New Password:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=270)
+        self.confirm_new_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="lightgray", show="*")
+        self.confirm_new_password_entry.place(x=10, y=300)
 
-        self.update_password_button = Button(self.update_password_frame, text="Update Password", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.update_password).place(x=50, y=300)
+        self.update_password_button = Button(self.update_password_frame, text="Update Password", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.update_password).place(x=50, y=360)
         
 
 
@@ -336,7 +338,7 @@ class CentralSalon:
         self.root.title("Central Salon - Register")
         self.root.geometry("1150x700+0+0")
 
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/loginnew.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
@@ -344,43 +346,43 @@ class CentralSalon:
 
         #frame
         register_frame = Frame(self.root, bg="white")
-        register_frame.place(x=600, y=50, width=400, height=600)
+        register_frame.place(x=125, y=130, width=400, height=500)
 
         self.email_var = StringVar()
         self.username_var = StringVar()
 
-        title = Label(register_frame, text="Register", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=100, y=30)
+        title = Label(register_frame, text="Register", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=100, y=10)
 
-        lbl_fullname = Label(register_frame, text="First Name:", font=("Courier New", 18, "bold"), bg="white", fg="#503D33").place(x=50, y=100)
-        self.fullname_entry = Entry(register_frame, font=("Courier New", 15), bg="lightgray")
-        self.fullname_entry.place(x=50, y=130)
+        lbl_fullname = Label(register_frame, text="First Name:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=60)
+        self.fullname_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        self.fullname_entry.place(x=30, y=90)
 
-        lbl_lastname = Label(register_frame, text="Last Name:", font=("Courier New", 18, "bold"), bg="white", fg="#503D33").place(x=50, y=160)
-        self.lastname_entry = Entry(register_frame, font=("Courier New", 15), bg="lightgray")
-        self.lastname_entry.place(x=50, y=190)
+        lbl_lastname = Label(register_frame, text="Last Name:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=120)
+        self.lastname_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        self.lastname_entry.place(x=30, y=150)
     
-        lbl_email = Label(register_frame, text="Email:", font=("Courier New", 18, "bold"), bg="white", fg="#503D33").place(x=50, y=220)
-        self.email_entry = Entry(register_frame, font=("Courier New", 15), bg="lightgray")
-        self.email_entry.place(x=50, y=250)
+        lbl_email = Label(register_frame, text="Email:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=180)
+        self.email_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        self.email_entry.place(x=30, y=210)
 
-        lbl_phone = Label(register_frame, text="Phone:", font=("Courier New", 18, "bold"), bg="white", fg="#503D33").place(x=50, y=280)
-        self.phone_entry = Entry(register_frame, font=("Courier New", 15), bg="lightgray")
-        self.phone_entry.place(x=50, y=310)
+        lbl_phone = Label(register_frame, text="Phone:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=240)
+        self.phone_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        self.phone_entry.place(x=30, y=270)
 
-        lbl_username = Label(register_frame, text="Username:", font=("Courier New", 18, "bold"), bg="white", fg="#503D33").place(x=50, y=340)
-        self.username_entry = Entry(register_frame, font=("Courier New", 15), bg="lightgray")
-        self.username_entry.place(x=50, y=370)
+        lbl_username = Label(register_frame, text="Username:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=300)
+        self.username_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        self.username_entry.place(x=30, y=330)
 
-        lbl_password = Label(register_frame, text="Password:", font=("Courier New", 18, "bold"), bg="white", fg="#503D33").place(x=50, y=400)
-        self.password_entry = Entry(register_frame, font=("Courier New", 15), bg="lightgray",show="*")
-        self.password_entry.place(x=50, y=430)
+        lbl_password = Label(register_frame, text="Password:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=360)
+        self.password_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray",show="*")
+        self.password_entry.place(x=30, y=390)
 
         show_pass_checkbutton = tk.Checkbutton(register_frame, text="Show Password", variable=self.show_pass_var,bg="white", command=self.toggle_password_visibility)
-        show_pass_checkbutton.place(x=50, y=460)
+        show_pass_checkbutton.place(x=30, y=410)
 
-        self.register_button = Button(register_frame, text="Register", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.registerDB).place(x=50, y=490)
+        self.register_button = Button(register_frame, text="Register", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.registerDB).place(x=30, y=440)
         
-        self.login_button = Button(register_frame, text="Login", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=250, y=490)
+        self.login_button = Button(register_frame, text="Login", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=250, y=440)
 
     #autofill_username
     def autofill_username(self, event):
@@ -429,23 +431,23 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Customer Dashboard", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Customer Dashboard", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
 
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
 
     def book_appointment(self):
         #same menu section
@@ -463,22 +465,22 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Book Appointment", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Book Appointment", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
 
         #left frame for booking appointment
         left_frame = Frame(dashboard_frame, bg="white")
@@ -492,34 +494,34 @@ class CentralSalon:
         for row in rows:
             services.append(row[0])
         
-        self.services_combobox = Combobox(left_frame, values=services, font=("Courier New", 15), state="readonly")
+        self.services_combobox = Combobox(left_frame, values=services, font=("Times New Roman", 15), state="readonly")
         self.services_combobox.set("Select Service")
         self.services_combobox.place(x=50, y=50)
 
         #select date
-        self.date_label = Label(left_frame, text="Select Date", font=("Courier New", 15), bg="white").place(x=50, y=100)
-        self.date_entry = DateEntry(left_frame, font=("Courier New", 12))
+        self.date_label = Label(left_frame, text="Select Date", font=("Times New Roman", 15), bg="white").place(x=50, y=100)
+        self.date_entry = DateEntry(left_frame, font=("Times New Roman", 12))
         self.date_entry.place(x=50, y=130)
 
         #select time
-        self.time_label = Label(left_frame, text="Select Time", font=("Courier New", 15), bg="white").place(x=50, y=180)
+        self.time_label = Label(left_frame, text="Select Time", font=("Times New Roman", 15), bg="white").place(x=50, y=180)
         
         #time combobox
-        self.time_combobox = Combobox(left_frame, values=["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"], font=("Courier New", 15), state="readonly")
+        self.time_combobox = Combobox(left_frame, values=["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"], font=("Times New Roman", 15), state="readonly")
         self.time_combobox.set("Select Time")
         self.time_combobox.place(x=50, y=210)
 
         #Name
-        self.name_label = Label(left_frame, text="Name", font=("Courier New", 15), bg="white").place(x=50, y=260)
-        self.name_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.name_label = Label(left_frame, text="Name", font=("Times New Roman", 15), bg="white").place(x=50, y=260)
+        self.name_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
         self.name_entry.place(x=50, y=290)
 
         #confirm button
-        self.confirm_button = Button(left_frame, text="Confirm", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.confirm_appointment).place(x=50, y=350)
+        self.confirm_button = Button(left_frame, text="Confirm", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.confirm_appointment).place(x=50, y=350)
 
 
 
-    def confirm_appointment(self):
+    def confirm_appointment(self,email_address):
         service = self.services_combobox.get()
         date = self.date_entry.get()
         time = self.time_combobox.get()
@@ -532,7 +534,10 @@ class CentralSalon:
 
         if service == "Select Service" or date == "" or time == "Select Time" or name == "":
             messagebox.showerror("Error", "All fields are required", parent=self.root)
-        else:
+            return
+        self.send_booking_confirmation = self.send_booking_confirmation_email()
+        email_address = self.get_email_address()
+        if email_address:
             try:
                 mycursor = mydb.cursor()
                 userid=self.userid
@@ -542,11 +547,48 @@ class CentralSalon:
                 #insert into database
                 mycursor.execute("INSERT INTO salon_appointments (customer_id, service_id, date, time, name) VALUES (%s, %s, %s, %s, %s)", (userid, service_id, date, time, name))
                 mydb.commit()
+                self.send_email(email_address)
                 messagebox.showinfo("Success", "Appointment Booked Successfully", parent=self.root)
                 self.customer_dashboard()
             except Exception as e:
                 messagebox.showerror("Error", f"Error due to: {str(e)}", parent=self.root)
-
+        else:
+            messagebox.showerror("Error", "No email address found for this username.")
+    def send_booking_confirmation_email(self, email_address, booking_details):
+        smtp_server = 'smtp.gmail.com'
+        smtp_port = 587
+        smtp_user = 'central.salon.1@gmail.com'
+        smtp_password = 'qirdsouhpvmxhzlu'  # Ideally, this should be securely stored and retrieved
+        
+        # Construct the booking details message
+        booking_info = f"""
+        Dear Customer,
+        
+        Thank you for booking with Central Salon!
+        
+        Here are your booking details:
+        - Date and Time: {booking_details['date_time']}
+        - Services: {', '.join(booking_details['services'])}
+        
+        If you need to cancel or reschedule, please contact us at least 24 hours in advance.
+        
+        We look forward to serving you,
+        Central Salon
+        """
+        
+        message = MIMEText(booking_info)
+        message['Subject'] = 'Booking Confirmation'
+        message['From'] = smtp_user
+        message['To'] = email_address
+        
+        try:
+            server = smtplib.SMTP(smtp_server, smtp_port)
+            server.starttls()
+            server.login(smtp_user, smtp_password)
+            server.sendmail(smtp_user, [email_address], message.as_string())
+            server.quit()
+        except smtplib.SMTPException as e:
+            print(f"Error sending email: {e}")
 
     def view_appointments(self):
         #same menu section
@@ -564,22 +606,22 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="View Appointments", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Appointments", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
 
         #left frame for booking appointment
         left_frame = Frame(dashboard_frame, bg="white")
@@ -634,9 +676,9 @@ class CentralSalon:
 
 
         #checkin appointments button
-        self.checkin_appointment_button = Button(left_frame, text="Checkin Appointment", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.checkin_appointment).place(x=50, y=400)
+        self.checkin_appointment_button = Button(left_frame, text="Checkin Appointment", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.checkin_appointment).place(x=50, y=400)
         #cancel appointments button
-        self.cancel_appointment_button = Button(left_frame, text="Cancel Appointment", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.cancel_appointment).place(x=350, y=400)
+        self.cancel_appointment_button = Button(left_frame, text="Cancel Appointment", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.cancel_appointment).place(x=350, y=400)
 
     def checkin_appointment(self):
         #get selected item
@@ -681,22 +723,22 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="My Profile", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="My Profile", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
 
         #left frame for booking appointment
         left_frame = Frame(dashboard_frame, bg="white")
@@ -710,31 +752,31 @@ class CentralSalon:
         user = mycursor.fetchone()
         #print(user)
         #fullname
-        self.fullname_label = Label(left_frame, text="First Name:", font=("Courier New", 15), bg="white").place(x=50, y=50)
-        self.fullname_entry = Label(left_frame, text=user[1], font=("Courier New", 15), bg="white").place(x=50, y=80)
+        self.fullname_label = Label(left_frame, text="First Name:", font=("Times New Roman", 15, "bold"), bg="white").place(x=50, y=50)
+        self.fullname_entry = Label(left_frame, text=user[1], font=("Times New Roman", 15), bg="white").place(x=180, y=50)
 
         #lastname
-        self.lastname_label = Label(left_frame, text="Last Name:", font=("Courier New", 15), bg="white").place(x=50, y=110)
-        self.lastname_entry = Label(left_frame, text=user[2], font=("Courier New", 15), bg="white").place(x=50, y=140)
+        self.lastname_label = Label(left_frame, text="Last Name:", font=("Times New Roman", 15,"bold"), bg="white").place(x=50, y=110)
+        self.lastname_entry = Label(left_frame, text=user[2], font=("Times New Roman", 15), bg="white").place(x=170, y=110)
 
         #email
-        self.email_label = Label(left_frame, text="Email:", font=("Courier New", 15), bg="white").place(x=50, y=170)
-        self.email_entry = Label(left_frame, text=user[3], font=("Courier New", 15), bg="white").place(x=50, y=200)
+        self.email_label = Label(left_frame, text="Email:", font=("Times New Roman", 15,"bold"), bg="white").place(x=50, y=170)
+        self.email_entry = Label(left_frame, text=user[3], font=("Times New Roman", 15), bg="white").place(x=120, y=170)
 
         #phone
-        self.phone_label = Label(left_frame, text="Phone:", font=("Courier New", 15), bg="white").place(x=50, y=230)
-        self.phone_entry = Label(left_frame, text=user[4], font=("Courier New", 15), bg="white").place(x=50, y=260)
+        self.phone_label = Label(left_frame, text="Phone:", font=("Times New Roman", 15,"bold"), bg="white").place(x=50, y=230)
+        self.phone_entry = Label(left_frame, text=user[4], font=("Times New Roman", 15), bg="white").place(x=120, y=230)
 
         #username
-        self.username_label = Label(left_frame, text="Username:", font=("Courier New", 15), bg="white").place(x=50, y=290)
-        self.username_entry = Label(left_frame, text=user[5], font=("Courier New", 15), bg="white").place(x=50, y=320)
+        self.username_label = Label(left_frame, text="Username:", font=("Times New Roman", 15,"bold"), bg="white").place(x=50, y=290)
+        self.username_entry = Label(left_frame, text=user[5], font=("Times New Roman", 15), bg="white").place(x=160, y=290)
 
         #password
-        self.password_label = Label(left_frame, text="Password:", font=("Courier New", 15), bg="white").place(x=50, y=350)
-        self.password_entry = Label(left_frame, text=user[6], font=("Courier New", 15), bg="white").place(x=50, y=380)
-
+        self.password_label = Label(left_frame, text="Password:", font=("Times New Roman", 15,"bold"), bg="white").place(x=50, y=350)
+        self.password_entry = Label(left_frame, text=user[6], font=("Times New Roman", 15), bg="white").place(x=160, y=350)
+        
         #update button
-        self.update_button = Button(left_frame, text="Update", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_profile).place(x=50, y=420)
+        self.update_button = Button(left_frame, text="Update", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_profile).place(x=50, y=420)
 
 
     def update_profile(self):
@@ -753,22 +795,22 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Update Profile", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Update Profile", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
 
         #left frame for booking appointment
         left_frame = Frame(dashboard_frame, bg="white")
@@ -783,43 +825,43 @@ class CentralSalon:
         #print(user)
 
         #fullname
-        self.fullname_label = Label(left_frame, text="First Name", font=("Courier New", 15), bg="white").place(x=50, y=50)
-        self.fullname_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.fullname_label = Label(left_frame, text="First Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
+        self.fullname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
         self.fullname_entry.insert(0, user[1])
         self.fullname_entry.place(x=50, y=80)
 
         #lastname
-        self.lastname_label = Label(left_frame, text="Last Name", font=("Courier New", 15), bg="white").place(x=50, y=110)
-        self.lastname_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.lastname_label = Label(left_frame, text="Last Name", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
+        self.lastname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
         self.lastname_entry.insert(0, user[2])
         self.lastname_entry.place(x=50, y=140)
 
         #email
-        self.email_label = Label(left_frame, text="Email", font=("Courier New", 15), bg="white").place(x=50, y=170)
-        self.email_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.email_label = Label(left_frame, text="Email", font=("Times New Roman", 15), bg="white").place(x=50, y=170)
+        self.email_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
         self.email_entry.insert(0, user[3])
         self.email_entry.place(x=50, y=200)
 
         #phone
-        self.phone_label = Label(left_frame, text="Phone", font=("Courier New", 15), bg="white").place(x=50, y=230)
-        self.phone_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.phone_label = Label(left_frame, text="Phone", font=("Times New Roman", 15), bg="white").place(x=50, y=230)
+        self.phone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
         self.phone_entry.insert(0, user[4])
         self.phone_entry.place(x=50, y=260)
 
         #username   
-        self.username_label = Label(left_frame, text="Username", font=("Courier New", 15), bg="white").place(x=50, y=290)
-        self.username_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.username_label = Label(left_frame, text="Username", font=("Times New Roman", 15), bg="white").place(x=50, y=290)
+        self.username_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
         self.username_entry.insert(0, user[5])
         self.username_entry.place(x=50, y=320)
 
         #password
-        self.password_label = Label(left_frame, text="Password", font=("Courier New", 15), bg="white").place(x=50, y=350)
-        self.password_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.password_label = Label(left_frame, text="Password", font=("Times New Roman", 15), bg="white").place(x=50, y=350)
+        self.password_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
         self.password_entry.insert(0, user[6])
         self.password_entry.place(x=50, y=380)
 
         #update button
-        self.update_button = Button(left_frame, text="Update", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_profileDB).place(x=50, y=420)
+        self.update_button = Button(left_frame, text="Update", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_profileDB).place(x=50, y=420)
 
     def update_profileDB(self):
         fullname = self.fullname_entry.get()
@@ -859,29 +901,29 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Admin Dashboard", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Admin Dashboard", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
 
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
 
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
 
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
     def add_service(self):
         #same menu section
@@ -899,47 +941,47 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Add Service", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Add Service", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
 
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
         #left frame for adding services
         left_frame = Frame(dashboard_frame, bg="white")
         left_frame.place(x=350, y=100, width=700, height=500)
 
         #service name
-        self.service_label = Label(left_frame, text="Service Name", font=("Courier New", 15), bg="white").place(x=50, y=50)
-        self.service_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.service_label = Label(left_frame, text="Service Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
+        self.service_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.service_entry.place(x=50, y=80)
 
         #service price
-        self.price_label = Label(left_frame, text="Service Price", font=("Courier New", 15), bg="white").place(x=50, y=110)
-        self.price_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.price_label = Label(left_frame, text="Service Price", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
+        self.price_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.price_entry.place(x=50, y=140)
 
         #add service button
-        self.add_service_button = Button(left_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_serviceDB).place(x=50, y=180)
+        self.add_service_button = Button(left_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_serviceDB).place(x=50, y=180)
 
     def add_serviceDB(self):
         service = self.service_entry.get()
@@ -973,28 +1015,28 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="View Services", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Services", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
 
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
         #left frame for viewing services
         left_frame = Frame(dashboard_frame, bg="white")
@@ -1021,8 +1063,8 @@ class CentralSalon:
             self.services_table.insert("", "end", values=(row[0], row[1], row[2]))
 
         #update and delete services
-        self.update_service_button = Button(left_frame, text="Update Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_service).place(x=50, y=350)
-        self.delete_service_button = Button(left_frame, text="Delete Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.delete_service).place(x=250, y=350)
+        self.update_service_button = Button(left_frame, text="Update Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_service).place(x=50, y=350)
+        self.delete_service_button = Button(left_frame, text="Delete Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.delete_service).place(x=250, y=350)
 
     def update_service(self):
         #get selected item
@@ -1049,51 +1091,51 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Update Service", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Update Service", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
 
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
         #left frame for updating services
         left_frame = Frame(dashboard_frame, bg="white")
         left_frame.place(x=350, y=100, width=700, height=500)
 
         #service name
-        self.service_label = Label(left_frame, text="Service Name", font=("Courier New", 15), bg="white").place(x=50, y=50)
-        self.service_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.service_label = Label(left_frame, text="Service Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
+        self.service_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.service_entry.insert(0, service)
 
         self.service_entry.place(x=50, y=80)
 
         #service price
-        self.price_label = Label(left_frame, text="Service Price", font=("Courier New", 15), bg="white").place(x=50, y=110)
-        self.price_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.price_label = Label(left_frame, text="Service Price", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
+        self.price_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.price_entry.insert(0, price)
 
         self.price_entry.place(x=50, y=140)
 
         #update service button
-        self.update_service_button = Button(left_frame, text="Update Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=lambda: self.update_serviceDB(id)).place(x=50, y=180)
+        self.update_service_button = Button(left_frame, text="Update Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=lambda: self.update_serviceDB(id)).place(x=50, y=180)
 
     def update_serviceDB(self, id):
         service = self.service_entry.get()
@@ -1139,59 +1181,59 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Add Staff", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Add Staff", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
 
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
         #left frame for adding staff
         left_frame = Frame(dashboard_frame, bg="white")
         left_frame.place(x=350, y=100, width=700, height=500)
 
         #staff name
-        self.staffname_label = Label(left_frame, text="Staff Name", font=("Courier New", 15), bg="white").place(x=50, y=50)
-        self.staffname_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.staffname_label = Label(left_frame, text="Staff Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
+        self.staffname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.staffname_entry.place(x=50, y=80)
         
         #add staff mail
-        self.staffmail_label = Label(left_frame, text="Staff Email", font=("Courier New", 15), bg="white").place(x=50, y=110)
-        self.staffmail_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.staffmail_label = Label(left_frame, text="Staff Email", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
+        self.staffmail_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.staffmail_entry.place(x=50, y=140)
 
         #add staff phone
-        self.staffphone_label = Label(left_frame, text="Staff Phone", font=("Courier New", 15), bg="white").place(x=50, y=170)
-        self.staffphone_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.staffphone_label = Label(left_frame, text="Staff Phone", font=("Times New Roman", 15), bg="white").place(x=50, y=170)
+        self.staffphone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.staffphone_entry.place(x=50, y=200)
 
         #add staff speciality
-        self.staffspeciality_label = Label(left_frame, text="Staff Speciality", font=("Courier New", 15), bg="white").place(x=50, y=230)
-        self.staffspeciality_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.staffspeciality_label = Label(left_frame, text="Staff Speciality", font=("Times New Roman", 15), bg="white").place(x=50, y=230)
+        self.staffspeciality_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.staffspeciality_entry.place(x=50, y=260)
 
         #add staff button
-        self.add_staff_button = Button(left_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staffDB).place(x=50, y=300)
+        self.add_staff_button = Button(left_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staffDB).place(x=50, y=300)
 
     def add_staffDB(self):
         staffname = self.staffname_entry.get()
@@ -1227,29 +1269,29 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="View Staff", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Staff", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
 
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg
         ="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
         #left frame for viewing staff
         left_frame = Frame(dashboard_frame, bg="white")
@@ -1281,8 +1323,8 @@ class CentralSalon:
             self.staff_table.insert("", "end", values=(row[0], row[1], row[2], row[3], row[4]))
 
         #update and delete staff
-        self.update_staff_button = Button(left_frame, text="Update Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_staff).place(x=50, y=350)
-        self.delete_staff_button = Button(left_frame, text="Delete Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.delete_staff).place(x=250, y=350)
+        self.update_staff_button = Button(left_frame, text="Update Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_staff).place(x=50, y=350)
+        self.delete_staff_button = Button(left_frame, text="Delete Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.delete_staff).place(x=250, y=350)
 
     def update_staff(self):
         #get selected item
@@ -1313,68 +1355,68 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Update Staff", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Update Staff", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
 
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"),
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"),
         bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
         #left frame for updating staff
         left_frame = Frame(dashboard_frame, bg="white")
         left_frame.place(x=350, y=100, width=700, height=500)
 
         #staff name
-        self.staffname_label = Label(left_frame, text="Staff Name", font=("Courier New", 15), bg="white").place(x=50, y=50)
-        self.staffname_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.staffname_label = Label(left_frame, text="Staff Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
+        self.staffname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.staffname_entry.insert(0, name)
 
         self.staffname_entry.place(x=50, y=80)
 
         #staff email
-        self.staffmail_label = Label(left_frame, text="Staff Email", font=("Courier New", 15), bg="white").place(x=50, y=110)
-        self.staffmail_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.staffmail_label = Label(left_frame, text="Staff Email", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
+        self.staffmail_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.staffmail_entry.insert(0, email)
 
         self.staffmail_entry.place(x=50, y=140)
 
         #staff phone
-        self.staffphone_label = Label(left_frame, text="Staff Phone", font=("Courier New", 15), bg="white").place(x=50, y=170)
-        self.staffphone_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.staffphone_label = Label(left_frame, text="Staff Phone", font=("Times New Roman", 15), bg="white").place(x=50, y=170)
+        self.staffphone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.staffphone_entry.insert(0, phone)
 
         self.staffphone_entry.place(x=50, y=200)
 
         #staff speciality
-        self.staffspeciality_label = Label(left_frame, text="Staff Speciality", font=("Courier New", 15), bg="white").place(x=50, y=230)
-        self.staffspeciality_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.staffspeciality_label = Label(left_frame, text="Staff Speciality", font=("Times New Roman", 15), bg="white").place(x=50, y=230)
+        self.staffspeciality_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.staffspeciality_entry.insert(0, speciality)
 
         self.staffspeciality_entry.place(x=50, y=260)
 
         #update staff button
-        self.update_staff_button = Button(left_frame, text="Update Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=lambda: self.update_staffDB(id)).place(x=50, y=300)
+        self.update_staff_button = Button(left_frame, text="Update Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=lambda: self.update_staffDB(id)).place(x=50, y=300)
         
     def update_staffDB(self, id):
         staffname = self.staffname_entry.get()
@@ -1422,28 +1464,28 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="View Appointments", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Appointments", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
 
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
         #left frame for viewing appointments
         left_frame = Frame(dashboard_frame, bg="white")
@@ -1510,7 +1552,7 @@ class CentralSalon:
             self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
 
         #assign staff button
-        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staff).place(x=50, y=350)
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staff).place(x=50, y=350)
 
     def assign_staff(self):
         #get selected item
@@ -1545,44 +1587,44 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Assign Staff", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Assign Staff", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Courier New", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Times New Roman", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
         #add service button
-        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
 
         #view services button
-        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self
                                            
                                             .view_services).place(x=50, y=200)  
         
         #add staff button
-        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
 
         #view staff button
-        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
 
         #view appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
 
         #left frame for assigning staff
         left_frame = Frame(dashboard_frame, bg="white")
         left_frame.place(x=350, y=100, width=700, height=500)
 
         #appointment id
-        self.appointment_id_label = Label(left_frame, text="Appointment ID", font=("Courier New", 15), bg="white").place(x=50, y=50)
-        self.appointment_id_entry = Entry(left_frame, font=("Courier New", 15), bg="lightgray")
+        self.appointment_id_label = Label(left_frame, text="Appointment ID", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
+        self.appointment_id_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
 
         self.appointment_id_entry.insert(0, id)
 
         #staff combo box
-        self.staff_label = Label(left_frame, text="Staff", font=("Courier New", 15), bg="white").place(x=50, y=110)
-        self.staff_combo = ttk.Combobox(left_frame, font=("Courier New", 15))
+        self.staff_label = Label(left_frame, text="Staff", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
+        self.staff_combo = ttk.Combobox(left_frame, font=("Times New Roman", 15))
         self.staff_combo["values"] = ["Select Staff"]
 
         mycursor = mydb.cursor()
@@ -1595,7 +1637,7 @@ class CentralSalon:
         self.staff_combo.place(x=50, y=140)
 
         #assign staff button
-        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Courier New", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staffDB).place(x=50, y=180)
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Times New Roman", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staffDB).place(x=50, y=180)
 
     def assign_staffDB(self):
         appointment_id = self.appointment_id_entry.get()
