@@ -276,7 +276,7 @@ class CentralSalon:
         confirm_new_password=self.confirm_new_password_entry.get()
         userid=self.userid
 
-        print(current_password,new_password,confirm_new_password)
+        #print(current_password,new_password,confirm_new_password)
 
         if new_password != confirm_new_password:
             messagebox.showerror("Error", "New passwords do not match.")
@@ -351,7 +351,7 @@ class CentralSalon:
 
         title = Label(register_frame, text="Register", font=("Courier New", 30, "bold"), bg="white", fg="#503D33").place(x=100, y=30)
 
-        lbl_fullname = Label(register_frame, text="Full Name:", font=("Courier New", 18, "bold"), bg="white", fg="#503D33").place(x=50, y=100)
+        lbl_fullname = Label(register_frame, text="First Name:", font=("Courier New", 18, "bold"), bg="white", fg="#503D33").place(x=50, y=100)
         self.fullname_entry = Entry(register_frame, font=("Courier New", 15), bg="lightgray")
         self.fullname_entry.place(x=50, y=130)
 
