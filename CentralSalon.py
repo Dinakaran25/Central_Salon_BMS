@@ -18,8 +18,8 @@ from email.mime.text import MIMEText
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
-    database="cs"
+    password="Root$123",
+    database="central_salon"
 )
 
 #customers table create query for customers
@@ -115,11 +115,11 @@ class CentralSalon:
         self.root.title("Central Salon - Login")
         self.root.geometry("1150x700+0+0")
 
-        # self.bg_image = Image.open("C:/Users/rocks/OneDrive/Desktop/Programming Files/login.png")  # Update the path to your image
-        # self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
-        # self.bg_photo = ImageTk.PhotoImage(self.bg_image)
-        # bg_label = Label(self.root, image=self.bg_photo)
-        # bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #variables
         self.username = StringVar()
@@ -134,8 +134,8 @@ class CentralSalon:
         welcome_label = tk.Label(self.login_frame, text="WELCOME", font=vintage_font, bg="white", fg="#503D33").place(x=120, y=0)
         
 
-        # self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Desktop/Programming Files/central_logo.png").resize((100, 100), Image.LANCZOS))
-        # Label(self.login_frame, image=self.logo_image, bg="white").place(x=150, y=50)
+        self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png").resize((100, 100), Image.LANCZOS))
+        Label(self.login_frame, image=self.logo_image, bg="white").place(x=150, y=50)
 
         title = Label(self.login_frame, text="Login", font=("Courier New", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=135)
 
@@ -243,10 +243,10 @@ class CentralSalon:
         self.root.title("Central Salon - Update Password")
         self.root.geometry("1150x700+0+0")
 
-        # self.bg_image = Image.open("C:/Users/rocks/OneDrive/Desktop/Programming Files/login.png")  # Update the path to your image
-        # self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
-        # self.bg_photo = ImageTk.PhotoImage(self.bg_image)
-        # bg_label = Label(self.root, image=self.bg_photo)
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
 
         #frame
         self.update_password_frame = Frame(self.root, bg="white")
@@ -336,11 +336,11 @@ class CentralSalon:
         self.root.title("Central Salon - Register")
         self.root.geometry("1150x700+0+0")
 
-        # self.bg_image = Image.open("C:/Users/rocks/OneDrive/Desktop/Programming Files/login.png")  # Update the path to your image
-        # self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
-        # self.bg_photo = ImageTk.PhotoImage(self.bg_image)
-        # bg_label = Label(self.root, image=self.bg_photo)
-        # bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #frame
         register_frame = Frame(self.root, bg="white")
@@ -710,27 +710,27 @@ class CentralSalon:
         user = mycursor.fetchone()
         #print(user)
         #fullname
-        self.fullname_label = Label(left_frame, text="First Name", font=("Courier New", 15), bg="white").place(x=50, y=50)
+        self.fullname_label = Label(left_frame, text="First Name:", font=("Courier New", 15), bg="white").place(x=50, y=50)
         self.fullname_entry = Label(left_frame, text=user[1], font=("Courier New", 15), bg="white").place(x=50, y=80)
 
         #lastname
-        self.lastname_label = Label(left_frame, text="Last Name", font=("Courier New", 15), bg="white").place(x=50, y=110)
+        self.lastname_label = Label(left_frame, text="Last Name:", font=("Courier New", 15), bg="white").place(x=50, y=110)
         self.lastname_entry = Label(left_frame, text=user[2], font=("Courier New", 15), bg="white").place(x=50, y=140)
 
         #email
-        self.email_label = Label(left_frame, text="Email", font=("Courier New", 15), bg="white").place(x=50, y=170)
+        self.email_label = Label(left_frame, text="Email:", font=("Courier New", 15), bg="white").place(x=50, y=170)
         self.email_entry = Label(left_frame, text=user[3], font=("Courier New", 15), bg="white").place(x=50, y=200)
 
         #phone
-        self.phone_label = Label(left_frame, text="Phone", font=("Courier New", 15), bg="white").place(x=50, y=230)
+        self.phone_label = Label(left_frame, text="Phone:", font=("Courier New", 15), bg="white").place(x=50, y=230)
         self.phone_entry = Label(left_frame, text=user[4], font=("Courier New", 15), bg="white").place(x=50, y=260)
 
         #username
-        self.username_label = Label(left_frame, text="Username", font=("Courier New", 15), bg="white").place(x=50, y=290)
+        self.username_label = Label(left_frame, text="Username:", font=("Courier New", 15), bg="white").place(x=50, y=290)
         self.username_entry = Label(left_frame, text=user[5], font=("Courier New", 15), bg="white").place(x=50, y=320)
 
         #password
-        self.password_label = Label(left_frame, text="Password", font=("Courier New", 15), bg="white").place(x=50, y=350)
+        self.password_label = Label(left_frame, text="Password:", font=("Courier New", 15), bg="white").place(x=50, y=350)
         self.password_entry = Label(left_frame, text=user[6], font=("Courier New", 15), bg="white").place(x=50, y=380)
 
         #update button
@@ -1627,6 +1627,6 @@ class CentralSalon:
 if __name__ == "__main__":
     root = Tk()
     app = CentralSalon(root)
-    # icon = PhotoImage(file='C:/Users/rocks/OneDrive/Desktop/Programming Files/central_logo.png')
-    # root.iconphoto(True, icon)
+    icon = PhotoImage(file='C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png')
+    root.iconphoto(True, icon)
     root.mainloop()
