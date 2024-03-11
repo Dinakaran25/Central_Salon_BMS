@@ -132,19 +132,19 @@ class CentralSalon:
         self.login_frame = Frame(self.root, bg="white")
         self.login_frame.place(x=125, y=150, width=400, height=400)
 
-        welcome_label = tk.Label(self.login_frame, text="WELCOME", font=("Times New Roman", 25, "bold"), bg="white", fg="#503D33").place(x=120, y=0)
+        welcome_label = tk.Label(self.login_frame, text="WELCOME", font=("Times New Roman", 25, "bold"), bg="white", fg="#9A7D0A").place(x=120, y=0)
         
 
         self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png").resize((100, 100), Image.LANCZOS))
         Label(self.login_frame, image=self.logo_image, bg="white").place(x=150, y=50)
 
-        title = Label(self.login_frame, text="Login", font=("Times New Roman", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=135)
+        title = Label(self.login_frame, text="Login", font=("Times New Roman", 25, "bold"), bg="white", fg="#9A7D0A").place(x=25, y=135)
 
-        lbl_username = Label(self.login_frame, text="Username:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=180)
-        self.username_entry = Entry(self.login_frame, textvariable=self.username, font=("Times New Roman", 12), bg="lightgray").place(x=140, y=180)
+        lbl_username = Label(self.login_frame, text="Username:", font=("Times New Roman", 15,"bold"), bg="white", fg="#9A7D0A").place(x=10, y=180)
+        self.username_entry = Entry(self.login_frame, textvariable=self.username, font=("Times New Roman", 12), bg="#FCF3CF").place(x=140, y=180)
 
-        lbl_password = Label(self.login_frame, text="Password:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=220)
-        self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Times New Roman", 12), bg="lightgray", show="*")
+        lbl_password = Label(self.login_frame, text="Password:", font=("Times New Roman", 15, "bold"), bg="white", fg="#9A7D0A").place(x=10, y=220)
+        self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Times New Roman", 12), bg="#FCF3CF", show="*")
         self.password_entry.place(x=140, y=220)
 
         show_pass_checkbutton = tk.Checkbutton(self.login_frame, text="Show Password", variable=self.show_pass_var,bg="white", command=self.toggle_password_visibility)
@@ -155,9 +155,9 @@ class CentralSalon:
         self.forgot_password_link.bind("<Button-1>", lambda e: self.reset_password())
         self.forgot_password_link.place(x=250, y=253)
 
-        self.login_button = Button(self.login_frame, text="Login", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.validate_login).place(x=50, y=300)
+        self.login_button = Button(self.login_frame, text="Login", font=("Times New Roman", 18, "bold"), bg="#9A7D0A", fg="white", command=self.validate_login).place(x=50, y=300)
         
-        self.register_button = Button(self.login_frame, text="Register", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.register_screen).place(x=200, y=300)
+        self.register_button = Button(self.login_frame, text="Register", font=("Times New Roman", 18, "bold"), bg="#9A7D0A", fg="white", command=self.register_screen).place(x=200, y=300)
     
     def toggle_password_visibility(self):
         if self.show_pass_var.get() == 1:
@@ -257,15 +257,15 @@ class CentralSalon:
         title = Label(self.update_password_frame, text="Update Password", font=("Times new roman", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=100)
         
         lbl_current_password = Label(self.update_password_frame, text="Current Password:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=150)
-        self.current_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="lightgray", show="*")
+        self.current_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="#FCF3CF", show="*")
         self.current_password_entry.place(x=10, y=180)
 
         lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=210)
-        self.new_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="lightgray", show="*")
+        self.new_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="#FCF3CF", show="*")
         self.new_password_entry.place(x=10, y=240)
 
         lbl_confirm_new_password = Label(self.update_password_frame, text="Confirm New Password:", font=("Times New Roman", 15), bg="white", fg="black").place(x=10, y=270)
-        self.confirm_new_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="lightgray", show="*")
+        self.confirm_new_password_entry = Entry(self.update_password_frame, font=("Times New Roman", 12), bg="#FCF3CF", show="*")
         self.confirm_new_password_entry.place(x=10, y=300)
 
         self.update_password_button = Button(self.update_password_frame, text="Update Password", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.update_password).place(x=50, y=360)
@@ -351,38 +351,38 @@ class CentralSalon:
         self.email_var = StringVar()
         self.username_var = StringVar()
 
-        title = Label(register_frame, text="Register", font=("Times New Roman", 30, "bold"), bg="white", fg="#503D33").place(x=100, y=10)
+        title = Label(register_frame, text="Register", font=("Times New Roman", 30, "bold"), bg="white", fg="#9A7D0A").place(x=100, y=10)
 
-        lbl_fullname = Label(register_frame, text="First Name:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=60)
-        self.fullname_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        lbl_fullname = Label(register_frame, text="First Name:", font=("Times New Roman", 15, "bold"), bg="white", fg="#9A7D0A").place(x=30, y=60)
+        self.fullname_entry = Entry(register_frame, font=("Times New Roman", 12), bg="#FCF3CF")
         self.fullname_entry.place(x=30, y=90)
 
-        lbl_lastname = Label(register_frame, text="Last Name:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=120)
-        self.lastname_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        lbl_lastname = Label(register_frame, text="Last Name:", font=("Times New Roman", 15, "bold"), bg="white", fg="#9A7D0A").place(x=30, y=120)
+        self.lastname_entry = Entry(register_frame, font=("Times New Roman", 12), bg="#FCF3CF")
         self.lastname_entry.place(x=30, y=150)
     
-        lbl_email = Label(register_frame, text="Email:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=180)
-        self.email_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        lbl_email = Label(register_frame, text="Email:", font=("Times New Roman", 15, "bold"), bg="white", fg="#9A7D0A").place(x=30, y=180)
+        self.email_entry = Entry(register_frame, font=("Times New Roman", 12), bg="#FCF3CF")
         self.email_entry.place(x=30, y=210)
 
-        lbl_phone = Label(register_frame, text="Phone:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=240)
-        self.phone_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        lbl_phone = Label(register_frame, text="Phone:", font=("Times New Roman", 15, "bold"), bg="white", fg="#9A7D0A").place(x=30, y=240)
+        self.phone_entry = Entry(register_frame, font=("Times New Roman", 12), bg="#FCF3CF")
         self.phone_entry.place(x=30, y=270)
 
-        lbl_username = Label(register_frame, text="Username:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=300)
-        self.username_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray")
+        lbl_username = Label(register_frame, text="Username:", font=("Times New Roman", 15, "bold"), bg="white", fg="#9A7D0A").place(x=30, y=300)
+        self.username_entry = Entry(register_frame, font=("Times New Roman", 12), bg="#FCF3CF")
         self.username_entry.place(x=30, y=330)
 
-        lbl_password = Label(register_frame, text="Password:", font=("Times New Roman", 15, "bold"), bg="white", fg="#503D33").place(x=30, y=360)
-        self.password_entry = Entry(register_frame, font=("Times New Roman", 12), bg="lightgray",show="*")
+        lbl_password = Label(register_frame, text="Password:", font=("Times New Roman", 15, "bold"), bg="white", fg="#9A7D0A").place(x=30, y=360)
+        self.password_entry = Entry(register_frame, font=("Times New Roman", 12), bg="#FCF3CF",show="*")
         self.password_entry.place(x=30, y=390)
 
         show_pass_checkbutton = tk.Checkbutton(register_frame, text="Show Password", variable=self.show_pass_var,bg="white", command=self.toggle_password_visibility)
-        show_pass_checkbutton.place(x=30, y=410)
+        show_pass_checkbutton.place(x=30, y=415)
 
-        self.register_button = Button(register_frame, text="Register", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.registerDB).place(x=30, y=440)
+        self.register_button = Button(register_frame, text="Register", font=("Times New Roman", 18, "bold"), bg="#9A7D0A", fg="white", command=self.registerDB).place(x=30, y=440)
         
-        self.login_button = Button(register_frame, text="Login", font=("Times New Roman", 18, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=250, y=440)
+        self.login_button = Button(register_frame, text="Login", font=("Times New Roman", 18, "bold"), bg="#9A7D0A", fg="white", command=self.login_screen).place(x=250, y=440)
 
     #autofill_username
     def autofill_username(self, event):
@@ -421,6 +421,12 @@ class CentralSalon:
 
         self.root.title("Central Salon - Customer Dashboard")
         self.root.geometry("1150x700+0+0")
+
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #frame
         dashboard_frame = Frame(self.root, bg="white")
@@ -513,7 +519,7 @@ class CentralSalon:
 
         #Name
         self.name_label = Label(left_frame, text="Name", font=("Times New Roman", 15), bg="white").place(x=50, y=260)
-        self.name_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.name_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
         self.name_entry.place(x=50, y=290)
 
         #confirm button
@@ -826,37 +832,37 @@ class CentralSalon:
 
         #fullname
         self.fullname_label = Label(left_frame, text="First Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
-        self.fullname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.fullname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
         self.fullname_entry.insert(0, user[1])
         self.fullname_entry.place(x=50, y=80)
 
         #lastname
         self.lastname_label = Label(left_frame, text="Last Name", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
-        self.lastname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.lastname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
         self.lastname_entry.insert(0, user[2])
         self.lastname_entry.place(x=50, y=140)
 
         #email
         self.email_label = Label(left_frame, text="Email", font=("Times New Roman", 15), bg="white").place(x=50, y=170)
-        self.email_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.email_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
         self.email_entry.insert(0, user[3])
         self.email_entry.place(x=50, y=200)
 
         #phone
         self.phone_label = Label(left_frame, text="Phone", font=("Times New Roman", 15), bg="white").place(x=50, y=230)
-        self.phone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.phone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
         self.phone_entry.insert(0, user[4])
         self.phone_entry.place(x=50, y=260)
 
         #username   
         self.username_label = Label(left_frame, text="Username", font=("Times New Roman", 15), bg="white").place(x=50, y=290)
-        self.username_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.username_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
         self.username_entry.insert(0, user[5])
         self.username_entry.place(x=50, y=320)
 
         #password
         self.password_label = Label(left_frame, text="Password", font=("Times New Roman", 15), bg="white").place(x=50, y=350)
-        self.password_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.password_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
         self.password_entry.insert(0, user[6])
         self.password_entry.place(x=50, y=380)
 
@@ -970,13 +976,13 @@ class CentralSalon:
 
         #service name
         self.service_label = Label(left_frame, text="Service Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
-        self.service_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.service_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.service_entry.place(x=50, y=80)
 
         #service price
         self.price_label = Label(left_frame, text="Service Price", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
-        self.price_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.price_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.price_entry.place(x=50, y=140)
 
@@ -1120,7 +1126,7 @@ class CentralSalon:
 
         #service name
         self.service_label = Label(left_frame, text="Service Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
-        self.service_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.service_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.service_entry.insert(0, service)
 
@@ -1128,7 +1134,7 @@ class CentralSalon:
 
         #service price
         self.price_label = Label(left_frame, text="Service Price", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
-        self.price_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.price_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.price_entry.insert(0, price)
 
@@ -1210,25 +1216,25 @@ class CentralSalon:
 
         #staff name
         self.staffname_label = Label(left_frame, text="Staff Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
-        self.staffname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.staffname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.staffname_entry.place(x=50, y=80)
         
         #add staff mail
         self.staffmail_label = Label(left_frame, text="Staff Email", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
-        self.staffmail_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.staffmail_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.staffmail_entry.place(x=50, y=140)
 
         #add staff phone
         self.staffphone_label = Label(left_frame, text="Staff Phone", font=("Times New Roman", 15), bg="white").place(x=50, y=170)
-        self.staffphone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.staffphone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.staffphone_entry.place(x=50, y=200)
 
         #add staff speciality
         self.staffspeciality_label = Label(left_frame, text="Staff Speciality", font=("Times New Roman", 15), bg="white").place(x=50, y=230)
-        self.staffspeciality_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.staffspeciality_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.staffspeciality_entry.place(x=50, y=260)
 
@@ -1385,7 +1391,7 @@ class CentralSalon:
 
         #staff name
         self.staffname_label = Label(left_frame, text="Staff Name", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
-        self.staffname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.staffname_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.staffname_entry.insert(0, name)
 
@@ -1393,7 +1399,7 @@ class CentralSalon:
 
         #staff email
         self.staffmail_label = Label(left_frame, text="Staff Email", font=("Times New Roman", 15), bg="white").place(x=50, y=110)
-        self.staffmail_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.staffmail_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.staffmail_entry.insert(0, email)
 
@@ -1401,7 +1407,7 @@ class CentralSalon:
 
         #staff phone
         self.staffphone_label = Label(left_frame, text="Staff Phone", font=("Times New Roman", 15), bg="white").place(x=50, y=170)
-        self.staffphone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.staffphone_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.staffphone_entry.insert(0, phone)
 
@@ -1409,7 +1415,7 @@ class CentralSalon:
 
         #staff speciality
         self.staffspeciality_label = Label(left_frame, text="Staff Speciality", font=("Times New Roman", 15), bg="white").place(x=50, y=230)
-        self.staffspeciality_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.staffspeciality_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.staffspeciality_entry.insert(0, speciality)
 
@@ -1618,7 +1624,7 @@ class CentralSalon:
 
         #appointment id
         self.appointment_id_label = Label(left_frame, text="Appointment ID", font=("Times New Roman", 15), bg="white").place(x=50, y=50)
-        self.appointment_id_entry = Entry(left_frame, font=("Times New Roman", 15), bg="lightgray")
+        self.appointment_id_entry = Entry(left_frame, font=("Times New Roman", 15), bg="#FCF3CF")
 
         self.appointment_id_entry.insert(0, id)
 
