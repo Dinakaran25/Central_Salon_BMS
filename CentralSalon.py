@@ -148,14 +148,19 @@ class CentralSalon:
         self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Helvetica", 12), bg="#ECECEC", show="*")
         self.password_entry.place(x=140, y=220)
 
-        self.show_icon = PhotoImage(file="C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/show_icon.png")
-        
-        self.hide_icon = PhotoImage(file="C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/hide_icon.png")
+        show_icon_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/show_icon.png")
+        show_icon_resized = show_icon_image.resize((25, 25), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
+        self.show_icon = ImageTk.PhotoImage(show_icon_resized)
+
+        # Open and resize the hide icon
+        hide_icon_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/hide_icon.png")
+        hide_icon_resized = hide_icon_image.resize((25, 25), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
+        self.hide_icon = ImageTk.PhotoImage(hide_icon_resized)
 
 
         # Create a button to toggle password visibility
         self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
-        self.toggle_button.place(x=325, y=210)
+        self.toggle_button.place(x=325, y=220)
 
         self.forgot_password_link = tk.Label(self.login_frame, text="Forgot Password?",font=("Helvetica", 10,"bold"), fg="blue", cursor="hand2",bg="white")
         self.forgot_password_link.pack()
@@ -163,6 +168,8 @@ class CentralSalon:
         self.forgot_password_link.place(x=140, y=253)
 
         self.login_button = Button(self.login_frame, text="Login", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x=50, y=300)
+        
+        self.register_button = Button(self.login_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", cursor="hand2", command=self.show_update_password_form).place(x=120, y=300)
         
         self.register_button = Button(self.login_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", cursor="hand2", command=self.register_screen).place(x=200, y=300)
     
@@ -280,31 +287,31 @@ class CentralSalon:
         self.update_password_frame = Frame(self.root, bg="white")
         self.update_password_frame.place(x=125, y=150, width=400, height=400)
 
-        title = Label(self.update_password_frame, text="Update Password", font=("Helvetica", 30, "bold"), bg="white", fg="#b89b3f").place(x=25, y=50)
+        title = Label(self.update_password_frame, text="Update Password", font=("Helvetica", 30, "bold"), bg="white", fg="#b89b3f").place(x=25, y=10)
         
         self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png").resize((100, 100), Image.LANCZOS))
-        Label(self.login_frame,image=self.logo_image, bg="white").place(x=150, y=50)
-
-        lbl_current_password = Label(self.update_password_frame, text="Current Password:", font=("Helvetica", 15), bg="white", fg="#b89b3f").place(x=10, y=100)
+        Label(self.update_password_frame,image=self.logo_image, bg="white").place(x=150, y=70) 
+        
+        lbl_current_password = Label(self.update_password_frame, text="Current Password:", font=("Helvetica", 12,"bold"), bg="white", fg="#b89b3f").place(x=10, y=170)
         self.current_password_entry = Entry(self.update_password_frame, font=("Helvetica", 12), bg="#ECECEC", show="*")
-        self.current_password_entry.place(x=10, y=130)
+        self.current_password_entry.place(x=10, y=200)
 
-        self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
-        self.toggle_button.place(x=325, y=130)
+        self.toggle_button = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
+        self.toggle_button.place(x=200, y=200)
 
-        lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Helvetica", 15), bg="white", fg="#b89b3f").place(x=10, y=150)
+        lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Helvetica", 12,"bold"), bg="white", fg="#b89b3f").place(x=10, y=220)
         self.new_password_entry = Entry(self.update_password_frame, font=("Helvetica", 12), bg="#ECECEC", show="*")
-        self.new_password_entry.place(x=10, y=180)
+        self.new_password_entry.place(x=10, y=250)
 
-        self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
-        self.toggle_button.place(x=325, y=180)
+        self.toggle_button = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
+        self.toggle_button.place(x=200, y=250)    
 
-        lbl_confirm_new_password = Label(self.update_password_frame, text="Confirm New Password:", font=("Helvetica", 15), bg="white", fg="#b89b3f").place(x=10, y=270)
+        lbl_confirm_new_password = Label(self.update_password_frame, text="Confirm New Password:", font=("Helvetica", 12,"bold"), bg="white", fg="#b89b3f").place(x=10, y=270)
         self.confirm_new_password_entry = Entry(self.update_password_frame, font=("Helvetica", 12), bg="#ECECEC", show="*")
         self.confirm_new_password_entry.place(x=10, y=300)
 
-        self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
-        self.toggle_button.place(x=325, y=210)
+        self.toggle_button = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
+        self.toggle_button.place(x=200, y=300)
 
         self.update_password_button = Button(self.update_password_frame, text="Update Password", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", command=self.update_password).place(x=50, y=340)
         
@@ -404,6 +411,7 @@ class CentralSalon:
         lbl_email = Label(register_frame, text="Email:", font=("Helvetica", 15, "bold"), bg="white", fg="#b89b3f").place(x=30, y=180)
         self.email_entry = Entry(register_frame, font=("Helvetica", 12), bg="#ECECEC")
         self.email_entry.place(x=30, y=210)
+        self.email_entry.bind('<KeyRelease>', self.autofill_username)
 
         lbl_phone = Label(register_frame, text="Phone:", font=("Helvetica", 15, "bold"), bg="white", fg="#b89b3f").place(x=30, y=240)
         self.phone_entry = Entry(register_frame, font=("Helvetica", 12), bg="#ECECEC")
@@ -418,7 +426,7 @@ class CentralSalon:
         self.password_entry.place(x=30, y=390)
 
         self.toggle_button = tk.Button(register_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
-        self.toggle_button.place(x=210, y=380)
+        self.toggle_button.place(x=220, y=390)
 
         self.register_button = Button(register_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", command=self.registerDB).place(x=30, y=440)
         
@@ -426,9 +434,10 @@ class CentralSalon:
 
     #autofill_username
     def autofill_username(self, event):
-        email = self.email.get()
+        email = self.email_entry.get()
         username = email.split("@")[0]
-        self.username.set(username)
+        self.username_entry.delete(0, 'end')  # Clear the current content
+        self.username_entry.insert(0, username)
 
 
     def registerDB(self):
