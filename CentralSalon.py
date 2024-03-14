@@ -168,9 +168,7 @@ class CentralSalon:
         self.forgot_password_link.place(x=140, y=253)
 
         self.login_button = Button(self.login_frame, text="Login", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x=50, y=300)
-        
-        self.register_button = Button(self.login_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", cursor="hand2", command=self.show_update_password_form).place(x=120, y=300)
-        
+                
         self.register_button = Button(self.login_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", cursor="hand2", command=self.register_screen).place(x=200, y=300)
     
     def toggle_password_visibility(self):
@@ -470,16 +468,15 @@ class CentralSalon:
 
         self.root.title("Central Salon - Customer Dashboard")
         self.root.geometry("1150x700+0+0")
-
-        #self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
-        #self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
-        #self.bg_photo = ImageTk.PhotoImage(self.bg_image)
-        #bg_label = Label(self.root, image=self.bg_photo)
-        #bg_label.place(x=0, y=0, relwidth=1, relheight=1)
-
         #frame
         dashboard_frame = Frame(self.root,bg="white")
         dashboard_frame.place(x=0, y=0, width=1150, height=700)
+
+        # self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        # self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        # self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        # bg_label = Label(self.root, image=self.bg_photo)
+        # bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 
         #menu frame left box
@@ -576,39 +573,52 @@ class CentralSalon:
 
 
 
-    def confirm_appointment(self,email_address):
+    def confirm_appointment(self,username):
         service = self.services_combobox.get()
         date = self.date_entry.get()
         time = self.time_combobox.get()
         name = self.name_entry.get()
+        email_address = self.get_email_address(username)  # Assuming this method retrieves the current user's email
 
-        #convert date
-        date = datetime.strptime(date, "%m/%d/%y").strftime("%Y-%m-%d")
-        #convert time
-        time = datetime.strptime(time, "%I:%M %p").strftime("%H:%M:%S")
+        # Attempt to convert date and time to the desired format
+        try:
+            formatted_date = datetime.datetime.strptime(date, "%m/%d/%Y").strftime("%Y-%m-%d")
+            formatted_time = datetime.datetime.strptime(time, "%I:%M %p").strftime("%H:%M:%S")
+        except ValueError as e:
+            messagebox.showerror("Error", "Invalid date or time format", parent=self.root)
+            return
 
-        if service == "Select Service" or date == "" or time == "Select Time" or name == "":
+        if service == "Select Service" or not date or not time or not name:
             messagebox.showerror("Error", "All fields are required", parent=self.root)
             return
-        self.send_booking_confirmation = self.send_booking_confirmation_email()
-        email_address = self.get_email_address()
-        if email_address:
-            try:
-                mycursor = mydb.cursor()
-                userid=self.userid
-                mycursor.execute("SELECT id FROM salon_services WHERE service = %s", (service,))
-                service_id = mycursor.fetchone()[0]
 
-                #insert into database
-                mycursor.execute("INSERT INTO salon_appointments (customer_id, service_id, date, time, name) VALUES (%s, %s, %s, %s, %s)", (userid, service_id, date, time, name))
-                mydb.commit()
-                self.send_email(email_address)
-                messagebox.showinfo("Success", "Appointment Booked Successfully", parent=self.root)
-                self.customer_dashboard()
-            except Exception as e:
-                messagebox.showerror("Error", f"Error due to: {str(e)}", parent=self.root)
-        else:
+        if not email_address:
             messagebox.showerror("Error", "No email address found for this username.")
+            return
+
+        booking_details = {
+            'date_time': f"{formatted_date} at {formatted_time}",
+            'services': [service],  # Assuming a single service for simplicity; adjust as needed
+        }
+        try:
+            mycursor = mydb.cursor()
+            userid=self.userid
+            mycursor.execute("SELECT id FROM salon_services WHERE service = %s", (service,))
+            service_id = mycursor.fetchone()[0]
+
+            #insert into database
+            mycursor.execute("INSERT INTO salon_appointments (customer_id, service_id, date, time, name) VALUES (%s, %s, %s, %s, %s)", (userid, service_id, date, time, name))
+            mydb.commit()
+
+            self.send_booking_confirmation_email(email_address, booking_details)
+
+            messagebox.showinfo("Success", "Appointment Booked Successfully. A confirmation email has been sent.", parent=self.root)
+            # Assuming this method resets the view or takes the user back to the dashboard
+            self.customer_dashboard()
+        except Exception as e:
+            messagebox.showerror("Error", f"Error due to: {str(e)}", parent=self.root)
+        
+            
     def send_booking_confirmation_email(self, email_address, booking_details):
         smtp_server = 'smtp.gmail.com'
         smtp_port = 587
