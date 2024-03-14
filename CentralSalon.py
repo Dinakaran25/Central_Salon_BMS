@@ -22,7 +22,7 @@ mydb = mysql.connector.connect(
     database="central_salon"
 )
 
-#customers table create query for customers
+#customers table 
 customers_query = '''   
     CREATE TABLE IF NOT EXISTS customers (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -42,7 +42,7 @@ with mydb.cursor() as cursor:
     #commit the query
     mydb.commit()
 
-#salon services table create query for salon services
+#salon services table 
 salon_services_query = '''   
     CREATE TABLE IF NOT EXISTS salon_services (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -56,7 +56,7 @@ with mydb.cursor() as cursor:
     mydb.commit()
 
 
-#staff table create query for staffid, staffname, staffmail, staffphone, specialization
+#staff table 
 staff_query = '''   
     CREATE TABLE IF NOT EXISTS staff (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,7 +72,7 @@ with mydb.cursor() as cursor:
 
 
 
-#salon appointments table create query for salon appointments
+#salon appointments table 
 salon_appointments_query = '''   
     CREATE TABLE IF NOT EXISTS salon_appointments (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -126,6 +126,7 @@ class CentralSalon:
         self.username = StringVar()
         self.password = StringVar()
         self.show_pass_var = tk.IntVar()
+        self.password_visible = False
         
 
         #frame
@@ -147,23 +148,35 @@ class CentralSalon:
         self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Helvetica", 12), bg="#ECECEC", show="*")
         self.password_entry.place(x=140, y=220)
 
-        show_pass_checkbutton = tk.Checkbutton(self.login_frame, text="Show Password", variable=self.show_pass_var,bg="white", command=self.toggle_password_visibility)
-        show_pass_checkbutton.place(x=130, y=250)
+        self.show_icon = PhotoImage(file="C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/show_icon.png")
+        
+        self.hide_icon = PhotoImage(file="C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/hide_icon.png")
 
-        self.forgot_password_link = tk.Label(self.login_frame, text="Forgot Password?", fg="blue", cursor="hand2",bg="white")
+
+        # Create a button to toggle password visibility
+        self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
+        self.toggle_button.place(x=325, y=210)
+
+        self.forgot_password_link = tk.Label(self.login_frame, text="Forgot Password?",font=("Helvetica", 10,"bold"), fg="blue", cursor="hand2",bg="white")
         self.forgot_password_link.pack()
         self.forgot_password_link.bind("<Button-1>", lambda e: self.reset_password())
-        self.forgot_password_link.place(x=250, y=253)
+        self.forgot_password_link.place(x=140, y=253)
 
-        self.login_button = Button(self.login_frame, text="Login", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", command=self.validate_login).place(x=50, y=300)
+        self.login_button = Button(self.login_frame, text="Login", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x=50, y=300)
         
-        self.register_button = Button(self.login_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", command=self.register_screen).place(x=200, y=300)
+        self.register_button = Button(self.login_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", cursor="hand2", command=self.register_screen).place(x=200, y=300)
     
     def toggle_password_visibility(self):
-        if self.show_pass_var.get() == 1:
-            self.password_entry.config(show="")
-        else:
+        if self.password_visible:
+            # Hide the password and update the button icon
             self.password_entry.config(show="*")
+            self.toggle_button.config(image=self.show_icon)
+            self.password_visible = False
+        else:
+            # Show the password and update the button icon
+            self.password_entry.config(show="")
+            self.toggle_button.config(image=self.hide_icon)
+            self.password_visible = True
 
     def reset_password(self):
         username = self.username.get()  # Make sure to use .get() for StringVar()
@@ -223,8 +236,21 @@ class CentralSalon:
         smtp_port = 587
         smtp_user = 'central.salon.1@gmail.com'
         smtp_password = 'qirdsouhpvmxhzlu'
-        message = MIMEText(f'Your new password is: {new_password}')
-        message['Subject'] = 'Password Reset'
+        message = MIMEText(f""" 
+        Hi,
+
+        You've requested to reset your password. Here's your temporary password.
+
+        Temporary Password: {new_password}
+
+        Please use this to log in and then change it to something new and secure.
+
+        If you didn't ask to reset your password, please let us know.
+
+        Thanks,
+        Central Salon""")
+
+        message['Subject'] = 'Your Temporary Password'
         message['From'] = smtp_user
         message['To'] = email_address
         try:
@@ -254,21 +280,33 @@ class CentralSalon:
         self.update_password_frame = Frame(self.root, bg="white")
         self.update_password_frame.place(x=125, y=150, width=400, height=400)
 
-        title = Label(self.update_password_frame, text="Update Password", font=("Helvetica", 25, "bold"), bg="white", fg="#503D33").place(x=25, y=100)
+        title = Label(self.update_password_frame, text="Update Password", font=("Helvetica", 30, "bold"), bg="white", fg="#b89b3f").place(x=25, y=50)
         
-        lbl_current_password = Label(self.update_password_frame, text="Current Password:", font=("Helvetica", 15), bg="white", fg="black").place(x=10, y=150)
+        self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png").resize((100, 100), Image.LANCZOS))
+        Label(self.login_frame,image=self.logo_image, bg="white").place(x=150, y=50)
+
+        lbl_current_password = Label(self.update_password_frame, text="Current Password:", font=("Helvetica", 15), bg="white", fg="#b89b3f").place(x=10, y=100)
         self.current_password_entry = Entry(self.update_password_frame, font=("Helvetica", 12), bg="#ECECEC", show="*")
-        self.current_password_entry.place(x=10, y=180)
+        self.current_password_entry.place(x=10, y=130)
 
-        lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Helvetica", 15), bg="white", fg="black").place(x=10, y=210)
+        self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
+        self.toggle_button.place(x=325, y=130)
+
+        lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Helvetica", 15), bg="white", fg="#b89b3f").place(x=10, y=150)
         self.new_password_entry = Entry(self.update_password_frame, font=("Helvetica", 12), bg="#ECECEC", show="*")
-        self.new_password_entry.place(x=10, y=240)
+        self.new_password_entry.place(x=10, y=180)
 
-        lbl_confirm_new_password = Label(self.update_password_frame, text="Confirm New Password:", font=("Helvetica", 15), bg="white", fg="black").place(x=10, y=270)
+        self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
+        self.toggle_button.place(x=325, y=180)
+
+        lbl_confirm_new_password = Label(self.update_password_frame, text="Confirm New Password:", font=("Helvetica", 15), bg="white", fg="#b89b3f").place(x=10, y=270)
         self.confirm_new_password_entry = Entry(self.update_password_frame, font=("Helvetica", 12), bg="#ECECEC", show="*")
         self.confirm_new_password_entry.place(x=10, y=300)
 
-        self.update_password_button = Button(self.update_password_frame, text="Update Password", font=("Helvetica", 18, "bold"), bg="#6D4C3D", fg="white", command=self.update_password).place(x=50, y=360)
+        self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
+        self.toggle_button.place(x=325, y=210)
+
+        self.update_password_button = Button(self.update_password_frame, text="Update Password", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", command=self.update_password).place(x=50, y=340)
         
 
 
@@ -286,14 +324,14 @@ class CentralSalon:
 
         try:
             cursor = mydb.cursor()
-            print(self.new_password,current_password)
+            #print(self.new_password,current_password)
             if self.new_password == current_password:
                 if cursor is not None:
                     query = 'UPDATE customers SET password = %s WHERE id = %s'
                     cursor.execute(query, (new_password, userid))
                     mydb.commit()
                     messagebox.showinfo("Success", "Your password has been updated successfully.")
-                    self.customer_dashboard()
+                    self.login_screen()
                 else:
                     messagebox.showerror("Error", "Failed to update password.")
             else:
@@ -379,8 +417,8 @@ class CentralSalon:
         self.password_entry = Entry(register_frame, font=("Helvetica", 12), bg="#ECECEC",show="*")
         self.password_entry.place(x=30, y=390)
 
-        show_pass_checkbutton = tk.Checkbutton(register_frame, text="Show Password", variable=self.show_pass_var,bg="white", command=self.toggle_password_visibility)
-        show_pass_checkbutton.place(x=30, y=415)
+        self.toggle_button = tk.Button(register_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
+        self.toggle_button.place(x=210, y=380)
 
         self.register_button = Button(register_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", command=self.registerDB).place(x=30, y=440)
         
