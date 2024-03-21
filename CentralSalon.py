@@ -6,10 +6,9 @@ from tkinter import *
 from tkinter import messagebox,Frame, Label, Entry, Button
 from tkinter import ttk, font as tkfont
 from tkinter.ttk import Combobox
-from tkinter import filedialog
 from PIL import Image, ImageTk
 from datetime import datetime
-from tkcalendar import Calendar, DateEntry
+from tkcalendar import DateEntry
 from email.mime.text import MIMEText
 
 
@@ -576,15 +575,21 @@ class CentralSalon:
         self.services_combobox.place(x=50, y=50)
 
         #select date
-        self.date_label = Label(left_frame, text="Select Date", font=("Calibri", 15), bg="white").place(x=50, y=100)
-        self.date_entry = DateEntry(left_frame, font=("Calibri", 12))
+
+        # Your existing label for the date selection
+        self.date_label = Label(left_frame, text="Select Date", font=("Calibri", 15), bg="white")
+        self.date_label.place(x=50, y=100)
+
+        # Modify the DateEntry widget to use the desired date format
+        self.date_entry = DateEntry(left_frame, font=("Calibri", 12), date_pattern='mm-dd-Y')
         self.date_entry.place(x=50, y=130)
 
         #select time
-        self.time_label = Label(left_frame, text="Select Time", font=("Calibri", 15), bg="white").place(x=50, y=180)
+        self.time_label = Label(left_frame, text="Select Time", font=("Calibri", 15), bg="white")
+        self.time_label.place(x=50, y=180)
         
-        #time combobox
-        self.time_combobox = Combobox(left_frame, values=["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"], font=("Calibri", 15), state="readonly")
+        # Time Combobox
+        self.time_combobox = ttk.Combobox(left_frame, values=["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"], font=("Calibri", 15), state="readonly")
         self.time_combobox.set("Select Time")
         self.time_combobox.place(x=50, y=210)
 
@@ -608,7 +613,7 @@ class CentralSalon:
         # Attempt to convert date and time to the desired format
         try:
             print(f"Date input: '{date}', Time input: '{time}'")
-            formatted_date = datetime.strptime(date, "%m/%d/%Y").strftime("%Y-%m-%d")
+            formatted_date = datetime.strptime(date, "%m-%d-%Y").strftime("%Y-%m-%d")
             formatted_time = datetime.strptime(time, "%I:%M %p").strftime("%H:%M:%S")
             print(formatted_date, formatted_time)
 
@@ -636,7 +641,7 @@ class CentralSalon:
             service_id = mycursor.fetchone()[0]
 
             #insert into database
-            mycursor.execute("INSERT INTO salon_appointments (customer_id, service_id, date, time, name) VALUES (%s, %s, %s, %s, %s)", (userid, service_id, date, time, name))
+            mycursor.execute("INSERT INTO salon_appointments (customer_id, service_id, date, time, name) VALUES (%s, %s, %s, %s, %s)", (userid, service_id, formatted_date, formatted_time, name))
             mydb.commit()
 
             self.send_booking_confirmation_email(email_address, booking_details)
@@ -1611,7 +1616,7 @@ class CentralSalon:
         mycursor = mydb.cursor()
         current_date = datetime.date.today()  # Get today's date
         query = "SELECT * FROM salon_appointments WHERE date = %s"
-        mycursor.execute(query, (current_date,))  # Use the current date in the query
+        mycursor.execute(query, (current_date))  # Use the current date in the query
         rows = mycursor.fetchall()
         
         for row in rows:
