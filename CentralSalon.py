@@ -143,10 +143,17 @@ class CentralSalon:
 
         lbl_username = Label(self.login_frame, text="Username:", font=("Helvetica", 15,"bold"), bg="white", fg="#b89b3f").place(x=10, y=180)
         self.username_entry = Entry(self.login_frame, textvariable=self.username, font=("Helvetica", 12), bg="#ECECEC").place(x=140, y=180)
+        # self.username_entry.insert(0, "Username")
+        # self.username_entry.bind('<FocusIn>', self.removeusernametext)
+        # self.username_entry.bind('<FocusOut>', self.removeusernametext)
+        
 
         lbl_password = Label(self.login_frame, text="Password:", font=("Helvetica", 15, "bold"), bg="white", fg="#b89b3f").place(x=10, y=220)
         self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Helvetica", 12), bg="#ECECEC", show="*")
         self.password_entry.place(x=140, y=220)
+        # self.password_entry.insert(0, "Password")
+        # self.password_entry.bind('<FocusIn>', self.removepasswordtext)
+        # self.password_entry.bind('<FocusOut>', self.removepasswordtext)
 
         show_icon_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/show_icon.png")
         show_icon_resized = show_icon_image.resize((25, 25), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
@@ -173,6 +180,23 @@ class CentralSalon:
                 
         self.register_button = Button(self.login_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", cursor="hand2", command=self.register_screen).place(x=200, y=300)
     
+    # def removeusernametext(self, event):
+    #     if self.username_entry.get() == "Username":
+    #         self.username_entry.delete(0, "end")
+    #         self.username_entry.config(fg="white")
+    #     elif self.username_entry.get() == "":
+    #         self.username_entry.insert(0, "Username")
+    #         self.username_entry.config(fg="white") 
+    # def removepasswordtext(self, event):
+    #     if self.password_entry.get() == "Password":
+    #         self.password_entry.delete(0, "end")
+    #         self.password_entry.config(fg="white")
+    #         self.password_entry.config(show="*")
+    #     elif self.password_entry.get() == "":
+    #         self.password_entry.insert(0, "Password")
+    #         self.password_entry.config(show="")
+    #         self.password_entry.config(fg="white") 
+
     def toggle_password_visibility(self):
         if self.password_visible:
             # Hide the password and update the button icon
