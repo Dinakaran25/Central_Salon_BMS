@@ -168,6 +168,8 @@ class CentralSalon:
         self.forgot_password_link.place(x=140, y=253)
 
         self.login_button = Button(self.login_frame, text="Login", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x=50, y=300)
+
+        #self.login_button = Button(self.login_frame, text="Login", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.show_update_password_form).place(x=100, y=300)
                 
         self.register_button = Button(self.login_frame, text="Register", font=("Helvetica", 18, "bold"), bg="#b89b3f", fg="white", cursor="hand2", command=self.register_screen).place(x=200, y=300)
     
@@ -285,7 +287,7 @@ class CentralSalon:
         self.update_password_frame = Frame(self.root, bg="white")
         self.update_password_frame.place(x=125, y=150, width=400, height=400)
 
-        title = Label(self.update_password_frame, text="Update Password", font=("Helvetica", 30, "bold"), bg="white", fg="#b89b3f").place(x=25, y=10)
+        title = Label(self.update_password_frame, text="Change Password", font=("Helvetica", 30, "bold"), bg="white", fg="#b89b3f").place(x=25, y=10)
         
         self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png").resize((100, 100), Image.LANCZOS))
         Label(self.update_password_frame,image=self.logo_image, bg="white").place(x=150, y=70) 
@@ -336,7 +338,7 @@ class CentralSalon:
                     cursor.execute(query, (new_password, userid))
                     mydb.commit()
                     messagebox.showinfo("Success", "Your password has been updated successfully.")
-                    self.login_screen()
+                    self.customer_dashboard()
                 else:
                     messagebox.showerror("Error", "Failed to update password.")
             else:
@@ -468,38 +470,34 @@ class CentralSalon:
 
         self.root.title("Central Salon - Customer Dashboard")
         self.root.geometry("1150x700+0+0")
-        #frame
-        dashboard_frame = Frame(self.root,bg="white")
-        dashboard_frame.place(x=0, y=0, width=1150, height=700)
+        
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        # self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
-        # self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
-        # self.bg_photo = ImageTk.PhotoImage(self.bg_image)
-        # bg_label = Label(self.root, image=self.bg_photo)
-        # bg_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-
-        #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
+        # Menu frame (directly on self.root to overlay the background image)
+        menu_frame = Frame(self.root, bg="#6D4C3D", bd=0)  # bd=0 to remove border if desired
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Customer Dashboard", font=("Helvetica", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(self.root, text="Customer Dashboard", font=("Helvetica", 30, "bold"), bg="white", fg="white",bd=0).place(x=350, y=30)
 
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Helvetica", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(self.root, text="Logout", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
 
     def book_appointment(self):
         #same menu section
@@ -509,33 +507,36 @@ class CentralSalon:
         self.root.title("Central Salon - Book Appointment")
         self.root.geometry("1150x700+0+0")
 
-        #frame
-        dashboard_frame = Frame(self.root, bg="white")
-        dashboard_frame.place(x=0, y=0, width=1150, height=700)
+        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
+        # Menu frame (directly on self.root to overlay the background image)
+        menu_frame = Frame(self.root, bg="#6D4C3D", bd=0)  # bd=0 to remove border if desired
         menu_frame.place(x=30, y=70, width=300, height=400)
 
-        title = Label(dashboard_frame, text="Book Appointment", font=("Helvetica", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
-        
+        title = Label(self.root, text="Customer Dashboard", font=("Helvetica", 30, "bold"), bg="white", fg="white",bd=0).place(x=350, y=30)
+
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Helvetica", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
+
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(self.root, text="Logout", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
 
         #left frame for booking appointment
-        left_frame = Frame(dashboard_frame, bg="white")
+        left_frame = Frame(self.root, bg="white")
         left_frame.place(x=350, y=100, width=700, height=500)
 
         #select service combobox
@@ -926,7 +927,7 @@ class CentralSalon:
         self.password_entry.place(x=50, y=380)
 
         #update button
-        self.update_button = Button(left_frame, text="Update", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_profileDB).place(x=50, y=420)
+        self.update_button = Button(left_frame, text="Save", font=("Helvetica", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_profileDB).place(x=50, y=420)
 
     def update_profileDB(self):
         fullname = self.fullname_entry.get()
