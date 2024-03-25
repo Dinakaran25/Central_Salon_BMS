@@ -1768,8 +1768,6 @@ class CentralSalon:
                 messagebox.showerror("Error", f"Error due to: {str(e)}", parent=self.root)
 
 
-        
-
 
 
 #starter code
