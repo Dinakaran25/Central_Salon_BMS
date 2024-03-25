@@ -115,7 +115,7 @@ class CentralSalon:
         self.root.title("Central Salon - Login")
         self.root.geometry("1150x700+0+0")
 
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/loginnew.png")  # Update the path to your image
+        self.bg_image = Image.open("Images/loginnew.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
@@ -135,7 +135,7 @@ class CentralSalon:
         welcome_label = tk.Label(self.login_frame, text="WELCOME", font=("Calibri", 25, "bold"), bg="white", fg="#b89b3f").place(x=120, y=0)
         
 
-        self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png").resize((100, 100), Image.LANCZOS))
+        self.logo_image = ImageTk.PhotoImage(Image.open("Images/central_logo.png").resize((100, 100), Image.LANCZOS))
         Label(self.login_frame,image=self.logo_image, bg="white").place(x=150, y=50)
 
         title = Label(self.login_frame, text="Login", font=("Calibri", 25, "bold"), bg="white", fg="#b89b3f").place(x=25, y=135)
@@ -154,12 +154,12 @@ class CentralSalon:
         # self.password_entry.bind('<FocusIn>', self.removepasswordtext)
         # self.password_entry.bind('<FocusOut>', self.removepasswordtext)
 
-        show_icon_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/show_icon.png")
+        show_icon_image = Image.open("Images/show_icon.png")
         show_icon_resized = show_icon_image.resize((25, 25), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
         self.show_icon = ImageTk.PhotoImage(show_icon_resized)
 
         # Open and resize the hide icon
-        hide_icon_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/hide_icon.png")
+        hide_icon_image = Image.open("Images/hide_icon.png")
         hide_icon_resized = hide_icon_image.resize((25, 25), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
         self.hide_icon = ImageTk.PhotoImage(hide_icon_resized)
 
@@ -241,7 +241,7 @@ class CentralSalon:
 
     def generate_new_password(self):
         password_length = 10
-        new_password = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(password_length))
+        new_password = ''.join(random.choice(string.ascI_letters + string.digits) for _ in range(password_length))
         return new_password
 
     def get_email_address(self, username):
@@ -300,7 +300,7 @@ class CentralSalon:
         self.root.title("Central Salon - Update Password")
         self.root.geometry("1150x700+0+0")
 
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/loginnew.png")  # Update the path to your image
+        self.bg_image = Image.open("Images/loginnew.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
@@ -312,7 +312,7 @@ class CentralSalon:
 
         title = Label(self.update_password_frame, text="Change Password", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=25, y=10)
         
-        self.logo_image = ImageTk.PhotoImage(Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png").resize((100, 100), Image.LANCZOS))
+        self.logo_image = ImageTk.PhotoImage(Image.open("Images/central_logo.png").resize((100, 100), Image.LANCZOS))
         Label(self.update_password_frame,image=self.logo_image, bg="white").place(x=150, y=70) 
         
         lbl_current_password = Label(self.update_password_frame, text="Temporary Password:", font=("Calibri", 12,"bold"), bg="white", fg="#b89b3f").place(x=10, y=170)
@@ -408,7 +408,7 @@ class CentralSalon:
         self.root.title("Central Salon - Register")
         self.root.geometry("1150x700+0+0")
 
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/loginnew.png")  # Update the path to your image
+        self.bg_image = Image.open("Images/loginnew.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
@@ -494,33 +494,33 @@ class CentralSalon:
         self.root.title("Central Salon - Customer Dashboard")
         self.root.geometry("1150x700+0+0")
         
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = Image.open("Images/dashboard.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         # Menu frame (directly on self.root to overlay the background image)
-        menu_frame = Frame(self.root, bg="#6D4C3D", bd=0)  # bd=0 to remove border if desired
-        menu_frame.place(x=30, y=70, width=300, height=400)
+        menu_frame = Frame(self.root, bg="lightgrey", bd=0)  # bd=0 to remove border if desired
+        menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(self.root, text="Customer Dashboard", font=("Calibri", 30, "bold"), bg="white", fg="#6D4C3D",bd=0).place(x=350, y=30)
+        title = Label(self.root, text="Customer Dashboard", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f",bd=0).place(x=350, y=30)
 
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
 
     def book_appointment(self):
         #same menu section
@@ -530,37 +530,37 @@ class CentralSalon:
         self.root.title("Central Salon - Book Appointment")
         self.root.geometry("1150x700+0+0")
 
-        self.bg_image = Image.open("C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/login.png")  # Update the path to your image
+        self.bg_image = Image.open("Images/dashboard.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         # Menu frame (directly on self.root to overlay the background image)
-        menu_frame = Frame(self.root, bg="#6D4C3D", bd=0)  # bd=0 to remove border if desired
-        menu_frame.place(x=30, y=70, width=300, height=400)
+        menu_frame = Frame(self.root, bg="lightgrey", bd=0)  # bd=0 to remove border if desired
+        menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(self.root, text="Customer Dashboard", font=("Calibri", 30, "bold"), bg="white", fg="#6D4C3D",bd=0).place(x=350, y=30)
+        title = Label(self.root, text="Book Appointment", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f",bd=0).place(x=350, y=30)
 
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #select service combobox
         services=[]
@@ -599,7 +599,7 @@ class CentralSalon:
         self.name_entry.place(x=50, y=290)
 
         #confirm button
-        self.confirm_button = Button(left_frame, text="Confirm", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=lambda: self.confirm_appointment(self.username)).place(x=50, y=350)
+        self.confirm_button = Button(left_frame, text="Confirm", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=lambda: self.confirm_appointment(self.username)).place(x=50, y=350)
 
 
 
@@ -697,34 +697,36 @@ class CentralSalon:
         self.root.title("Central Salon - View Appointments")
         self.root.geometry("1150x700+0+0")
 
-        #frame
-        dashboard_frame = Frame(self.root, bg="white")
-        dashboard_frame.place(x=0, y=0, width=1150, height=700)
+        self.bg_image = Image.open("Images/dashboard.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
-        menu_frame.place(x=30, y=70, width=300, height=400)
+        menu_frame = Frame(self.root, bg="lightgrey")
+        menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(self.root, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
-        left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame = Frame(self.root, bg="white")
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #table
         self.appointments_table = ttk.Treeview(left_frame, columns=("id", "service", "date", "time", "staff"), selectmode="extended")
@@ -775,9 +777,9 @@ class CentralSalon:
 
 
         #checkin appointments button
-        self.checkin_appointment_button = Button(left_frame, text="Checkin Appointment", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.checkin_appointment).place(x=50, y=400)
+        self.checkin_appointment_button = Button(left_frame, text="Checkin Appointment", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.checkin_appointment).place(x=50, y=400)
         #cancel appointments button
-        self.cancel_appointment_button = Button(left_frame, text="Cancel Appointment", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.cancel_appointment).place(x=350, y=400)
+        self.cancel_appointment_button = Button(left_frame, text="Cancel Appointment", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.cancel_appointment).place(x=350, y=400)
 
     def checkin_appointment(self):
         #get selected item
@@ -814,34 +816,36 @@ class CentralSalon:
         self.root.title("Central Salon - My Profile")
         self.root.geometry("1150x700+0+0")
 
-        #frame
-        dashboard_frame = Frame(self.root, bg="white")
-        dashboard_frame.place(x=0, y=0, width=1150, height=700)
+        self.bg_image = Image.open("Images/dashboard.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
-        menu_frame.place(x=30, y=70, width=300, height=400)
+        menu_frame = Frame(self.root, bg="lightgrey")
+        menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(dashboard_frame, text="My Profile", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(self.root, text="My Profile", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
-        left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame = Frame(self.root, bg="white")
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #entry user detials as label and update button
         #get user details
@@ -875,7 +879,7 @@ class CentralSalon:
         self.password_entry = Label(left_frame, text=user[6], font=("Calibri", 15), bg="white").place(x=160, y=350)
         
         #update button
-        self.update_button = Button(left_frame, text="Update", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_profile).place(x=50, y=420)
+        self.update_button = Button(left_frame, text="Update", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.update_profile).place(x=50, y=420)
 
 
     def update_profile(self):
@@ -886,34 +890,36 @@ class CentralSalon:
         self.root.title("Central Salon - Update Profile")
         self.root.geometry("1150x700+0+0")
 
-        #frame
-        dashboard_frame = Frame(self.root, bg="white")
-        dashboard_frame.place(x=0, y=0, width=1150, height=700)
+        self.bg_image = Image.open("Images/dashboard.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
-        menu_frame.place(x=30, y=70, width=300, height=400)
+        menu_frame = Frame(self.root, bg="lightgrey")
+        menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(dashboard_frame, text="Update Profile", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(self.root, text="Update Profile", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
         #book appointment button
-        self.book_appointment_button = Button(dashboard_frame, text="Book Appointment", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.book_appointment).place(x=50, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(dashboard_frame, text="View My Appointments", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments).place(x=50, y=200)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(dashboard_frame, text="My Profile", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.my_profile).place(x=50, y=250)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=300)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
-        left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame = Frame(self.root, bg="white")
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #entry user detials as enteries and update button
         #get user details
@@ -960,7 +966,7 @@ class CentralSalon:
         self.password_entry.place(x=50, y=380)
 
         #update button
-        self.update_button = Button(left_frame, text="Save", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.update_profileDB).place(x=50, y=420)
+        self.update_button = Button(left_frame, text="Save", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.update_profileDB).place(x=50, y=420)
 
     def update_profileDB(self):
         fullname = self.fullname_entry.get()
@@ -1065,7 +1071,7 @@ class CentralSalon:
 
         #left frame for adding services
         left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #service name
         self.service_label = Label(left_frame, text="Service Name", font=("Calibri", 15), bg="white").place(x=50, y=50)
@@ -1139,7 +1145,7 @@ class CentralSalon:
 
         #left frame for viewing services
         left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #tree view
         self.services_table = ttk.Treeview(left_frame, columns=("id", "service", "price"), selectmode="extended")
@@ -1215,7 +1221,7 @@ class CentralSalon:
 
         #left frame for updating services
         left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #service name
         self.service_label = Label(left_frame, text="Service Name", font=("Calibri", 15), bg="white").place(x=50, y=50)
@@ -1305,7 +1311,7 @@ class CentralSalon:
 
         #left frame for adding staff
         left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #staff name
         self.staffname_label = Label(left_frame, text="Staff Name", font=("Calibri", 15), bg="white").place(x=50, y=50)
@@ -1394,7 +1400,7 @@ class CentralSalon:
 
         #left frame for viewing staff
         left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #tree view
         self.staff_table = ttk.Treeview(left_frame, columns=("id", "name", "email", "phone", "speciality"), selectmode="extended")
@@ -1480,7 +1486,7 @@ class CentralSalon:
 
         #left frame for updating staff
         left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #staff name
         self.staffname_label = Label(left_frame, text="Staff Name", font=("Calibri", 15), bg="white").place(x=50, y=50)
@@ -1588,7 +1594,7 @@ class CentralSalon:
 
         #left frame for viewing appointments
         left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #tree view
         self.appointments_table = ttk.Treeview(left_frame, columns=("id", "name", "email", "phone", "service", "date", "time"), selectmode="extended")
@@ -1616,7 +1622,7 @@ class CentralSalon:
         mycursor = mydb.cursor()
         current_date = datetime.date.today()  # Get today's date
         query = "SELECT * FROM salon_appointments WHERE date = %s"
-        mycursor.execute(query, (current_date))  # Use the current date in the query
+        mycursor.execute(query, (current_date,))  # Use the current date in the query
         rows = mycursor.fetchall()
         
         for row in rows:
@@ -1630,8 +1636,8 @@ class CentralSalon:
             date=row[3]
             time=row[4]
 
-            # #covert time to HH MM AM/PM
-            # time = datetime.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
+            #covert time to HH MM AM/PM
+            time = datetime.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
             serviceid = row[2]
             service = None
             #get service from database
@@ -1715,7 +1721,7 @@ class CentralSalon:
 
         #left frame for assigning staff
         left_frame = Frame(dashboard_frame, bg="white")
-        left_frame.place(x=350, y=100, width=700, height=500)
+        left_frame.place(x=350, y=100, width=400, height=500)
 
         #appointment id
         self.appointment_id_label = Label(left_frame, text="Appointment ID", font=("Calibri", 15), bg="white").place(x=50, y=50)
@@ -1770,6 +1776,6 @@ class CentralSalon:
 if __name__ == "__main__":
     root = Tk()
     app = CentralSalon(root)
-    icon = PhotoImage(file='C:/Users/rocks/OneDrive/Documents/GitHub/CentralSalon/Images/central_logo.png')
+    icon = PhotoImage(file='Images/central_logo.png')
     root.iconphoto(True, icon)
     root.mainloop()
