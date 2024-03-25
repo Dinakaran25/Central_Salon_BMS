@@ -669,7 +669,7 @@ class CentralSalon:
         - Date and Time: {booking_details['date_time']}
         - Services: {', '.join(booking_details['services'])}
         
-        If you need to cancel or reschedule, please contact us at least 24 hours in advance.
+        If you need to cancel or reschedule, please contact us at least an hour in advance.
         
         We look forward to serving you,
         Central Salon
