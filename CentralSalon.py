@@ -306,6 +306,10 @@ class CentralSalon:
         bg_label = Label(self.root, image=self.bg_photo)
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
+        self.password_visible1 = False
+        self.password_visible2 = False
+        self.password_visible3 = False
+
         #frame
         self.update_password_frame = Frame(self.root, bg="white")
         self.update_password_frame.place(x=125, y=150, width=400, height=400)
@@ -319,26 +323,55 @@ class CentralSalon:
         self.current_password_entry = Entry(self.update_password_frame, font=("Calibri", 12), bg="#ECECEC", show="*")
         self.current_password_entry.place(x=10, y=200)
 
-        self.toggle_button = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
-        self.toggle_button.place(x=200, y=200)
+        self.toggle_button1 = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility1, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
+        self.toggle_button1.place(x=200, y=200)
 
         lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Calibri", 12,"bold"), bg="white", fg="#b89b3f").place(x=10, y=220)
         self.new_password_entry = Entry(self.update_password_frame, font=("Calibri", 12), bg="#ECECEC", show="*")
         self.new_password_entry.place(x=10, y=250)
 
-        self.toggle_button = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
-        self.toggle_button.place(x=200, y=250)    
+        self.toggle_button2 = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility2, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
+        self.toggle_button2.place(x=200, y=250)    
 
         lbl_confirm_new_password = Label(self.update_password_frame, text="Confirm New Password:", font=("Calibri", 12,"bold"), bg="white", fg="#b89b3f").place(x=10, y=270)
         self.confirm_new_password_entry = Entry(self.update_password_frame, font=("Calibri", 12), bg="#ECECEC", show="*")
         self.confirm_new_password_entry.place(x=10, y=300)
 
-        self.toggle_button = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
-        self.toggle_button.place(x=200, y=300)
+        self.toggle_button3 = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility3, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
+        self.toggle_button3.place(x=200, y=300)
 
         self.update_password_button = Button(self.update_password_frame, text="Update Password", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white", command=self.update_password).place(x=50, y=340)
-        
+    
+    
+    def toggle_password_visibility1(self):
+        if self.password_visible1:
+            self.current_password_entry.config(show="*")
+            self.toggle_button1.config(image=self.show_icon)
+            self.password_visible1 = False
+        else:
+            self.current_password_entry.config(show="")
+            self.toggle_button1.config(image=self.hide_icon)
+            self.password_visible1 = True
 
+    def toggle_password_visibility2(self):
+        if self.password_visible2:
+            self.new_password_entry.config(show="*")
+            self.toggle_button2.config(image=self.show_icon)
+            self.password_visible2 = False
+        else:
+            self.new_password_entry.config(show="")
+            self.toggle_button2.config(image=self.hide_icon)
+            self.password_visible2 = True
+
+    def toggle_password_visibility3(self):
+        if self.password_visible3:
+            self.confirm_new_password_entry.config(show="*")
+            self.toggle_button3.config(image=self.show_icon)  # Update the button name to toggle_button3
+            self.password_visible3 = False
+        else:
+            self.confirm_new_password_entry.config(show="")
+            self.toggle_button3.config(image=self.hide_icon)  # Update the button name to toggle_button3
+            self.password_visible3 = True
 
     def update_password(self):
         current_password=self.current_password_entry.get()
