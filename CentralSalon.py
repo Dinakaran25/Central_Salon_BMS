@@ -10,6 +10,8 @@ from PIL import Image, ImageTk
 from datetime import datetime
 from tkcalendar import DateEntry
 from email.mime.text import MIMEText
+from datetime import timedelta
+from tkinter import messagebox
 
 
 
@@ -1704,6 +1706,7 @@ class CentralSalon:
         self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staff)
         self.assign_staff_button.place(x=50, y=350)
         
+        
         #previous day button
         self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.previous_day)
         self.previous_day_button.place(x=100, y=350)
@@ -1711,6 +1714,259 @@ class CentralSalon:
         #next day button
         self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.next_day)
         self.next_day_button.place(x=300, y=350)
+
+
+    # when previous button is clicked the prevoius day appointments are displayed in the table
+    def previous_day(self):
+        #same menu section
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        self.root.title("Central Salon - View Appointments")
+        self.root.geometry("1150x700+0+0")
+
+        #frame
+        dashboard_frame = Frame(self.root, bg="white")
+        dashboard_frame.place(x=0, y=0, width=1150, height=700)
+
+        #menu frame left box
+        menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
+        menu_frame.place(x=30, y=70, width=300, height=400)
+
+        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        
+        #current date label
+        current_date = Label(dashboard_frame, text=(datetime.now() - timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
+        
+        #menu label buttons
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+
+        #add service button
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+
+        #view services button
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+
+        #add staff button
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+
+        #view staff button
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+
+        #view appointments button
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+
+        #logout button
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+
+        #left frame for viewing appointments
+        left_frame = Frame(dashboard_frame, bg="white")
+        left_frame.place(x=350, y=100, width=400, height=500)
+
+        #tree view
+        self.appointments_table = ttk.Treeview(left_frame, columns=("id", "name", "email", "phone", "service", "date", "time"), selectmode="extended")
+        self.appointments_table.heading("id", text="ID")
+
+        self.appointments_table.heading("name", text="Name")
+        self.appointments_table.heading("email", text="Email")
+        self.appointments_table.heading("phone", text="Phone")
+        self.appointments_table.heading("service", text="Service")
+        self.appointments_table.heading("date", text="Date")
+        self.appointments_table.heading("time", text="Time")
+
+        self.appointments_table["show"] = "headings"
+        self.appointments_table.column("id", width=5,anchor="center")
+        self.appointments_table.column("name", width=40,anchor="center")
+        self.appointments_table.column("email", width=40,anchor="center")
+        self.appointments_table.column("phone", width=40,anchor="center")
+        self.appointments_table.column("service", width=40,anchor="center")
+        self.appointments_table.column("date", width=40,anchor="center")
+        self.appointments_table.column("time", width=40,anchor="center")
+
+        self.appointments_table.pack(fill=BOTH, expand=1)
+
+        #fetch data
+        mycursor = mydb.cursor()
+        query = "SELECT * FROM salon_appointments WHERE date = CURDATE() - INTERVAL 1 DAY"
+
+        mycursor.execute(query)
+        rows = mycursor.fetchall()
+
+        if not rows:
+            messagebox.showinfo("No Appointments", "No appointments scheduled for today.")
+
+        for row in rows:
+            Name=row[6]
+            userid = row[1]
+            email = None
+            #get email from database
+            mycursor.execute("SELECT email FROM customers WHERE id = %s", (userid,))
+            email = mycursor.fetchone()
+            email = email[0]
+            date=row[3]
+            time=str(row[4])
+
+            #covert time to HH MM AM/PM
+            time = datetime.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
+            serviceid = row[2]
+            service = None
+            #get service from database
+            mycursor.execute("SELECT service FROM salon_services WHERE id = %s", (serviceid,))
+            service = mycursor.fetchone()
+            service = service[0]
+
+            #if staff is None, then
+            if row[5] == None:
+                staffname="Not Available"
+            else:
+                staffid=row[5]
+                staffname = None
+                #get staff from database
+                mycursor.execute("SELECT staffname FROM staff WHERE id = %s", (staffid,))
+                staffname = mycursor.fetchone()
+                staffname = staffname[0]
+
+            self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
+            
+        #assign staff button
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staff)
+        self.assign_staff_button.place(x=50, y=350)
+
+        #previous day button
+        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.previous_day)
+        self.previous_day_button.place(x=100, y=350)
+
+        #next day button
+        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.next_day)
+        self.next_day_button.place(x=300, y=350)
+   
+    
+    # when next button is clicked the next day appointments are displayed in the table it should be responsive to the current date
+        
+        
+    def next_day(self):
+        #same menu section
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        self.root.title("Central Salon - View Appointments")
+        self.root.geometry("1150x700+0+0")
+
+        #frame
+        dashboard_frame = Frame(self.root, bg="white")
+        dashboard_frame.place(x=0, y=0, width=1150, height=700)
+
+        #menu frame left box
+        menu_frame = Frame(dashboard_frame, bg="#6D4C3D")
+        menu_frame.place(x=30, y=70, width=300, height=400)
+
+        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        
+        #current date label
+        current_date = Label(dashboard_frame, text=(datetime.now() + timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
+        
+        #menu label buttons
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
+
+        #add service button
+        self.add_service_button = Button(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_service).place(x=50, y=150)
+
+        #view services button
+        self.view_services_button = Button(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_services).place(x=50, y=200)
+
+        #add staff button
+        self.add_staff_button = Button(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.add_staff).place(x=50, y=250)
+
+        #view staff button
+        self.view_staff_button = Button(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_staff).place(x=50, y=300)
+
+        #view appointments button
+        self.view_appointments_button = Button(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.view_appointments_admin).place(x=50, y=350)
+
+        #logout button
+        self.logout_button = Button(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.login_screen).place(x=50, y=400)
+
+        #left frame for viewing appointments
+        left_frame = Frame(dashboard_frame, bg="white")
+        left_frame.place(x=350, y=100, width=400, height=500)
+
+        #tree view
+        self.appointments_table = ttk.Treeview(left_frame, columns=("id", "name", "email", "phone", "service", "date", "time"), selectmode="extended")
+        self.appointments_table.heading("id", text="ID")
+
+        self.appointments_table.heading("name", text="Name")
+        self.appointments_table.heading("email", text="Email")
+        self.appointments_table.heading("phone", text="Phone")
+        self.appointments_table.heading("service", text="Service")
+        self.appointments_table.heading("date", text="Date")
+        self.appointments_table.heading("time", text="Time")
+
+        self.appointments_table["show"] = "headings"
+        self.appointments_table.column("id", width=5,anchor="center")
+        self.appointments_table.column("name", width=40,anchor="center")
+        self.appointments_table.column("email", width=40,anchor="center")
+        self.appointments_table.column("phone", width=40,anchor="center")
+        self.appointments_table.column("service", width=40,anchor="center")
+        self.appointments_table.column("date", width=40,anchor="center")
+        self.appointments_table.column("time", width=40,anchor="center")
+
+        self.appointments_table.pack(fill=BOTH, expand=1)
+
+        #fetch data
+        mycursor = mydb.cursor()
+        query = "SELECT * FROM salon_appointments WHERE date = CURDATE() + INTERVAL 1 DAY"
+
+        mycursor.execute(query)
+        rows = mycursor.fetchall()
+
+        if not rows:
+            messagebox.showinfo("No Appointments", "No appointments scheduled for today.")
+
+        for row in rows:
+            Name=row[6]
+            userid = row[1]
+            email = None
+            #get email from database
+            mycursor.execute("SELECT email FROM customers WHERE id = %s", (userid,))
+            email = mycursor.fetchone()
+            email = email[0]
+            date=row[3]
+            time=str(row[4])
+
+            #covert time to HH MM AM/PM
+            time = datetime.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
+            serviceid = row[2]
+            service = None
+            #get service from database
+            mycursor.execute("SELECT service FROM salon_services WHERE id = %s", (serviceid,))
+            service = mycursor.fetchone()
+            service = service[0]
+
+            #if staff is None, then
+            if row[5] == None:
+                staffname="Not Available"
+            else:
+                staffid=row[5]
+                staffname = None
+                #get staff from database
+                mycursor.execute("SELECT staffname FROM staff WHERE id = %s", (staffid,))
+                staffname = mycursor.fetchone()
+                staffname = staffname[0]
+
+            self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
+
+        #assign staff button
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staff)
+        self.assign_staff_button.place(x=50, y=350)
+
+        #previous day button
+        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.previous_day)
+        self.previous_day_button.place(x=100, y=350)
+
+        #next day button
+        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.next_day)
+        self.next_day_button.place(x=300, y=350)
+
 
     def assign_staff(self):
         #get selected item
@@ -1797,8 +2053,9 @@ class CentralSalon:
         self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staffDB).place(x=50, y=180)
 
     def assign_staffDB(self):
-        appointment_id = self.appointment_id_entry.get()
+        appointment_id = self.appointment_id_text.cget("text")
         staff_name = self.staff_combo.get()
+
 
         if staff_name == "Select Staff":
             messagebox.showerror("Error", "Please select a staff", parent=self.root)
