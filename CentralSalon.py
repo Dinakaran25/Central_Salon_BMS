@@ -170,7 +170,7 @@ class CentralSalon:
         self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
         self.toggle_button.place(x=315, y=220)
 
-        self.forgot_password_link = tk.Label(self.login_frame, text="Forgot Password?",font=("Calibri", 10,"bold"), fg="blue", cursor="hand2",bg="white")
+        self.forgot_password_link = tk.Label(self.login_frame, text="Forgot Password?",font=("Calibri", 12), fg="blue", cursor="hand2",bg="white")
         self.forgot_password_link.pack()
         self.forgot_password_link.bind("<Button-1>", lambda e: self.reset_password())
         self.forgot_password_link.place(x=140, y=253)
@@ -544,7 +544,7 @@ class CentralSalon:
         self.root.title("Central Salon - Customer Dashboard")
         self.root.geometry("1150x700+0+0")
         
-        self.bg_image = Image.open("Images/dashboard.png")  # Update the path to your image
+        self.bg_image = Image.open("Images/home_page.png")  # Update the path to your image
         self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
         self.bg_photo = ImageTk.PhotoImage(self.bg_image)
         bg_label = Label(self.root, image=self.bg_photo)
@@ -554,7 +554,8 @@ class CentralSalon:
         menu_frame = Frame(self.root, bg="lightgrey", bd=0)  # bd=0 to remove border if desired
         menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(self.root, text="Customer Dashboard", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f",bd=0).place(x=450, y=30)
+        welcome_text = f"Welcome, {self.username}!" 
+        title = Label(self.root, text=welcome_text, font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f", bd=0).place(x=450, y=50)
 
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -564,13 +565,13 @@ class CentralSalon:
         self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
 
     def book_appointment(self):
         #same menu section
@@ -592,6 +593,13 @@ class CentralSalon:
 
         title = Label(self.root, text="Book Appointment", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f",bd=0).place(x=450, y=30)
 
+        back_icon_image = Image.open("Images/back_icon.png")
+        back_icon_resized = back_icon_image.resize((50, 50), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
+        self.back_icon = ImageTk.PhotoImage(back_icon_resized)
+
+        self.left_button = tk.Button(self.root, image=self.back_icon, command=self.customer_dashboard, borderwidth=0, highlightthickness=0, bg="white", activebackground="white")
+        self.left_button.place(x=350, y=30)
+
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
@@ -600,13 +608,13 @@ class CentralSalon:
         self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -651,7 +659,7 @@ class CentralSalon:
         #confirm button
         self.confirm_button = Button(left_frame, text="Confirm", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=lambda: self.confirm_appointment(self.username)).place(x=100, y=350)
 
-
+        
 
     def confirm_appointment(self,username):
         service = self.services_combobox.get()
@@ -758,6 +766,13 @@ class CentralSalon:
         menu_frame.place(x=30, y=0, width=300, height=700)
 
         title = Label(self.root, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=450, y=30)
+
+        back_icon_image = Image.open("Images/back_icon.png")
+        back_icon_resized = back_icon_image.resize((50, 50), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
+        self.back_icon = ImageTk.PhotoImage(back_icon_resized)
+
+        self.left_button = tk.Button(self.root, image=self.back_icon, command=self.customer_dashboard, borderwidth=0, highlightthickness=0, bg="white", activebackground="white")
+        self.left_button.place(x=350, y=30)
         
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -766,13 +781,13 @@ class CentralSalon:
         self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -877,6 +892,13 @@ class CentralSalon:
         menu_frame.place(x=30, y=0, width=300, height=700)
 
         title = Label(self.root, text="My Profile", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=450, y=30)
+
+        back_icon_image = Image.open("Images/back_icon.png")
+        back_icon_resized = back_icon_image.resize((50, 50), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
+        self.back_icon = ImageTk.PhotoImage(back_icon_resized)
+
+        self.left_button = tk.Button(self.root, image=self.back_icon, command=self.customer_dashboard, borderwidth=0, highlightthickness=0, bg="white", activebackground="white")
+        self.left_button.place(x=350, y=30)
         
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -885,13 +907,13 @@ class CentralSalon:
         self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -951,6 +973,13 @@ class CentralSalon:
         menu_frame.place(x=30, y=0, width=300, height=700)
 
         title = Label(self.root, text="Update Profile", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=450, y=30)
+
+        back_icon_image = Image.open("Images/back_icon.png")
+        back_icon_resized = back_icon_image.resize((50, 50), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
+        self.back_icon = ImageTk.PhotoImage(back_icon_resized)
+
+        self.left_button = tk.Button(self.root, image=self.back_icon, command=self.my_profile, borderwidth=0, highlightthickness=0, bg="white", activebackground="white")
+        self.left_button.place(x=350, y=30)
         
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -959,13 +988,13 @@ class CentralSalon:
         self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
