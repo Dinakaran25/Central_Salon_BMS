@@ -7,11 +7,14 @@ from tkinter import messagebox,Frame, Label, Entry, Button
 from tkinter import ttk, font as tkfont
 from tkinter.ttk import Combobox
 from PIL import Image, ImageTk
-from datetime import datetime
+from datetime import datetime as dt
 from tkcalendar import DateEntry
 from email.mime.text import MIMEText
 from datetime import timedelta
 from tkinter import messagebox
+from tkinter import ttk
+import datetime
+
 
 
 
@@ -562,16 +565,30 @@ class CentralSalon:
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
+        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.book_appointment_button.place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_appointments_button.place(x=75, y=225)
+
+        #view services button
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_services_button.place(x=75, y=300)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.my_profile_button.place(x=75, y=375)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.logout_button.place(x=75, y=450)
+
 
     def book_appointment(self):
         #same menu section
@@ -605,17 +622,30 @@ class CentralSalon:
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
+        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.book_appointment_button.place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_appointments_button.place(x=75, y=225)
+
+        #view services button
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_services_button.place(x=75, y=300)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.my_profile_button.place(x=75, y=375)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
-
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.logout_button.place(x=75, y=450)
+        
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
         left_frame.place(x=350, y=100, width=400, height=500)
@@ -628,38 +658,57 @@ class CentralSalon:
         for row in rows:
             services.append(row[0])
         
+        self.select_service_label = Label(left_frame, text="Select Service", font=("Calibri", 15,"bold"), bg="white")
+        self.select_service_label.place(x=50, y=40)
+
         self.services_combobox = Combobox(left_frame, values=services, font=("Calibri", 15), state="readonly")
         self.services_combobox.set("Select Service")
-        self.services_combobox.place(x=50, y=50)
+        self.services_combobox.place(x=50, y=70)
 
-        #select date
 
-        # Your existing label for the date selection
-        self.date_label = Label(left_frame, text="Select Date", font=("Calibri", 15), bg="white")
-        self.date_label.place(x=50, y=100)
+        self.date_label = Label(left_frame, text="Select Date", font=("Calibri", 15,"bold"), bg="white")
+        self.date_label.place(x=50, y=110)
 
         # Modify the DateEntry widget to use the desired date format
-        self.date_entry = DateEntry(left_frame, font=("Calibri", 12), date_pattern='mm-dd-Y')
-        self.date_entry.place(x=50, y=130)
+        
+        self.date_entry = DateEntry(left_frame, font=("Calibri", 12), date_pattern='mm-dd-Y', mindate=datetime.date.today())
+        self.date_entry.place(x=50, y=140)
+        self.date_entry.configure(state='readonly', disabledbackground='lightgray')
 
         #select time
-        self.time_label = Label(left_frame, text="Select Time", font=("Calibri", 15), bg="white")
+        self.time_label = Label(left_frame, text="Select Time", font=("Calibri", 15,"bold"), bg="white")
         self.time_label.place(x=50, y=180)
-        
+
         # Time Combobox
         self.time_combobox = ttk.Combobox(left_frame, values=["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"], font=("Calibri", 15), state="readonly")
         self.time_combobox.set("Select Time")
         self.time_combobox.place(x=50, y=210)
 
-        #Name
-        self.name_label = Label(left_frame, text="Name", font=("Calibri", 15), bg="white").place(x=50, y=260)
+        # Name
+        self.name_label = Label(left_frame, text="Name", font=("Calibri", 15,"bold"), bg="white").place(x=50, y=260)
         self.name_entry = Entry(left_frame, font=("Calibri", 15), bg="#ECECEC")
         self.name_entry.place(x=50, y=290)
 
-        #confirm button
-        self.confirm_button = Button(left_frame, text="Confirm", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=lambda: self.confirm_appointment(self.username)).place(x=100, y=350)
+        self.price_label = Label(left_frame, text="Price", font=("Calibri", 15,"bold"), bg="white").place(x=50, y=330)
+        self.price_entry = Entry(left_frame,font=("Calibri", 15), bg="white", fg="black")
+        self.price_entry.place(x=50, y=360)
 
-        
+        # Bind the combobox selection event to the callback function
+        self.services_combobox.bind("<<ComboboxSelected>>", self.update_price)
+
+        #confirm button
+        self.confirm_button = Button(left_frame, text="Confirm", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=lambda: self.confirm_appointment(self.username)).place(x=100, y=420)
+
+    def update_price(self, event):
+        service = self.services_combobox.get()
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT price FROM salon_services WHERE service = %s", (service,))
+        price = mycursor.fetchone()[0]
+        self.price_entry.config(state="normal")
+        self.price_entry.delete(0, END)
+        self.price_entry.insert(0, "$" + str(price))
+        self.price_entry.config(state="readonly")
+             
 
     def confirm_appointment(self,username):
         service = self.services_combobox.get()
@@ -671,8 +720,8 @@ class CentralSalon:
         # Attempt to convert date and time to the desired format
         try:
             print(f"Date input: '{date}', Time input: '{time}'")
-            formatted_date = datetime.strptime(date, "%m-%d-%Y").strftime("%Y-%m-%d")
-            formatted_time = datetime.strptime(time, "%I:%M %p").strftime("%H:%M:%S")
+            formatted_date = dt.strptime(date, "%m-%d-%Y").strftime("%Y-%m-%d")
+            formatted_time = dt.strptime(time, "%I:%M %p").strftime("%H:%M:%S")
             print(formatted_date, formatted_time)
 
 
@@ -726,11 +775,12 @@ class CentralSalon:
         Here are your booking details:
         - Date and Time: {booking_details['date_time']}
         - Services: {', '.join(booking_details['services'])}
+        - Price: {self.price_entry.get()}
         
         If you need to cancel or reschedule, please contact us at least an hour in advance.
         
         We look forward to serving you,
-        Central Salon
+        Central Salon.
         """
         
         message = MIMEText(booking_info)
@@ -777,17 +827,31 @@ class CentralSalon:
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
+
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
+        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.book_appointment_button.place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_appointments_button.place(x=75, y=225)
+
+        #view services button
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_services_button.place(x=75, y=300)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.my_profile_button.place(x=75, y=375)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.logout_button.place(x=75, y=450)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -824,7 +888,7 @@ class CentralSalon:
             time=row[4]
 
             #convert time
-            time = datetime.strptime(str(time), "%H:%M:%S").strftime("%I:%M %p")
+            time = dt.strptime(str(time), "%H:%M:%S").strftime("%I:%M %p")
 
             #get staff name
             staff_id = row[5]
@@ -903,17 +967,31 @@ class CentralSalon:
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
+
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
+        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.book_appointment_button.place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_appointments_button.place(x=75, y=225)
+
+        #view services button
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_services_button.place(x=75, y=300)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.my_profile_button.place(x=75, y=375)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.logout_button.place(x=75, y=450)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -984,18 +1062,32 @@ class CentralSalon:
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
+
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment).place(x=75, y=150)
+        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
+        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.book_appointment_button.place(x=75, y=150)
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments).place(x=75, y=225)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_appointments_button.place(x=75, y=225)
+
+        #view services button
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_services_button.place(x=75, y=300)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.my_profile_button.place(x=75, y=375)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen).place(x=75, y=375)
-
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.logout_button.place(x=75, y=450)
+        
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
         left_frame.place(x=350, y=100, width=400, height=500)
@@ -1725,7 +1817,7 @@ class CentralSalon:
             time=str(row[4]) # Convert time to string
 
             #covert time to HH MM AM/PM
-            time = datetime.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
+            time = dt.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
             serviceid = row[2]
             service = None
             #get service from database
@@ -1851,7 +1943,7 @@ class CentralSalon:
             time=str(row[4])
 
             #covert time to HH MM AM/PM
-            time = datetime.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
+            time = dt.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
             serviceid = row[2]
             service = None
             #get service from database
@@ -1978,7 +2070,7 @@ class CentralSalon:
             time=str(row[4])
 
             #covert time to HH MM AM/PM
-            time = datetime.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
+            time = dt.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
             serviceid = row[2]
             service = None
             #get service from database
