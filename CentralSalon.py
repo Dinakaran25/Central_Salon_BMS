@@ -138,16 +138,16 @@ class CentralSalon:
         self.logo_image = ImageTk.PhotoImage(Image.open("Images/central_logo.png").resize((100, 100), Image.LANCZOS))
         Label(self.login_frame,image=self.logo_image, bg="white").place(x=150, y=50)
 
-        title = Label(self.login_frame, text="Login", font=("Calibri", 25, "bold"), bg="white", fg="#b89b3f").place(x=25, y=135)
+        title = Label(self.login_frame, text="Login", font=("Calibri", 25, "bold"), bg="white", fg="#b89b3f").place(x=25, y=125)
 
-        lbl_username = Label(self.login_frame, text="Username:", font=("Calibri", 18,"bold"), bg="white", fg="#b89b3f").place(x=10, y=180)
+        lbl_username = Label(self.login_frame, text="Username:", font=("Calibri", 18,"bold"), bg="white", fg="#b89b3f").place(x=10, y=170)
         self.username_entry = Entry(self.login_frame, textvariable=self.username, font=("Calibri", 12), bg="#ECECEC").place(x=140, y=180)
         # self.username_entry.insert(0, "Username")
         # self.username_entry.bind('<FocusIn>', self.removeusernametext)
         # self.username_entry.bind('<FocusOut>', self.removeusernametext)
         
 
-        lbl_password = Label(self.login_frame, text="Password:", font=("Calibri", 18, "bold"), bg="white", fg="#b89b3f").place(x=10, y=220)
+        lbl_password = Label(self.login_frame, text="Password:", font=("Calibri", 18, "bold"), bg="white", fg="#b89b3f").place(x=10, y=215)
         self.password_entry = Entry(self.login_frame, textvariable=self.password, font=("Calibri", 12), bg="#ECECEC", show="*")
         self.password_entry.place(x=140, y=220)
         # self.password_entry.insert(0, "Password")
@@ -166,7 +166,7 @@ class CentralSalon:
 
         # Create a button to toggle password visibility
         self.toggle_button = tk.Button(self.login_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white", activebackground="white")
-        self.toggle_button.place(x=325, y=220)
+        self.toggle_button.place(x=315, y=220)
 
         self.forgot_password_link = tk.Label(self.login_frame, text="Forgot Password?",font=("Calibri", 10,"bold"), fg="blue", cursor="hand2",bg="white")
         self.forgot_password_link.pack()
@@ -482,7 +482,7 @@ class CentralSalon:
         self.password_entry.place(x=30, y=390)
 
         self.toggle_button = tk.Button(register_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
-        self.toggle_button.place(x=220, y=390)
+        self.toggle_button.place(x=210, y=390)
 
         self.register_button = Button(register_frame, text="Register", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white", command=self.registerDB).place(x=30, y=440)
         
@@ -537,7 +537,7 @@ class CentralSalon:
         menu_frame = Frame(self.root, bg="lightgrey", bd=0)  # bd=0 to remove border if desired
         menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(self.root, text="Customer Dashboard", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f",bd=0).place(x=350, y=30)
+        title = Label(self.root, text="Customer Dashboard", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f",bd=0).place(x=450, y=30)
 
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -550,10 +550,10 @@ class CentralSalon:
         self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
 
     def book_appointment(self):
         #same menu section
@@ -573,7 +573,7 @@ class CentralSalon:
         menu_frame = Frame(self.root, bg="lightgrey", bd=0)  # bd=0 to remove border if desired
         menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(self.root, text="Book Appointment", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f",bd=0).place(x=350, y=30)
+        title = Label(self.root, text="Book Appointment", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f",bd=0).place(x=450, y=30)
 
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -586,10 +586,10 @@ class CentralSalon:
         self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -632,7 +632,7 @@ class CentralSalon:
         self.name_entry.place(x=50, y=290)
 
         #confirm button
-        self.confirm_button = Button(left_frame, text="Confirm", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=lambda: self.confirm_appointment(self.username)).place(x=50, y=350)
+        self.confirm_button = Button(left_frame, text="Confirm", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=lambda: self.confirm_appointment(self.username)).place(x=100, y=350)
 
 
 
@@ -740,7 +740,7 @@ class CentralSalon:
         menu_frame = Frame(self.root, bg="lightgrey")
         menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(self.root, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=350, y=30)
+        title = Label(self.root, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=450, y=30)
         
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -752,10 +752,10 @@ class CentralSalon:
         self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -810,9 +810,9 @@ class CentralSalon:
 
 
         #checkin appointments button
-        self.checkin_appointment_button = Button(left_frame, text="Checkin Appointment", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.checkin_appointment).place(x=50, y=400)
+        self.checkin_appointment_button = Button(left_frame, text="Checkin Appointment", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.checkin_appointment).place(x=95, y=400)
         #cancel appointments button
-        self.cancel_appointment_button = Button(left_frame, text="Cancel Appointment", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.cancel_appointment).place(x=350, y=400)
+        self.cancel_appointment_button = Button(left_frame, text="Cancel Appointment", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.cancel_appointment).place(x=100, y=450)
 
     def checkin_appointment(self):
         #get selected item
@@ -859,7 +859,7 @@ class CentralSalon:
         menu_frame = Frame(self.root, bg="lightgrey")
         menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(self.root, text="My Profile", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=350, y=30)
+        title = Label(self.root, text="My Profile", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=450, y=30)
         
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -871,10 +871,10 @@ class CentralSalon:
         self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -912,7 +912,7 @@ class CentralSalon:
         self.password_entry = Label(left_frame, text=user[6], font=("Calibri", 15), bg="white").place(x=160, y=350)
         
         #update button
-        self.update_button = Button(left_frame, text="Update", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.update_profile).place(x=50, y=420)
+        self.update_button = Button(left_frame, text="Update", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.update_profile).place(x=100, y=420)
 
 
     def update_profile(self):
@@ -933,7 +933,7 @@ class CentralSalon:
         menu_frame = Frame(self.root, bg="lightgrey")
         menu_frame.place(x=30, y=0, width=300, height=700)
 
-        title = Label(self.root, text="Update Profile", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=350, y=30)
+        title = Label(self.root, text="Update Profile", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=450, y=30)
         
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
@@ -945,10 +945,10 @@ class CentralSalon:
         self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.view_appointments).place(x=75, y=225)
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.my_profile).place(x=75, y=300)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.my_profile).place(x=75, y=300)
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.login_screen).place(x=75, y=375)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", command=self.login_screen).place(x=75, y=375)
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -999,7 +999,7 @@ class CentralSalon:
         self.password_entry.place(x=50, y=380)
 
         #update button
-        self.update_button = Button(left_frame, text="Save", font=("Calibri", 15, "bold"), bg="white", fg="black", command=self.update_profileDB).place(x=50, y=420)
+        self.update_button = Button(left_frame, text="Save", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.update_profileDB).place(x=100, y=420)
 
     def update_profileDB(self):
         fullname = self.fullname_entry.get()
@@ -1021,6 +1021,10 @@ class CentralSalon:
                 self.customer_dashboard()
             except Exception as e:
                 messagebox.showerror("Error", f"Error due to: {str(e)}", parent=self.root)  
+
+
+
+
 
     #admin dashboard
     def admin_dashboard(self):
@@ -1604,6 +1608,9 @@ class CentralSalon:
 
         title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
+        #current date label
+        current_date = Label(dashboard_frame, text=datetime.now().strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
+        
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
 
@@ -1653,10 +1660,12 @@ class CentralSalon:
 
         #fetch data
         mycursor = mydb.cursor()
-        current_date = datetime.date.today()  # Get today's date
-        query = "SELECT * FROM salon_appointments WHERE date = %s"
-        mycursor.execute(query, (current_date,))  # Use the current date in the query
+        query = "SELECT * FROM salon_appointments WHERE date = CURDATE()"
+        mycursor.execute(query)
         rows = mycursor.fetchall()
+
+        if not rows:
+            messagebox.showinfo("No Appointments", "No appointments scheduled for today.")
         
         for row in rows:
             Name=row[6]
@@ -1667,7 +1676,7 @@ class CentralSalon:
             email = mycursor.fetchone()
             email = email[0]
             date=row[3]
-            time=row[4]
+            time=str(row[4]) # Convert time to string
 
             #covert time to HH MM AM/PM
             time = datetime.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
@@ -1692,7 +1701,16 @@ class CentralSalon:
             self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
 
         #assign staff button
-        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staff).place(x=50, y=350)
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.assign_staff)
+        self.assign_staff_button.place(x=50, y=350)
+        
+        #previous day button
+        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.previous_day)
+        self.previous_day_button.place(x=100, y=350)
+
+        #next day button
+        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#6D4C3D", fg="white", command=self.next_day)
+        self.next_day_button.place(x=300, y=350)
 
     def assign_staff(self):
         #get selected item
@@ -1757,13 +1775,12 @@ class CentralSalon:
         left_frame.place(x=350, y=100, width=400, height=500)
 
         #appointment id
-        self.appointment_id_label = Label(left_frame, text="Appointment ID", font=("Calibri", 15), bg="white").place(x=50, y=50)
-        self.appointment_id_entry = Entry(left_frame, font=("Calibri", 15), bg="#ECECEC")
-
-        self.appointment_id_entry.insert(0, id)
+        self.appointment_id_label = Label(left_frame, text="Appointment ID:", font=("Calibri", 15, "bold"), bg="white").place(x=50, y=50)
+        self.appointment_id_text = Label(left_frame, text=id, font=("Calibri", 15), bg="white")
+        self.appointment_id_text.place(x=200, y=50)
 
         #staff combo box
-        self.staff_label = Label(left_frame, text="Staff", font=("Calibri", 15), bg="white").place(x=50, y=110)
+        self.staff_label = Label(left_frame, text="Staff:", font=("Calibri", 15, "bold"), bg="white").place(x=50, y=110)
         self.staff_combo = ttk.Combobox(left_frame, font=("Calibri", 15))
         self.staff_combo["values"] = ["Select Staff"]
 
