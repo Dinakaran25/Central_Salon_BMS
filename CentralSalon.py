@@ -132,7 +132,7 @@ class CentralSalon:
 
         #frame
         self.login_frame = Frame(self.root, bg="white")
-        self.login_frame.place(x=125, y=150, width=400, height=400)
+        self.login_frame.place(x=125, y=150, width=400, height=450)
 
         welcome_label = tk.Label(self.login_frame, text="WELCOME", font=("Calibri", 25, "bold"), bg="white", fg="#b89b3f").place(x=120, y=0)
         
@@ -174,12 +174,22 @@ class CentralSalon:
         self.forgot_password_link.pack()
         self.forgot_password_link.bind("<Button-1>", lambda e: self.reset_password())
         self.forgot_password_link.place(x=140, y=253)
+        self.forgot_password_link.bind("<Enter>", lambda e: self.forgot_password_link.config(fg="#b89b3f"))
+        self.forgot_password_link.bind("<Leave>", lambda e: self.forgot_password_link.config(fg="blue"))
 
-        self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x=50, y=300)
+        self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x= 150, y=300)
 
         #self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.show_update_password_form).place(x=100, y=300)
+        
+        title = Label(self.login_frame, text="Don't have an account?", font=("Calibri", 12), fg="black", bg="white", cursor="hand2")
+        title.place(x=50, y=400)
+        
                 
-        self.register_button = Button(self.login_frame, text="Register", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white", cursor="hand2", command=self.register_screen).place(x=200, y=300)
+        self.register_text = Label(self.login_frame, text="Register now", font=("Calibri", 12), fg="blue", bg="white", cursor="hand2")
+        self.register_text.place(x=210, y=400)
+        self.register_text.bind("<Button-1>", lambda e: self.register_screen())
+        self.register_text.bind("<Enter>", lambda e: self.register_text.config(fg="#b89b3f"))
+        self.register_text.bind("<Leave>", lambda e: self.register_text.config(fg="blue"))
     
     # def removeusernametext(self, event):
     #     if self.username_entry.get() == "Username":
@@ -486,9 +496,14 @@ class CentralSalon:
         self.toggle_button = tk.Button(register_frame, image=self.show_icon, command=self.toggle_password_visibility, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
         self.toggle_button.place(x=210, y=390)
 
-        self.register_button = Button(register_frame, text="Register", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white", command=self.registerDB).place(x=30, y=440)
+        self.register_button = Button(register_frame, text="Register", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white", command=self.registerDB).place(x=150, y=440)
         
-        self.login_button = Button(register_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white", command=self.login_screen).place(x=250, y=440)
+        back_icon_image = Image.open("Images/back_icon.png")
+        back_icon_resized = back_icon_image.resize((50, 50), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
+        self.back_icon = ImageTk.PhotoImage(back_icon_resized)
+
+        self.left_button = tk.Button(register_frame, image=self.back_icon, command=self.login_screen, borderwidth=0, highlightthickness=0, bg="white", activebackground="white")
+        self.left_button.place(x=10, y=10)
 
     #autofill_username
     def autofill_username(self, event):
