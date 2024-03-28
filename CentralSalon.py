@@ -15,12 +15,10 @@ from tkinter import messagebox
 from tkinter import ttk
 import datetime
 
-from tooltip import ToolTip
 
 
 
-
-#connect to the database
+#connect to the database 
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
