@@ -565,29 +565,42 @@ class CentralSalon:
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
-        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+
+        self.book_appointment_button = tk.Label(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2")
+        self.book_appointment_button.pack()
+        self.book_appointment_button.bind("<Button-1>", lambda e: self.book_appointment())
         self.book_appointment_button.place(x=75, y=150)
+        self.book_appointment_button.bind("<Enter>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="#b89b3f"))
+        self.book_appointment_button.bind("<Leave>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="black"))
+
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",cursor="hand2", activebackground='lightgrey', command=self.view_appointments)
         self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_appointments_button.place(x=75, y=225)
+        self.view_appointments_button.place(x=75, y=200)
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg="black"))
 
         #view services button
-        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.view_services_customer)
         self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_services_button.place(x=75, y=300)
+        self.view_services_button.place(x=75, y=250)
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="lightgrey", fg="black"))
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.my_profile)
         self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.my_profile_button.place(x=75, y=375)
+        self.my_profile_button.place(x=75, y=300)
+        self.my_profile_button.bind("<Enter>", lambda e: self.my_profile_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.my_profile_button.bind("<Leave>", lambda e: self.my_profile_button.config(bg="lightgrey", fg="black"))
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.login_screen)
         self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.logout_button.place(x=75, y=450)
+        self.logout_button.place(x=75, y=350)
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="lightgrey", fg="black"))
 
 
     def book_appointment(self):
@@ -618,33 +631,48 @@ class CentralSalon:
         self.left_button.place(x=350, y=30)
 
         #menu label buttons
+        #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
-        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+
+        self.book_appointment_button = tk.Label(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2")
+        self.book_appointment_button.pack()
+        self.book_appointment_button.bind("<Button-1>", lambda e: self.book_appointment())
         self.book_appointment_button.place(x=75, y=150)
+        self.book_appointment_button.bind("<Enter>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="#b89b3f"))
+        self.book_appointment_button.bind("<Leave>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="black"))
+
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",cursor="hand2", activebackground='lightgrey', command=self.view_appointments)
         self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_appointments_button.place(x=75, y=225)
+        self.view_appointments_button.place(x=75, y=200)
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg="black"))
 
         #view services button
-        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.view_services_customer)
         self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_services_button.place(x=75, y=300)
+        self.view_services_button.place(x=75, y=250)
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="lightgrey", fg="black"))
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.my_profile)
         self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.my_profile_button.place(x=75, y=375)
+        self.my_profile_button.place(x=75, y=300)
+        self.my_profile_button.bind("<Enter>", lambda e: self.my_profile_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.my_profile_button.bind("<Leave>", lambda e: self.my_profile_button.config(bg="lightgrey", fg="black"))
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.login_screen)
         self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.logout_button.place(x=75, y=450)
+        self.logout_button.place(x=75, y=350)
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="lightgrey", fg="black"))
+
         
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -671,9 +699,15 @@ class CentralSalon:
 
         # Modify the DateEntry widget to use the desired date format
         
-        self.date_entry = DateEntry(left_frame, font=("Calibri", 12), date_pattern='mm-dd-Y', mindate=datetime.date.today())
+        self.date_entry = DateEntry(left_frame, font=("Calibri", 12), date_pattern='mm-dd-yyyy', mindate=datetime.date.today(),
+                                    weekend_background='lightgray', weekend_foreground='black',
+                                    othermonth_webackground='lightgray', othermonth_foreground='dim gray',
+                                    othermonth_weforeground='dim gray')
         self.date_entry.place(x=50, y=140)
         self.date_entry.configure(state='readonly', disabledbackground='lightgray')
+        # Binding to the '<<DateEntrySelected>>' event to check for Sundays
+        self.date_entry.bind("<<DateEntrySelected>>", self.check_for_sunday)
+
 
         #select time
         self.time_label = Label(left_frame, text="Select Time", font=("Calibri", 15,"bold"), bg="white")
@@ -699,6 +733,13 @@ class CentralSalon:
         #confirm button
         self.confirm_button = Button(left_frame, text="Confirm", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=lambda: self.confirm_appointment(self.username)).place(x=100, y=420)
 
+    def check_for_sunday(self, event):
+        selected_date = self.date_entry.get_date()
+        if selected_date and selected_date.weekday() == 6:
+            messagebox.showerror("Error", "Salon is closed on Sundays. Please select another date.", parent=self.root)
+            self.date_entry.set_date(None)
+
+            
     def update_price(self, event):
         service = self.services_combobox.get()
         mycursor = mydb.cursor()
@@ -829,33 +870,48 @@ class CentralSalon:
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
-        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+
+        self.book_appointment_button = tk.Label(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2")
+        self.book_appointment_button.pack()
+        self.book_appointment_button.bind("<Button-1>", lambda e: self.book_appointment())
         self.book_appointment_button.place(x=75, y=150)
+        self.book_appointment_button.bind("<Enter>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="#b89b3f"))
+        self.book_appointment_button.bind("<Leave>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="black"))
+
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",cursor="hand2", activebackground='lightgrey', command=self.view_appointments)
         self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_appointments_button.place(x=75, y=225)
+        self.view_appointments_button.place(x=75, y=200)
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg="black"))
 
         #view services button
-        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.view_services_customer)
         self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_services_button.place(x=75, y=300)
+        self.view_services_button.place(x=75, y=250)
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="lightgrey", fg="black"))
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.my_profile)
         self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.my_profile_button.place(x=75, y=375)
+        self.my_profile_button.place(x=75, y=300)
+        self.my_profile_button.bind("<Enter>", lambda e: self.my_profile_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.my_profile_button.bind("<Leave>", lambda e: self.my_profile_button.config(bg="lightgrey", fg="black"))
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.login_screen)
         self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.logout_button.place(x=75, y=450)
+        self.logout_button.place(x=75, y=350)
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="lightgrey", fg="black"))
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
         left_frame.place(x=350, y=100, width=400, height=500)
+
+        
 
         #table
         self.appointments_table = ttk.Treeview(left_frame, columns=("id", "service", "date", "time", "staff"), selectmode="extended")
@@ -870,40 +926,43 @@ class CentralSalon:
         self.appointments_table.column("date", width=40,anchor="center")
         self.appointments_table.column("time", width=40,anchor="center")
         self.appointments_table.column("staff", width=40,anchor="center")
-
-    
-
-        self.appointments_table.pack(fill=BOTH, expand=1)
+        
+        self.appointments_table.tag_configure("oddrow", background="white")
+        self.appointments_table.tag_configure("evenrow", background="lightgrey")
+        
+        self.appointments_table.pack(fill="both", expand=True)
 
         #fetch data
         mycursor = mydb.cursor()   
         userid=self.userid
         mycursor.execute("SELECT * FROM salon_appointments WHERE customer_id = %s", (userid,))
         rows = mycursor.fetchall()
-        for row in rows:
+        for index, row in enumerate(rows):
             service_id = row[2]
             mycursor.execute("SELECT service FROM salon_services WHERE id = %s", (service_id,))
             service = mycursor.fetchone()[0]
-            date=row[3]
-            time=row[4]
+            date = row[3]
+            time = row[4]
 
-            #convert time
+            # convert time
             time = dt.strptime(str(time), "%H:%M:%S").strftime("%I:%M %p")
 
-            #get staff name
+            # get staff name
             staff_id = row[5]
-            #if staff id is not null
+            # if staff id is not null
             if staff_id != None:
                 mycursor.execute("SELECT staffname FROM staff WHERE id = %s", (staff_id,))
                 staff = mycursor.fetchone()[0]
-            elif row[7]==1:
-                staff="Checked In"
+            elif row[7] == 1:
+                staff = "Checked In"
             else:
-                staff="Not Checked In"
+                staff = "Not Checked In"
 
-                #insertall data into table
-            self.appointments_table.insert("", "end", values=(row[0], service, date, time, staff))
-
+            # insert all data into table
+            if index % 2 == 0:
+                self.appointments_table.insert("", "end", values=(row[0], service, date, time, staff), tags=("evenrow",))
+            else:
+                self.appointments_table.insert("", "end", values=(row[0], service, date, time, staff), tags=("oddrow",))
 
         #checkin appointments button
         self.checkin_appointment_button = Button(left_frame, text="Checkin Appointment", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.checkin_appointment).place(x=95, y=400)
@@ -936,6 +995,104 @@ class CentralSalon:
         messagebox.showinfo("Success", "Appointment Cancelled")
         self.view_appointments()
 
+    #in customerdashboard user should be able to see services from the salon services table with alternative row in one colour like zebra
+    def view_services_customer(self):
+        #same menu section
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        self.root.title("Central Salon - View Services")
+        self.root.geometry("1150x700+0+0")
+
+        self.bg_image = Image.open("Images/dashboard.png")  # Update the path to your image
+        self.bg_image = self.bg_image.resize((1150, 700), Image.Resampling.LANCZOS)  # Resize the image to fit your screen
+        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
+        bg_label = Label(self.root, image=self.bg_photo)
+        bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+        #menu frame left box
+        menu_frame = Frame(self.root, bg="lightgrey")
+        menu_frame.place(x=30, y=0, width=300, height=700)
+
+        title = Label(self.root, text="View Services", font=("Calibri", 30, "bold"), bg="white", fg="#b89b3f").place(x=450, y=30)
+
+        back_icon_image = Image.open("Images/back_icon.png")
+        back_icon_resized = back_icon_image.resize((50, 50), Image.Resampling.LANCZOS)  # Use Resampling.LANCZOS for Pillow >= 7.0.0
+        self.back_icon = ImageTk.PhotoImage(back_icon_resized)
+
+        self.left_button = tk.Button(self.root, image=self.back_icon, command=self.customer_dashboard, borderwidth=0, highlightthickness=0, bg="white", activebackground="white")
+        self.left_button.place(x=350, y=30)
+
+        #menu label buttons
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="lightgrey", fg="black").place(x=100, y=30)
+
+
+        #book appointment button
+
+        self.book_appointment_button = tk.Label(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2")
+        self.book_appointment_button.pack()
+        self.book_appointment_button.bind("<Button-1>", lambda e: self.book_appointment())
+        self.book_appointment_button.place(x=75, y=150)
+        self.book_appointment_button.bind("<Enter>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="#b89b3f"))
+        self.book_appointment_button.bind("<Leave>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="black"))
+
+        #view my appointments button
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",cursor="hand2", activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_appointments_button.place(x=75, y=200)
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg="black"))
+
+        #view services button
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.view_services_customer)
+        self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.view_services_button.place(x=75, y=250)
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="lightgrey", fg="black"))
+
+        #my profile button
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.my_profile_button.place(x=75, y=300)
+        self.my_profile_button.bind("<Enter>", lambda e: self.my_profile_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.my_profile_button.bind("<Leave>", lambda e: self.my_profile_button.config(bg="lightgrey", fg="black"))
+
+        #logout button
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.login_screen)
+        self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
+        self.logout_button.place(x=75, y=350)
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="lightgrey", fg="black"))
+
+        #left frame for booking appointment
+        left_frame = Frame(self.root, bg="white")
+        left_frame.place(x=350, y=100, width=400, height=500)
+
+        #table
+        self.services_table = ttk.Treeview(left_frame, columns=("id", "service", "price"), selectmode="extended")
+        self.services_table.heading("id", text="ID")
+        self.services_table.heading("service", text="Service")
+        self.services_table.heading("price", text="Price")
+        self.services_table["show"] = "headings"
+        self.services_table.column("id", width=5, anchor="center")
+        self.services_table.column("service", width=40, anchor="center")
+        self.services_table.column("price", width=40, anchor="center")
+
+        self.services_table.pack(fill=BOTH, expand=1)
+
+        # fetch data
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM salon_services")
+        rows = mycursor.fetchall()
+        for index, row in enumerate(rows):
+            if index % 2 == 0:
+                self.services_table.insert("", "end", values=(row[0], row[1], row[2]), tags=("even_row",))
+            else:
+                self.services_table.insert("", "end", values=(row[0], row[1], row[2]), tags=("odd_row",))
+
+        # configure tag colors
+        self.services_table.tag_configure("even_row", background="lightgrey")
+        self.services_table.tag_configure("odd_row", background="white")
 
     def my_profile(self):
         #same menu section
@@ -969,29 +1126,43 @@ class CentralSalon:
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
-        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+
+        self.book_appointment_button = tk.Label(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2")
+        self.book_appointment_button.pack()
+        self.book_appointment_button.bind("<Button-1>", lambda e: self.book_appointment())
         self.book_appointment_button.place(x=75, y=150)
+        self.book_appointment_button.bind("<Enter>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="#b89b3f"))
+        self.book_appointment_button.bind("<Leave>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="black"))
+
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",cursor="hand2", activebackground='lightgrey', command=self.view_appointments)
         self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_appointments_button.place(x=75, y=225)
+        self.view_appointments_button.place(x=75, y=200)
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg="black"))
 
         #view services button
-        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.view_services_customer)
         self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_services_button.place(x=75, y=300)
+        self.view_services_button.place(x=75, y=250)
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="lightgrey", fg="black"))
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.my_profile)
         self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.my_profile_button.place(x=75, y=375)
+        self.my_profile_button.place(x=75, y=300)
+        self.my_profile_button.bind("<Enter>", lambda e: self.my_profile_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.my_profile_button.bind("<Leave>", lambda e: self.my_profile_button.config(bg="lightgrey", fg="black"))
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.login_screen)
         self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.logout_button.place(x=75, y=450)
+        self.logout_button.place(x=75, y=350)
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="lightgrey", fg="black"))
+
 
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
@@ -1064,30 +1235,43 @@ class CentralSalon:
 
 
         #book appointment button
-        self.book_appointment_button = Button(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", relief='ridge',activebackground='lightgrey',command=self.book_appointment)
-        self.book_appointment_button.config(relief='flat', bd=0, highlightthickness=0)
+
+        self.book_appointment_button = tk.Label(self.root, text="Book Appointment", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2")
+        self.book_appointment_button.pack()
+        self.book_appointment_button.bind("<Button-1>", lambda e: self.book_appointment())
         self.book_appointment_button.place(x=75, y=150)
+        self.book_appointment_button.bind("<Enter>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="#b89b3f"))
+        self.book_appointment_button.bind("<Leave>", lambda e: self.book_appointment_button.config(bg="lightgrey", fg="black"))
+
 
         #view my appointments button
-        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_appointments)
+        self.view_appointments_button = Button(self.root, text="View My Appointments", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",cursor="hand2", activebackground='lightgrey', command=self.view_appointments)
         self.view_appointments_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_appointments_button.place(x=75, y=225)
+        self.view_appointments_button.place(x=75, y=200)
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="lightgrey", fg="black"))
 
         #view services button
-        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.view_services)
+        self.view_services_button = Button(self.root, text="View Services", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.view_services_customer)
         self.view_services_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.view_services_button.place(x=75, y=300)
+        self.view_services_button.place(x=75, y=250)
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="lightgrey", fg="black"))
 
         #my profile button
-        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.my_profile)
+        self.my_profile_button = Button(self.root, text="My Profile", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.my_profile)
         self.my_profile_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.my_profile_button.place(x=75, y=375)
+        self.my_profile_button.place(x=75, y=300)
+        self.my_profile_button.bind("<Enter>", lambda e: self.my_profile_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.my_profile_button.bind("<Leave>", lambda e: self.my_profile_button.config(bg="lightgrey", fg="black"))
 
         #logout button
-        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black",activebackground='lightgrey', command=self.login_screen)
+        self.logout_button = Button(self.root, text="Logout", font=("Calibri", 15, "bold"), bg="lightgrey", fg="black", cursor="hand2", activebackground='lightgrey', command=self.login_screen)
         self.logout_button.config(relief='flat', bd=0, highlightthickness=0)
-        self.logout_button.place(x=75, y=450)
-        
+        self.logout_button.place(x=75, y=350)
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="lightgrey", fg='#b89b3f'))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="lightgrey", fg="black"))
+
         #left frame for booking appointment
         left_frame = Frame(self.root, bg="white")
         left_frame.place(x=350, y=100, width=400, height=500)
