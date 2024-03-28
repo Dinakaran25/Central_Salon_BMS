@@ -15,6 +15,8 @@ from tkinter import messagebox
 from tkinter import ttk
 import datetime
 
+from tooltip import ToolTip
+
 
 
 
@@ -100,6 +102,8 @@ with mydb.cursor() as cursor:
 
 #central salon class
 class CentralSalon:
+    # how to inherit tooltip class
+
     def __init__(self, root):
         self.root = root
         self.root.title("CentralSalon")
@@ -181,7 +185,7 @@ class CentralSalon:
         self.forgot_password_link.bind("<Leave>", lambda e: self.forgot_password_link.config(fg="blue"))
 
         self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x= 150, y=300)
-
+    
         #self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.show_update_password_form).place(x=100, y=300)
         
         title = Label(self.login_frame, text="Don't have an account?", font=("Calibri", 12), fg="black", bg="white", cursor="hand2")
@@ -921,10 +925,10 @@ class CentralSalon:
         self.appointments_table.heading("time", text="Time")
         self.appointments_table.heading("staff", text="Staff")
         self.appointments_table["show"] = "headings"
-        self.appointments_table.column("id", width=5,anchor="center")
-        self.appointments_table.column("service", width=40,anchor="center")
-        self.appointments_table.column("date", width=40,anchor="center")
-        self.appointments_table.column("time", width=40,anchor="center")
+        self.appointments_table.column("id", width=3,anchor="center")
+        self.appointments_table.column("service", width=50,anchor="center")
+        self.appointments_table.column("date", width=30,anchor="center")
+        self.appointments_table.column("time", width=30,anchor="center")
         self.appointments_table.column("staff", width=40,anchor="center")
         
         self.appointments_table.tag_configure("oddrow", background="white")
