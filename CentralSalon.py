@@ -2056,7 +2056,7 @@ class CentralSalon:
         title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #current date label
-        current_date = Label(dashboard_frame, text=(datetime.now() - timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
+        current_date = Label(dashboard_frame, text=(dt.now() - timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
         
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
@@ -2183,7 +2183,7 @@ class CentralSalon:
         title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #current date label
-        current_date = Label(dashboard_frame, text=(datetime.now() + timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
+        current_date = Label(dashboard_frame, text=(dt.now() + timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
         
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 20, "bold"), bg="#6D4C3D", fg="white").place(x=100, y=20)
