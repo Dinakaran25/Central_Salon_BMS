@@ -15,6 +15,8 @@ from tkinter import messagebox
 from tkinter import ttk
 import datetime
 import re 
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 
@@ -177,7 +179,7 @@ class CentralSalon:
 
         self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x= 150, y=300)
 
-        #self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.show_update_password_form).place(x=100, y=300)
+        #self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.view_appointments_admin).place(x=100, y=300)
         
         title = Label(self.login_frame, text="Don't have an account?", font=("Calibri", 12), fg="black", bg="white", cursor="hand2")
         title.place(x=50, y=400)
@@ -1191,10 +1193,6 @@ class CentralSalon:
         #username
         self.username_label = Label(left_frame, text="Username:", font=("Calibri", 15,"bold"), bg="white").place(x=50, y=290)
         self.username_entry = Label(left_frame, text=user[5], font=("Calibri", 15), bg="white").place(x=160, y=290)
-
-        #password
-        self.password_label = Label(left_frame, text="Password:", font=("Calibri", 15,"bold"), bg="white").place(x=50, y=350)
-        self.password_entry = Label(left_frame, text=user[6], font=("Calibri", 15), bg="white").place(x=160, y=350)
         
         #update button
         self.update_button = Button(left_frame, text="Update", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.update_profile).place(x=100, y=420)
@@ -1516,6 +1514,54 @@ class CentralSalon:
         self.logout_button.place(x=70, y=450)
         self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
         self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
+
+        #get the total sales for today
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT SUM(total) FROM salon_appointments WHERE date = CURDATE()")
+        total_sales = mycursor.fetchone()
+        #print(total_sales)
+
+        #get the staff performance
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT staff_id, COUNT(*) FROM salon_appointments GROUP BY staff_id")
+        staff_performance = mycursor.fetchall()
+        #print(staff_performance)
+
+        #plot the charts
+        #total sales chart
+        total_sales_chart = Figure(figsize=(5, 5), dpi=100)
+        total_sales_plot = total_sales_chart.add_subplot(111)
+        total_sales_plot.bar("Total Sales", total_sales[0], color="blue")
+        total_sales_plot.set_title("Total Sales for Today")
+        total_sales_plot.set_ylabel("Total Sales")
+        total_sales_plot.set_xlabel("Date")
+
+        #staff performance chart
+        staff_performance_chart = Figure(figsize=(5, 5), dpi=100)
+        staff_performance_plot = staff_performance_chart.add_subplot(111)
+        staff_performance_plot.bar([staff[0] for staff in staff_performance], [staff[1] for staff in staff_performance], color="red")
+        staff_performance_plot.set_title("Staff Performance")
+        staff_performance_plot.set_ylabel("Number of Appointments")
+
+        total_sales_canvas = FigureCanvasTkAgg(total_sales_chart, master=dashboard_frame)
+        total_sales_canvas.draw()
+        total_sales_canvas.get_tk_widget().place(x=400, y=150)
+
+        staff_performance_canvas = FigureCanvasTkAgg(staff_performance_chart, master=dashboard_frame)
+        staff_performance_canvas.draw()
+        staff_performance_canvas.get_tk_widget().place(x=400, y=400)
+        staff_performance_plot.set_xlabel("Staff ID")
+
+        #total sales chart
+        total_sales_canvas = FigureCanvasTkAgg(total_sales_chart, master=dashboard_frame)
+        total_sales_canvas.draw()
+        total_sales_canvas.get_tk_widget().place(x=400, y=150)
+
+        #staff performance chart
+        staff_performance_canvas = FigureCanvasTkAgg(staff_performance_chart, master=dashboard_frame)
+        staff_performance_canvas.draw()
+        staff_performance_canvas.get_tk_widget().place(x=400, y=400)
+
 
     def add_service(self):
         #same menu section
@@ -2341,8 +2387,16 @@ class CentralSalon:
         title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"),  bg="white", fg="#C89662").place(x=315, y=30)
         
         #current date label
-        current_date = Label(dashboard_frame, text=dt.now().strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
+        current_date = Label(dashboard_frame, text=dt.now().strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#C89662").place(x=700, y=155)
         
+        #previous day button
+        self.previous_day_button = Button(dashboard_frame, text="←", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.previous_day)
+        self.previous_day_button.place(x=665, y=150)
+
+        #next day button
+        self.next_day_button = Button(dashboard_frame, text="→", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.next_day)
+        self.next_day_button.place(x=800, y=150)
+
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
@@ -2476,15 +2530,6 @@ class CentralSalon:
         self.assign_staff_button.place(x=50, y=350)
         
         
-        #previous day button
-        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.previous_day)
-        self.previous_day_button.place(x=100, y=350)
-
-        #next day button
-        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.next_day)
-        self.next_day_button.place(x=300, y=350)
-
-
     # when previous button is clicked the prevoius day appointments are displayed in the table
     def previous_day(self):
         #same menu section
@@ -2512,8 +2557,16 @@ class CentralSalon:
         title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"),  bg="white", fg="#C89662").place(x=350, y=30)
         
         #current date label
-        current_date = Label(dashboard_frame, text=(dt.now() - timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
-        
+        current_date = Label(dashboard_frame, text=(dt.now() - timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=700, y=155)
+
+        #previous day button
+        self.previous_day_button = Button(dashboard_frame, text="←", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.previous_day)
+        self.previous_day_button.place(x=665, y=150)
+
+        #next day button
+        self.next_day_button = Button(dashboard_frame, text="→", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.view_appointments_admin)
+        self.next_day_button.place(x=800, y=150)
+
        #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
@@ -2608,7 +2661,7 @@ class CentralSalon:
         rows = mycursor.fetchall()
 
         if not rows:
-            messagebox.showinfo("No Appointments", "No appointments scheduled for today.")
+            messagebox.showinfo("No Appointments", "No appointments scheduled yesterday.")
 
         for row in rows:
             Name=row[6]
@@ -2647,14 +2700,6 @@ class CentralSalon:
         self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staff)
         self.assign_staff_button.place(x=50, y=350)
 
-        #previous day button
-        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.previous_day)
-        self.previous_day_button.place(x=100, y=350)
-
-        #next day button
-        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.next_day)
-        self.next_day_button.place(x=300, y=350)
-   
     
     # when next button is clicked the next day appointments are displayed in the table it should be responsive to the current date
         
@@ -2685,8 +2730,16 @@ class CentralSalon:
         title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=30)
         
         #current date label
-        current_date = Label(dashboard_frame, text=(dt.now() + timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
+        current_date = Label(dashboard_frame, text=(dt.now() + timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=700, y=155)
         
+        #previous day button
+        self.previous_day_button = Button(dashboard_frame, text="←", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.view_appointments_admin)
+        self.previous_day_button.place(x=665, y=150)
+
+        #next day button
+        self.next_day_button = Button(dashboard_frame, text="→", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.next_day)
+        self.next_day_button.place(x=800, y=150)
+
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
@@ -2781,7 +2834,7 @@ class CentralSalon:
         rows = mycursor.fetchall()
 
         if not rows:
-            messagebox.showinfo("No Appointments", "No appointments scheduled for today.")
+            messagebox.showinfo("No Appointments", "No appointments scheduled for tomorrow.")
 
         for row in rows:
             Name=row[6]
@@ -2820,15 +2873,7 @@ class CentralSalon:
         self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staff)
         self.assign_staff_button.place(x=50, y=350)
 
-        #previous day button
-        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.previous_day)
-        self.previous_day_button.place(x=100, y=350)
-
-        #next day button
-        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.next_day)
-        self.next_day_button.place(x=300, y=350)
-
-
+        
     def assign_staff(self):
         #get selected item
         selected_item = self.appointments_table.selection()[0]
