@@ -1366,70 +1366,70 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="Welcome, Admin!", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=350, y=50)
+        title = Label(dashboard_frame, text="Welcome, Admin!", font=("Calibri", 30, "bold"), bg="white", fg="black").place(x=325, y=50)
 
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
     #admin should view the report of the solon in this function as a dashboard with all charts in this screen 
     def view_report(self):
@@ -1452,70 +1452,70 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="Report", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=350, y=50)
+        title = Label(dashboard_frame, text="Report", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=50)
 
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
     def add_service(self):
         #same menu section
@@ -1537,70 +1537,70 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="Add Service", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Add Service", font=("Calibri", 30, "bold"),  bg="white", fg="#C89662").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for adding services
         left_frame = Frame(dashboard_frame, bg="white")
@@ -1619,7 +1619,7 @@ class CentralSalon:
         self.price_entry.place(x=50, y=140)
 
         #add service button
-        self.add_service_button = Button(left_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.add_serviceDB).place(x=50, y=180)
+        self.add_service_button = Button(left_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.add_serviceDB).place(x=50, y=180)
 
 
     def add_serviceDB(self):
@@ -1658,70 +1658,70 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="View Services", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Services", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for viewing services
         left_frame = Frame(dashboard_frame, bg="white")
@@ -1748,8 +1748,8 @@ class CentralSalon:
             self.services_table.insert("", "end", values=(row[0], row[1], row[2]))
 
         #update and delete services
-        self.update_service_button = Button(left_frame, text="Update Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.update_service).place(x=30, y=350)
-        self.delete_service_button = Button(left_frame, text="Delete Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.delete_service).place(x=200, y=350)
+        self.update_service_button = Button(left_frame, text="Update Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.update_service).place(x=30, y=350)
+        self.delete_service_button = Button(left_frame, text="Delete Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.delete_service).place(x=200, y=350)
 
     def update_service(self):
         #get selected item
@@ -1780,70 +1780,70 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="Update Service", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Update Service", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for updating services
         left_frame = Frame(dashboard_frame, bg="white")
@@ -1866,7 +1866,7 @@ class CentralSalon:
         self.price_entry.place(x=50, y=140)
 
         #update service button
-        self.update_service_button = Button(left_frame, text="Update Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=lambda: self.update_serviceDB(id)).place(x=50, y=180)
+        self.update_service_button = Button(left_frame, text="Update Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=lambda: self.update_serviceDB(id)).place(x=50, y=180)
 
     def update_serviceDB(self, id):
         service = self.service_entry.get()
@@ -1916,70 +1916,70 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="Add Staff", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Add Staff", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for adding staff
         left_frame = Frame(dashboard_frame, bg="white")
@@ -2010,7 +2010,7 @@ class CentralSalon:
         self.staffspeciality_entry.place(x=50, y=260)
 
         #add staff button
-        self.add_staff_button = Button(left_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.add_staffDB).place(x=50, y=300)
+        self.add_staff_button = Button(left_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.add_staffDB).place(x=50, y=300)
 
     def add_staffDB(self):
         staffname = self.staffname_entry.get()
@@ -2050,70 +2050,70 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="View Staff", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Staff", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for viewing staff
         left_frame = Frame(dashboard_frame, bg="white")
@@ -2145,8 +2145,8 @@ class CentralSalon:
             self.staff_table.insert("", "end", values=(row[0], row[1], row[2], row[3], row[4]))
 
         #update and delete staff
-        self.update_staff_button = Button(left_frame, text="Update Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.update_staff).place(x=50, y=350)
-        self.delete_staff_button = Button(left_frame, text="Delete Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.delete_staff).place(x=200, y=350)
+        self.update_staff_button = Button(left_frame, text="Update Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.update_staff).place(x=50, y=350)
+        self.delete_staff_button = Button(left_frame, text="Delete Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.delete_staff).place(x=200, y=350)
 
     def update_staff(self):
         #get selected item
@@ -2181,70 +2181,70 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="Update Staff", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="Update Staff", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for updating staff
         left_frame = Frame(dashboard_frame, bg="white")
@@ -2283,7 +2283,7 @@ class CentralSalon:
         self.staffspeciality_entry.place(x=50, y=260)
 
         #update staff button
-        self.update_staff_button = Button(left_frame, text="Update Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=lambda: self.update_staffDB(id)).place(x=50, y=300)
+        self.update_staff_button = Button(left_frame, text="Update Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=lambda: self.update_staffDB(id)).place(x=50, y=300)
         
     def update_staffDB(self, id):
         staffname = self.staffname_entry.get()
@@ -2335,73 +2335,73 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"),  bg="white", fg="#C89662").place(x=315, y=30)
         
         #current date label
         current_date = Label(dashboard_frame, text=dt.now().strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for viewing appointments
         left_frame = Frame(dashboard_frame, bg="white")
@@ -2472,16 +2472,16 @@ class CentralSalon:
             self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
 
         #assign staff button
-        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.assign_staff)
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staff)
         self.assign_staff_button.place(x=50, y=350)
         
         
         #previous day button
-        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.previous_day)
+        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.previous_day)
         self.previous_day_button.place(x=100, y=350)
 
         #next day button
-        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.next_day)
+        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.next_day)
         self.next_day_button.place(x=300, y=350)
 
 
@@ -2506,73 +2506,73 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"),  bg="white", fg="#C89662").place(x=350, y=30)
         
         #current date label
         current_date = Label(dashboard_frame, text=(dt.now() - timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
         
        #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for viewing appointments
         left_frame = Frame(dashboard_frame, bg="white")
@@ -2644,15 +2644,15 @@ class CentralSalon:
             self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
             
         #assign staff button
-        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.assign_staff)
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staff)
         self.assign_staff_button.place(x=50, y=350)
 
         #previous day button
-        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.previous_day)
+        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.previous_day)
         self.previous_day_button.place(x=100, y=350)
 
         #next day button
-        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.next_day)
+        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.next_day)
         self.next_day_button.place(x=300, y=350)
    
     
@@ -2679,73 +2679,73 @@ class CentralSalon:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
+        title = Label(dashboard_frame, text="View Appointments", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=30)
         
         #current date label
         current_date = Label(dashboard_frame, text=(dt.now() + timedelta(days=1)).strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="#503D33").place(x=900, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for viewing appointments
         left_frame = Frame(dashboard_frame, bg="white")
@@ -2817,15 +2817,15 @@ class CentralSalon:
             self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
 
         #assign staff button
-        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.assign_staff)
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staff)
         self.assign_staff_button.place(x=50, y=350)
 
         #previous day button
-        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.previous_day)
+        self.previous_day_button = Button(left_frame, text="Previous Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.previous_day)
         self.previous_day_button.place(x=100, y=350)
 
         #next day button
-        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.next_day)
+        self.next_day_button = Button(left_frame, text="Next Day", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.next_day)
         self.next_day_button.place(x=300, y=350)
 
 
@@ -2859,70 +2859,70 @@ class CentralSalon:
         dashboard_frame.place(x=0, y=0, width=1150, height=700)
 
         #menu frame left box
-        menu_frame = Frame(dashboard_frame, bg="#823F27")
+        menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
         title = Label(dashboard_frame, text="Assign Staff", font=("Calibri", 30, "bold"), bg="white", fg="#503D33").place(x=350, y=30)
         
         #menu label buttons
-        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#823F27", fg="white").place(x=70, y=30)
+        self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
 
         #add view report button in admin dashboard where admin should be able to see the report of the salon
-        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")  
+        self.view_report_button = tk.Label(dashboard_frame, text="View Report", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")  
         self.view_report_button.pack()
         self.view_report_button.bind("<Button-1>", lambda e: self.view_report())
         self.view_report_button.place(x=70, y=150)
-        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#823F27", fg="black"))
-        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#823F27", fg="white"))
+        self.view_report_button.bind("<Enter>", lambda e: self.view_report_button.config(bg="#C89662", fg="black"))
+        self.view_report_button.bind("<Leave>", lambda e: self.view_report_button.config(bg="#C89662", fg="white"))
 
         #add service button
-        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_service_button = tk.Label(dashboard_frame, text="Add Service", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_service_button.pack()
         self.add_service_button.bind("<Button-1>", lambda e: self.add_service())
         self.add_service_button.place(x=70, y=200)
-        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#823F27", fg="black"))
-        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#823F27", fg="white"))
+        self.add_service_button.bind("<Enter>", lambda e: self.add_service_button.config(bg="#C89662", fg="black"))
+        self.add_service_button.bind("<Leave>", lambda e: self.add_service_button.config(bg="#C89662", fg="white"))
 
         #view services button
-        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_services_button = tk.Label(dashboard_frame, text="View Services", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_services_button.pack()
         self.view_services_button.bind("<Button-1>", lambda e: self.view_services())
         self.view_services_button.place(x=70, y=250)
-        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#823F27", fg="black"))
-        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#823F27", fg="white"))
+        self.view_services_button.bind("<Enter>", lambda e: self.view_services_button.config(bg="#C89662", fg="black"))
+        self.view_services_button.bind("<Leave>", lambda e: self.view_services_button.config(bg="#C89662", fg="white"))
 
         #add staff button
-        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.add_staff_button = tk.Label(dashboard_frame, text="Add Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.add_staff_button.pack()
         self.add_staff_button.bind("<Button-1>", lambda e: self.add_staff())
         self.add_staff_button.place(x=70, y=300) 
-        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#823F27", fg="black"))
-        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#823F27", fg="white"))
+        self.add_staff_button.bind("<Enter>", lambda e: self.add_staff_button.config(bg="#C89662", fg="black"))
+        self.add_staff_button.bind("<Leave>", lambda e: self.add_staff_button.config(bg="#C89662", fg="white"))
                                        
         #view staff button
-        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_staff_button = tk.Label(dashboard_frame, text="View Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_staff_button.pack()
         self.view_staff_button.bind("<Button-1>", lambda e: self.view_staff())
         self.view_staff_button.place(x=70, y=350)
-        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#823F27", fg="black"))
-        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#823F27", fg="white"))
+        self.view_staff_button.bind("<Enter>", lambda e: self.view_staff_button.config(bg="#C89662", fg="black"))
+        self.view_staff_button.bind("<Leave>", lambda e: self.view_staff_button.config(bg="#C89662", fg="white"))
 
         #view appointments button
-        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.view_appointments_button = tk.Label(dashboard_frame, text="View Appointments", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.view_appointments_button.pack()
         self.view_appointments_button.bind("<Button-1>", lambda e: self.view_appointments_admin())
         self.view_appointments_button.place(x=70, y=400)
-        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="black"))
-        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#823F27", fg="white"))
+        self.view_appointments_button.bind("<Enter>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="black"))
+        self.view_appointments_button.bind("<Leave>", lambda e: self.view_appointments_button.config(bg="#C89662", fg="white"))
 
         #logout button
 
-        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#823F27", fg="white",cursor="hand2")
+        self.logout_button = tk.Label(dashboard_frame, text="Logout", font=("Calibri", 15, "bold"), bg="#C89662", fg="white",cursor="hand2")
         self.logout_button.pack()
         self.logout_button.bind("<Button-1>", lambda e: self.login_screen())
         self.logout_button.place(x=70, y=450)
-        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#823F27", fg="black"))
-        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#823F27", fg="white"))
+        self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
+        self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
 
         #left frame for assigning staff
         left_frame = Frame(dashboard_frame, bg="white")
@@ -2948,7 +2948,7 @@ class CentralSalon:
         self.staff_combo.place(x=50, y=140)
 
         #assign staff button
-        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#823F27", fg="white", command=self.assign_staffDB).place(x=50, y=180)
+        self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staffDB).place(x=50, y=180)
 
     def assign_staffDB(self):
         appointment_id = self.appointment_id_text.cget("text")
