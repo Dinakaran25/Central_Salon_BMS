@@ -180,7 +180,7 @@ class CentralSalon:
 
         self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x= 150, y=300)
 
-        #self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.show_update_password_form).place(x=100, y=300)
+        self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.view_report).place(x=100, y=300)
         
         title = Label(self.login_frame, text="Don't have an account?", font=("Calibri", 12), fg="black", bg="white", cursor="hand2")
         title.place(x=50, y=400)
@@ -1554,10 +1554,17 @@ class CentralSalon:
         mycursor = mydb.cursor()
         mycursor.execute("SELECT SUM(salon_services.price) AS total_sales FROM salon_appointments INNER JOIN salon_services ON salon_appointments.service_id = salon_services.id WHERE salon_appointments.date = CURDATE();")
         total_sales = mycursor.fetchone()
-        total_sales_text = f"Total Sales of the day: ${total_sales[0]}" if total_sales[0] is not None else "Total Sales: N/A"
-        total_sales_label = Label(dashboard_frame, text=total_sales_text, font=("Calibri", 18, "bold"), bg="white", fg="#b89b3f")
-        total_sales_label.place(x=140, y=215) 
-        total_sales_label.pack()
+        total_sales_text = f"Total Sales of the day: ${total_sales[0]:,.2f}" if total_sales[0] is not None else "Total Sales of the day: N/A"
+        total_sales_label = Label(dashboard_frame, text=total_sales_text, font=("Calibri", 18, "bold"), bg="#FDFDFD", fg="#C89662")
+        total_sales_label.place(x=300, y=120)
+
+        #get the total sales for the month
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT SUM(salon_services.price) AS total_sales FROM salon_appointments INNER JOIN salon_services ON salon_appointments.service_id = salon_services.id WHERE MONTH(salon_appointments.date) = MONTH(CURDATE());")
+        total_sales = mycursor.fetchone()
+        total_sales_text = f"Total Sales of the month: ${total_sales[0]:,.2f}" if total_sales[0] is not None else "Total Sales of the month: N/A"
+        total_sales_label = Label(dashboard_frame, text=total_sales_text, font=("Calibri", 18, "bold"), bg="#FDFDFD", fg="#C89662")
+        total_sales_label.place(x=300, y=160)
 
         #get the staff performance
         mycursor = mydb.cursor()
@@ -1565,34 +1572,21 @@ class CentralSalon:
         staff_performance = mycursor.fetchall()
         # print(staff_performance)
 
-        #plot the charts
-        #total sales chart
-        # total_sales_chart = Figure(figsize=(5, 5), dpi=100)
-        # total_sales_plot = total_sales_chart.add_subplot(111)
-        # total_sales_plot.bar("Total Sales", total_sales[0], color="blue")
-        # total_sales_plot.set_title("Total Sales for Today")
-        # total_sales_plot.set_ylabel("Total Sales")
-        # total_sales_plot.set_xlabel("Date")
 
         #staff performance chart
-        staff_performance_chart = Figure(figsize=(5, 5), dpi=100)
+        staff_performance_chart = Figure(figsize=(4, 4), dpi=100, facecolor='#FDFDFD')
         staff_performance_plot = staff_performance_chart.add_subplot(111)
-        staff_performance_plot.bar([staff[1] for staff in staff_performance], [staff[2] for staff in staff_performance], color="red")
+        staff_performance_plot.bar([staff[1] for staff in staff_performance], [staff[2] for staff in staff_performance], color="#C89662", edgecolor="black", linewidth=1)
+        staff_performance_plot.set_facecolor('#FDFDFD')
         staff_performance_plot.set_title("Staff Performance")
         staff_performance_plot.set_xlabel("Staff Name")
         staff_performance_plot.set_ylabel("Number of Appointments")
-
-        #total sales chart
-        # total_sales_canvas = FigureCanvasTkAgg(total_sales_chart, master=dashboard_frame)
-        # total_sales_canvas.get_tk_widget().pack()
-        # total_sales_canvas.draw()
-        # total_sales_canvas.get_tk_widget().place(x=400, y=150)
-
-        #staff performance chart
+        staff_performance_plot.set_aspect('equal')
         staff_performance_canvas = FigureCanvasTkAgg(staff_performance_chart, master=dashboard_frame)
-        staff_performance_canvas.get_tk_widget().pack()
-        # staff_performance_canvas.draw()
-        # staff_performance_canvas.get_tk_widget().place(x=400, y=400)
+        staff_performance_canvas.get_tk_widget().place(x=500, y=400, anchor="center")
+        staff_performance_canvas.draw()
+
+    
 
 
     def add_service(self):
