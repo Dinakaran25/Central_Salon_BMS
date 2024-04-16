@@ -93,7 +93,8 @@ salon_appointments_query = '''
     FOREIGN KEY (customer_id) REFERENCES customers(id),
     FOREIGN KEY (service_id) REFERENCES salon_services(id),
     FOREIGN KEY (staff_id) REFERENCES staff(id)
-    )
+);
+
 '''
 
 with mydb.cursor() as cursor:
@@ -179,7 +180,7 @@ class CentralSalon:
 
         self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x= 150, y=300)
 
-        #self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.view_appointments_admin).place(x=100, y=300)
+        #self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.show_update_password_form).place(x=100, y=300)
         
         title = Label(self.login_frame, text="Don't have an account?", font=("Calibri", 12), fg="black", bg="white", cursor="hand2")
         title.place(x=50, y=400)
@@ -322,7 +323,7 @@ class CentralSalon:
         self.toggle_button1 = tk.Button(self.update_password_frame, image=self.show_icon, command=self.toggle_password_visibility1, borderwidth=0,highlightthickness=0, bg="white",activebackground="white")
         self.toggle_button1.place(x=200, y=200)
 
-        lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Calibri", 12,"bold"), bg="white", fg="#b89b3f").place(x=10, y=220)
+        lbl_new_password = Label(self.update_password_frame, text="New Password:", font=("Calibri", 12,"bold"), bg="white", fg="#b89b3f").place(x=10, y=225)
         self.new_password_entry = Entry(self.update_password_frame, font=("Calibri", 12), bg="#ECECEC", show="*")
         self.new_password_entry.place(x=10, y=250)
 
@@ -374,7 +375,10 @@ class CentralSalon:
         new_password=self.new_password_entry.get()
         confirm_new_password=self.confirm_new_password_entry.get()
         userid=self.userid
-
+        new_password_pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+        if not re.match(new_password_pattern, new_password):
+            messagebox.showerror("Error", "Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, a number, and a special character.", parent=self.root)
+            return
         #print(current_password,new_password,confirm_new_password)
 
         if new_password != confirm_new_password:
@@ -712,11 +716,13 @@ class CentralSalon:
         self.time_label = Label(left_frame, text="Select Time", font=("Calibri", 15,"bold"), bg="white")
         self.time_label.place(x=50, y=180)
 
+        # Binding to the '<<DateEntrySelected>>' event to check for Saturdays and update time
+        self.date_entry.bind("<<DateEntrySelected>>", lambda event: self.update_time())
+
         # Time Combobox
         self.time_combobox = ttk.Combobox(left_frame, values=["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"], font=("Calibri", 15), state="readonly")
         self.time_combobox.set("Select Time")
         self.time_combobox.place(x=50, y=210)
-
         # Name
         self.name_label = Label(left_frame, text="Name", font=("Calibri", 15,"bold"), bg="white").place(x=50, y=260)
         self.name_entry = Entry(left_frame, font=("Calibri", 15), bg="#ECECEC")
@@ -737,6 +743,14 @@ class CentralSalon:
         if selected_date and selected_date.weekday() == 6:
             messagebox.showerror("Error", "Salon is closed on Sundays. Please select another date.", parent=self.root)
             self.date_entry.set_date(None)
+    def update_time(self):
+        selected_date = self.date_entry.get_date()
+        if selected_date.weekday() == 5:  # Saturday (0 = Monday, 1 = Tuesday, ..., 5 = Saturday)
+            self.time_combobox['values'] = ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM"]
+            self.time_combobox.set("Select Time")
+        else:
+            self.time_combobox['values'] = ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"]
+            self.time_combobox.set("Select Time")
 
             
     def update_price(self, event):
@@ -910,21 +924,22 @@ class CentralSalon:
         left_frame = Frame(self.root, bg="white")
         left_frame.place(x=350, y=100, width=400, height=500)
 
-        
 
         #table
-        self.appointments_table = ttk.Treeview(left_frame, columns=("id", "service", "date", "time", "staff"), selectmode="extended")
+        self.appointments_table = ttk.Treeview(left_frame, columns=("id", "service", "date", "time","staff", "checkin"), selectmode="extended")
         self.appointments_table.heading("id", text="ID")
         self.appointments_table.heading("service", text="Service")
         self.appointments_table.heading("date", text="Date")
         self.appointments_table.heading("time", text="Time")
         self.appointments_table.heading("staff", text="Staff")
+        self.appointments_table.heading("checkin",text="Checkin")
         self.appointments_table["show"] = "headings"
         self.appointments_table.column("id", width=3,anchor="center")
         self.appointments_table.column("service", width=50,anchor="center")
         self.appointments_table.column("date", width=30,anchor="center")
         self.appointments_table.column("time", width=30,anchor="center")
         self.appointments_table.column("staff", width=40,anchor="center")
+        self.appointments_table.column("checkin", width=30,anchor="center")
         
         self.appointments_table.tag_configure("oddrow", background="white")
         self.appointments_table.tag_configure("evenrow", background="lightgrey")
@@ -942,6 +957,11 @@ class CentralSalon:
             service = mycursor.fetchone()[0]
             date = row[3]
             time = row[4]
+            checkin=row[7]
+            if checkin == 1:
+                checkin = "Checked In"
+            else:
+                checkin = "Not Checked In"
 
             # convert time
             time = dt.strptime(str(time), "%H:%M:%S").strftime("%I:%M %p")
@@ -952,16 +972,17 @@ class CentralSalon:
             if staff_id != None:
                 mycursor.execute("SELECT staffname FROM staff WHERE id = %s", (staff_id,))
                 staff = mycursor.fetchone()[0]
-            elif row[7] == 1:
-                staff = "Checked In"
             else:
-                staff = "Not Checked In"
+                staff="Not Assigned"
+
+           
+            
 
             # insert all data into table
             if index % 2 == 0:
-                self.appointments_table.insert("", "end", values=(row[0], service, date, time, staff), tags=("evenrow",))
+                self.appointments_table.insert("", "end", values=(row[0], service, date, time, staff,checkin), tags=("evenrow",))
             else:
-                self.appointments_table.insert("", "end", values=(row[0], service, date, time, staff), tags=("oddrow",))
+                self.appointments_table.insert("", "end", values=(row[0], service, date, time, staff,checkin), tags=("oddrow",))
 
         #checkin appointments button
         self.checkin_appointment_button = Button(left_frame, text="Checkin Appointment", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.checkin_appointment).place(x=95, y=400)
@@ -1326,6 +1347,20 @@ class CentralSalon:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
+        password_pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+        email_pattern = r"^\S+@\S+\.\S+$"
+
+        if not re.match(email_pattern, email):
+            messagebox.showerror("Error", "Invalid email format", parent=self.root)
+            return
+
+        if not re.match(password_pattern, password):
+            messagebox.showerror("Error", "Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, a number, and a special character.", parent=self.root)
+            return
+        if not phone.isdigit() or len(phone) != 10:
+            messagebox.showerror("Error", "Phone number must be 10 digits long and contain only numbers.", parent=self.root)
+            return
+        
         if fullname == "" or lastname == "" or email == "" or phone == "" or username == "" or password == "":
             messagebox.showerror("Error", "All fields are required", parent=self.root)
         else:
@@ -1517,50 +1552,47 @@ class CentralSalon:
 
         #get the total sales for today
         mycursor = mydb.cursor()
-        mycursor.execute("SELECT SUM(total) FROM salon_appointments WHERE date = CURDATE()")
+        mycursor.execute("SELECT SUM(salon_services.price) AS total_sales FROM salon_appointments INNER JOIN salon_services ON salon_appointments.service_id = salon_services.id WHERE salon_appointments.date = CURDATE();")
         total_sales = mycursor.fetchone()
-        #print(total_sales)
+        total_sales_text = f"Total Sales of the day: ${total_sales[0]}" if total_sales[0] is not None else "Total Sales: N/A"
+        total_sales_label = Label(dashboard_frame, text=total_sales_text, font=("Calibri", 18, "bold"), bg="white", fg="#b89b3f")
+        total_sales_label.place(x=140, y=215) 
+        total_sales_label.pack()
 
         #get the staff performance
         mycursor = mydb.cursor()
-        mycursor.execute("SELECT staff_id, COUNT(*) FROM salon_appointments GROUP BY staff_id")
+        mycursor.execute("SELECT staff.id, staff.staffname, COUNT(*) AS appointment_count FROM salon_appointments INNER JOIN staff ON salon_appointments.staff_id = staff.id GROUP BY staff.id, staff.staffname")
         staff_performance = mycursor.fetchall()
-        #print(staff_performance)
+        # print(staff_performance)
 
         #plot the charts
         #total sales chart
-        total_sales_chart = Figure(figsize=(5, 5), dpi=100)
-        total_sales_plot = total_sales_chart.add_subplot(111)
-        total_sales_plot.bar("Total Sales", total_sales[0], color="blue")
-        total_sales_plot.set_title("Total Sales for Today")
-        total_sales_plot.set_ylabel("Total Sales")
-        total_sales_plot.set_xlabel("Date")
+        # total_sales_chart = Figure(figsize=(5, 5), dpi=100)
+        # total_sales_plot = total_sales_chart.add_subplot(111)
+        # total_sales_plot.bar("Total Sales", total_sales[0], color="blue")
+        # total_sales_plot.set_title("Total Sales for Today")
+        # total_sales_plot.set_ylabel("Total Sales")
+        # total_sales_plot.set_xlabel("Date")
 
         #staff performance chart
         staff_performance_chart = Figure(figsize=(5, 5), dpi=100)
         staff_performance_plot = staff_performance_chart.add_subplot(111)
-        staff_performance_plot.bar([staff[0] for staff in staff_performance], [staff[1] for staff in staff_performance], color="red")
+        staff_performance_plot.bar([staff[1] for staff in staff_performance], [staff[2] for staff in staff_performance], color="red")
         staff_performance_plot.set_title("Staff Performance")
+        staff_performance_plot.set_xlabel("Staff Name")
         staff_performance_plot.set_ylabel("Number of Appointments")
 
-        total_sales_canvas = FigureCanvasTkAgg(total_sales_chart, master=dashboard_frame)
-        total_sales_canvas.draw()
-        total_sales_canvas.get_tk_widget().place(x=400, y=150)
-
-        staff_performance_canvas = FigureCanvasTkAgg(staff_performance_chart, master=dashboard_frame)
-        staff_performance_canvas.draw()
-        staff_performance_canvas.get_tk_widget().place(x=400, y=400)
-        staff_performance_plot.set_xlabel("Staff ID")
-
         #total sales chart
-        total_sales_canvas = FigureCanvasTkAgg(total_sales_chart, master=dashboard_frame)
-        total_sales_canvas.draw()
-        total_sales_canvas.get_tk_widget().place(x=400, y=150)
+        # total_sales_canvas = FigureCanvasTkAgg(total_sales_chart, master=dashboard_frame)
+        # total_sales_canvas.get_tk_widget().pack()
+        # total_sales_canvas.draw()
+        # total_sales_canvas.get_tk_widget().place(x=400, y=150)
 
         #staff performance chart
         staff_performance_canvas = FigureCanvasTkAgg(staff_performance_chart, master=dashboard_frame)
-        staff_performance_canvas.draw()
-        staff_performance_canvas.get_tk_widget().place(x=400, y=400)
+        staff_performance_canvas.get_tk_widget().pack()
+        # staff_performance_canvas.draw()
+        # staff_performance_canvas.get_tk_widget().place(x=400, y=400)
 
 
     def add_service(self):
@@ -2503,6 +2535,7 @@ class CentralSalon:
             date=row[3]
             time=str(row[4]) # Convert time to string
 
+
             #covert time to HH MM AM/PM
             time = dt.strptime(time, '%H:%M:%S').strftime("%I:%M %p")
             serviceid = row[2]
@@ -2522,8 +2555,13 @@ class CentralSalon:
                 mycursor.execute("SELECT staffname FROM staff WHERE id = %s", (staffid,))
                 staffname = mycursor.fetchone()
                 staffname = staffname[0]
+            phone = None
+    # Get phone from database
+            mycursor.execute("SELECT phone FROM customers WHERE id = %s", (userid,))
+            phone = mycursor.fetchone()
+            phone = phone[0]
 
-            self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
+            self.appointments_table.insert("", "end", values=(row[0], Name, email, phone, service, date, time))
 
         #assign staff button
         self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staff)
@@ -2693,8 +2731,13 @@ class CentralSalon:
                 mycursor.execute("SELECT staffname FROM staff WHERE id = %s", (staffid,))
                 staffname = mycursor.fetchone()
                 staffname = staffname[0]
+            phone = None
+    # Get phone from database
+            mycursor.execute("SELECT phone FROM customers WHERE id = %s", (userid,))
+            phone = mycursor.fetchone()
+            phone = phone[0]
 
-            self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
+            self.appointments_table.insert("", "end", values=(row[0], Name, email, phone, service, date, time))
             
         #assign staff button
         self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staff)
@@ -2866,8 +2909,14 @@ class CentralSalon:
                 mycursor.execute("SELECT staffname FROM staff WHERE id = %s", (staffid,))
                 staffname = mycursor.fetchone()
                 staffname = staffname[0]
+            phone = None
+    # Get phone from database
+            mycursor.execute("SELECT phone FROM customers WHERE id = %s", (userid,))
+            phone = mycursor.fetchone()
+            phone = phone[0]
 
-            self.appointments_table.insert("", "end", values=(row[0], Name, email, row[7], service, date, time))
+            self.appointments_table.insert("", "end", values=(row[0], Name, email, phone, service, date, time))
+
 
         #assign staff button
         self.assign_staff_button = Button(left_frame, text="Assign Staff", font=("Calibri", 15, "bold"), bg="#C89662", fg="white", command=self.assign_staff)
