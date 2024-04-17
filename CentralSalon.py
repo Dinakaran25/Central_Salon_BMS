@@ -180,7 +180,7 @@ class CentralSalon:
 
         self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.validate_login).place(x= 150, y=300)
 
-        self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.view_report).place(x=100, y=300)
+        #self.login_button = Button(self.login_frame, text="Login", font=("Calibri", 18, "bold"), bg="#b89b3f", fg="white",cursor="hand2", command=self.view_report).place(x=100, y=300)
         
         title = Label(self.login_frame, text="Don't have an account?", font=("Calibri", 12), fg="black", bg="white", cursor="hand2")
         title.place(x=50, y=400)
@@ -191,7 +191,6 @@ class CentralSalon:
         self.register_text.bind("<Enter>", lambda e: self.register_text.config(fg="#b89b3f"))
         self.register_text.bind("<Leave>", lambda e: self.register_text.config(fg="blue"))
     
-
 
     def toggle_password_visibility(self):
         if self.password_visible:
@@ -717,12 +716,13 @@ class CentralSalon:
         self.time_label.place(x=50, y=180)
 
         # Binding to the '<<DateEntrySelected>>' event to check for Saturdays and update time
-        self.date_entry.bind("<<DateEntrySelected>>", lambda event: self.update_time())
+        
 
         # Time Combobox
         self.time_combobox = ttk.Combobox(left_frame, values=["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"], font=("Calibri", 15), state="readonly")
         self.time_combobox.set("Select Time")
         self.time_combobox.place(x=50, y=210)
+        # self.date_entry.bind("<<DateEntrySelected>>", lambda event: self.update_time())
         # Name
         self.name_label = Label(left_frame, text="Name", font=("Calibri", 15,"bold"), bg="white").place(x=50, y=260)
         self.name_entry = Entry(left_frame, font=("Calibri", 15), bg="#ECECEC")
@@ -743,6 +743,7 @@ class CentralSalon:
         if selected_date and selected_date.weekday() == 6:
             messagebox.showerror("Error", "Salon is closed on Sundays. Please select another date.", parent=self.root)
             self.date_entry.set_date(None)
+
     def update_time(self):
         selected_date = self.date_entry.get_date()
         if selected_date.weekday() == 5:  # Saturday (0 = Monday, 1 = Tuesday, ..., 5 = Saturday)
@@ -1331,10 +1332,10 @@ class CentralSalon:
         self.username_entry.place(x=50, y=320)
 
         #password
-        self.password_label = Label(left_frame, text="Password", font=("Calibri", 15), bg="white").place(x=50, y=350)
-        self.password_entry = Entry(left_frame, font=("Calibri", 15), bg="#ECECEC")
-        self.password_entry.insert(0, user[6])
-        self.password_entry.place(x=50, y=380)
+        # self.password_label = Label(left_frame, text="Password", font=("Calibri", 15), bg="white").place(x=50, y=350)
+        # self.password_entry = Entry(left_frame, font=("Calibri", 15), bg="#ECECEC")
+        # self.password_entry.insert(0, user[6])
+        # self.password_entry.place(x=50, y=380)
 
         #update button
         self.update_button = Button(left_frame, text="Save", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.update_profileDB).place(x=100, y=420)
@@ -1578,7 +1579,7 @@ class CentralSalon:
         staff_performance_plot = staff_performance_chart.add_subplot(111)
         staff_performance_plot.bar([staff[1] for staff in staff_performance], [staff[2] for staff in staff_performance], color="#C89662", edgecolor="black", linewidth=1)
         staff_performance_plot.set_facecolor('#FDFDFD')
-        staff_performance_plot.set_title("Staff Performance")
+        staff_performance_plot.set_title("Monthly Staff Performance Chart")
         staff_performance_plot.set_xlabel("Staff Name")
         staff_performance_plot.set_ylabel("Number of Appointments")
         staff_performance_plot.set_aspect('equal')
@@ -2233,7 +2234,17 @@ class CentralSalon:
         phone = self.staff_table.item(selected_item, "values")[3]
         #get speciality
         speciality = self.staff_table.item(selected_item, "values")[4]
+        
+        email_pattern = r"^\S+@\S+\.\S+$"
 
+        if not phone.isdigit() or len(phone) != 10:
+            messagebox.showerror("Error", "Phone number must be 10 digits long and contain only numbers.", parent=self.root)
+            return
+        
+        if not re.match(email_pattern, email):
+            messagebox.showerror("Error", "Invalid email format", parent=self.root)
+            return
+        
         #same menu section
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -2317,6 +2328,7 @@ class CentralSalon:
         self.logout_button.place(x=70, y=450)
         self.logout_button.bind("<Enter>", lambda e: self.logout_button.config(bg="#C89662", fg="black"))
         self.logout_button.bind("<Leave>", lambda e: self.logout_button.config(bg="#C89662", fg="white"))
+
 
         #left frame for updating staff
         left_frame = Frame(dashboard_frame, bg="white")
