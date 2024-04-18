@@ -1332,10 +1332,10 @@ class CentralSalon:
         self.username_entry.place(x=50, y=320)
 
         #password
-        # self.password_label = Label(left_frame, text="Password", font=("Calibri", 15), bg="white").place(x=50, y=350)
-        # self.password_entry = Entry(left_frame, font=("Calibri", 15), bg="#ECECEC")
-        # self.password_entry.insert(0, user[6])
-        # self.password_entry.place(x=50, y=380)
+        self.password_label = Label(left_frame, text="Password", font=("Calibri", 15), bg="white").place(x=50, y=350)
+        self.password_entry = Entry(left_frame, font=("Calibri", 15), bg="#ECECEC")
+        self.password_entry.insert(0, user[6])
+        self.password_entry.place(x=50, y=380)
 
         #update button
         self.update_button = Button(left_frame, text="Save", font=("Calibri", 15, "bold"), bg="#b89b3f", fg="white", command=self.update_profileDB).place(x=100, y=420)
@@ -1489,7 +1489,32 @@ class CentralSalon:
         menu_frame = Frame(dashboard_frame, bg="#C89662")
         menu_frame.place(x=30, y=0, width=250, height=700)
 
-        title = Label(dashboard_frame, text="Report", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=50)
+        #create a label for the title 
+        title = Label(dashboard_frame, text="View Report", font=("Calibri", 30, "bold"), bg="white", fg="#C89662").place(x=350, y=50)
+
+        # Date label
+        date_label = Label(dashboard_frame, text="Date:", font=("Calibri", 15, "bold"), bg="white", fg="black")
+        date_label.place(x=650, y=155)
+
+        # Current date
+        current_date = Label(dashboard_frame, text=dt.now().strftime("%m-%d-%Y"), font=("Calibri", 15, "bold"), bg="white", fg="black")
+        current_date.place(x=700, y=155)
+
+        # Time label
+        time_label = Label(dashboard_frame, text="Time:", font=("Calibri", 15, "bold"), bg="white", fg="black")
+        time_label.place(x=650, y=185)
+
+        # Function to update time
+        def update_time():
+            current_time.config(text=dt.now().strftime("%H:%M:%S"))
+            dashboard_frame.after(1000, update_time)
+
+        # Current time
+        current_time = Label(dashboard_frame, text=dt.now().strftime("%H:%M:%S"), font=("Calibri", 15, "bold"), bg="white", fg="black")
+        current_time.place(x=700, y=185)
+
+        # Update time
+        update_time()
 
         #menu label buttons
         self.menu_label = Label(menu_frame, text="Menu", font=("Calibri", 30, "bold"), bg="#C89662", fg="white").place(x=70, y=30)
@@ -1575,7 +1600,7 @@ class CentralSalon:
 
 
         #staff performance chart
-        staff_performance_chart = Figure(figsize=(4, 4), dpi=100, facecolor='#FDFDFD')
+        staff_performance_chart = Figure(figsize=(3, 3), dpi=100, facecolor='#FDFDFD')
         staff_performance_plot = staff_performance_chart.add_subplot(111)
         staff_performance_plot.bar([staff[1] for staff in staff_performance], [staff[2] for staff in staff_performance], color="#C89662", edgecolor="black", linewidth=1)
         staff_performance_plot.set_facecolor('#FDFDFD')
