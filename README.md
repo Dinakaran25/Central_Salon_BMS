@@ -1,4 +1,4 @@
-# Central Salon Management System
+# Central Salon Booking Management System
 ## Overview
 
 This Python application, built with Tkinter, manages various aspects of a salon, including:
